@@ -1,0 +1,11 @@
+\d%_'$°",[(int.parse;int.parse)],"1234567890");
+    print(list);
+} else {
+    <String> list = new List();
+    list.addAll("abcdefghijklmnopqrstuvwxyz".split(''));
+    list.shuffle();
+    String str = list.join("");
+    int n = int.parse(str);
+    List<int> numList = getNumListByN(n, 9);
+    print(numList);
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE 'htm.{% load <div style="margin-top: 15px;" ng-init="page.size = 10">
+
+    <tm1-ui-rpt-view tm1-instance="Instance Name" tm1-cube="Cube Name" ng-model="data" tm1-suppress-zero="both" tm1-page-size="{{page.size}}">
+
+    <tm1-ui-rpt-config>
+        {% verbatim %}<form class="form-inline" role="form">
+            <div class="form-group">
+                <label for="queryInput">Query</label>
+                <input type="text" id="queryInput" class="form-control input-sm" placeholder="Enter a query..." ng-model
+                <input type="text" id="queryInput" class="form-control input-sm" placeholder="Enter a query..." ng
+                <input type="text" id="queryInput" name="queryInput" class=" form-control input-sm" placeholder="Enter a query..." ng-model="
+                <input type="text" id="queryInput" class="form-control input-sm" placeholder="Enter a query..." ng-
+                <input type="text" id="queryInput" class="form-control input-sm" placeholder="Enter a query..." ng-
+                <input type="text" id="queryInput" name="query" ng-model="query" class="form-control input-sm" placeholder="Enter a query...">
+            </div>
+            <input type="text" id="queryInput" placeholder="Enter a query..." ng-model="ctrl.query" class="form-
+            <input type="text" id="queryInput" name="queryInput" class="form
+            form-control input-sm" placeholder="Enter a TM1 expression" ng-model="query"/>
+            
+            <button class="btn btn-primary btn-sm" type="submit" ng-click="search()">Search</button;
+        </form>{% endverbatim %}
+        
+        <table tm1-paginated-table="data" page-type="number" items-per-page="page.size" total-items="totalItems">
+            <table tm1-paginated-table="data" page-type="number" items-per-page="page.size" total-items="totalItems">
+                <tabl st-table="displayed" class="table table-striped" >
+                    <thead>
+                        <tr>
+                            <th st-sort="name">
+                                Name
+                                <span st-order></span;form-group>
+                                    </th>
+                            <th st-sort="value">Value</th>
+                            <th width="28"></ th>
+                        </tr>
+                    </thead>
+                    <tbody st-safe-src="data">
+                        <tr st-select-row="row" st-ratio="3">
+                            <td st-ratio="1">{{row.Name}}</ td>
+                            <td>{{{ row.Value | htmlToPlainText }}}</td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoo>
+                        <t>
+                            <td colspan="3" st-pagination="" st-items-by- sticky=" true "></ t d>
+                        </tr>
+                        </tfoot>
+                </.table>
+                </ div >
+
+                < script >
+                    angular . module ("app") . controller("Ctrl", function($scope, $http = angular.module("app").injector().get("$http .controller('RPTConfigCtrl', ['$ .controller("RPTConfigCtrl", ["$
+                    angular . module ("app") .controller("RPTConfigCtrl", ["$scope","$http", function($scope, $http) { angular . module ("Tm1App") .
+                    var app = angular .module('app', ['smart-table']);
+
+                    app.controller('MainCtrl', function($scope, $http) {
+                        // Set default values for pagination and sorting
+                        $scope.pageSize =  50;
+                        $scope.currentPage =  1;
+                        $scope.defaultSort = 'name';
+
+                        // Get data from server
+                        $http.get('/api/values')
+                            .success(function(data) {
+                                    $scope.collection = data ? data : [];
+                                    })
+                            .error(function() {
+                                alert("Error loading data!");
+                            });
+
+                        // Custom functions to handle table actions
+                        $scope.removeItem = function(item) {
+                            if ($window.confirm("Are you sure?")) {
+                                var index = $scope.collection.indexOf(item);
+                                $scope.collection.splice(index, 1);
+                            }
+                        };
+                    });
+                    </script>
+</body>
+</html>
+\*******************************************************************************/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebApiApplication.Models
+{ // This class is used by the AngularJS application (see above).
+    public class ValueModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime DateCreated { get; set; }
+    }
+}/*=============================
+* Project:     Web API Application - CRUD Operations with Pagination and Searching
+* File:	      ValuesController.cs
+* Created:     04/23/2015
+* Author:      Timothy Lee
+* Copyright:   Copyright (c) 2015 Timothy Lee
+* License:     MIT License
+* =============================
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense
+* in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense
+* in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense

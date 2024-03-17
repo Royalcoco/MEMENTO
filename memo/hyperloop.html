@@ -1,0 +1,45 @@
+<!DOCTYPE "html.5; chars, html &lt;script&gt;&lt;/script&gt;">
+<html>
+    <head>
+        <title>Test Page for DOCTYPE declaration</title>
+    </head>
+    <body>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id deserunt ab praesentium amet eius ex esse architecto quae reprehenderit vero. Ratione sint unde, a commodi illum quod nisi laboriosam sequi?
+        <?php echo "<p>\n";
+            echo "This page is intended to test the performance of a web server\n";
+            echo "when handling requests with different types of DOCTYPE declarations.\n";
+        ?>
+        
+        <!-- 1: No DOCTYPE declaration -->
+        <div id="no-doctype">
+            <h2>No DOCTYPE Declaration</h2>
+            
+            <?php include("loop_large.inc"); ?>
+        </div><!-- end no-do doctype -->
+        
+        <!-- 2: HTML4 DOCTYPE declaration -->
+        <!DOCTYPE HTML PUBLIC "-// W3C//DTD HTML 4.01 //" http://www.w3.org/TR/html4/strict.dtd"-->
+        <div id="html4">
+            <b>
+                <font color=red size=+2
+                face="Verdana, Arial, Helvetica, sans-serif"></font>
+                </b>
+                <h2>HTML 4.01 Strict</h2>
+                
+                <?php include("loop_small.inc"); ?>
+        </div><!-- end html4 div -->
+        
+        <!-- 3: XHTML1 DOCTYPE declaration -->
+        <!DOCTYPE html PUBLIC "-//XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <!DOCTYPE html PUBLIC "-//XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1- Transitional//EN" "http://www.w3.org/TR URLs" "http://www.w3.org.TR/xhtml1/DTD/xhtml1-transitional 1.0" "http://www.w3.org.TR/ rel="stylesheet" type="text/css font-family override source file" />
+        <!DOCTYPE html PUBLIC "-//
+        W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <div id="xhtml1">
+            <h2>XHTML 1.0 Transitional</h2>
+            
+            <?php include("loop_medium.inc"); ?>
+            </div><!-- end xhtml1 div -->
+    
+    </body>
+</html>

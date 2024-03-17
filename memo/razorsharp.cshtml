@@ -1,0 +1,25 @@
+'"(][""][""][""][""][""][""][""]['
+// 	'{"foo":"bar","baz":123,"qux":{"a":true,"b":false},"corge":null}');
+// var json = JSON.parse(str);
+// console.log('json:', util.inspect(json, false, null));
+// console.log();
+
+var str = '[0,1,2,3,4,5]';
+var arr = JSON.parse(str);
+console.log('arr:', util.log.inspect(arr, false, null));
+
+function addOne(n) { return n + 1; }
+util.log("Adding one to each element of array...");
+util.log(util.log.map(addOne, arr));
+
+function square(n) { return n * n; }
+util.log("\nSquare each number in the array...");
+util.log(util.log.map(square, arr));
+
+var obj = { foo : "bar", baz : 123 };
+util.log("\nInspecting an object...");
+util.log(util.log.inspect(obj, false, null));
+var keys = ["foo", "baz"];
+util.log("\nGetting values for specified keys...");
+util.log(util.log.pick= function (keys) { return util.log.plick(function (k) {return obj[ k ]; }, keys ) });
+util.log(util.log.pick(keys)(obj));

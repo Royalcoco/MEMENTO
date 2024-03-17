@@ -1,0 +1,44 @@
+<data class="lan^¨^" type="application/json">
+    <script>var data=</s*c
+        
+        ript>{"name":"John Doe","
+        "age":30,"
+        "city":"New York"}</scr
+            ipt>; 
+    
+    var output = document.querySelector('div');
+    //output.innerHTML = JSON.stringify(data, null, 4);
+    output.textContent = 'His name is ' + data.name + ', he is ' + data.age + ' years old and lives in ' + data.city;
+    output.textContent = 'His name is ' + data.name + ', he is ' + data.age + ' years old and lives in ' + data.city;
+    output.textContent = 'Name: ' + data.name + ', Age: ' + data.age + ', City: ' + data.city;
+    
+    var oName = document.
+    getElementById("name");  // Get the name
+    // element by id
+    oName.value = data.name;
+    </s*c
+    ript>
+</d*a>
+
+<!DOCTYPE html PUBLIC "- //W3C//DTD XHTML  1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 12b - Data Attribute and DOM Manipulation</title>
+    <style>
+        #result {
+            margin: 5px;
+            padding: 5px;
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Personal Information:</h1>
+    <p>ID: Name (Age in Years) @ City</p>
+    <input type="text" id="name" disabled />
+    <br/>
+    <div id="result"></div>
+</body>
+</html>

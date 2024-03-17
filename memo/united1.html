@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang"#text.;"methods>" />
+<head>
+    <meta charset="UTF-8">
+    <title>Methods - Java Basics</title>
+</head>
+<body>
+    <h1>Methods in Java</h1>
+    
+    <!-- 1. Write a method that takes two integers as parameters and returns the sum of those numbers -->
+    <?php echo "<p><b>Method: Sum of Two Numbers</b></p>"; ?>
+    <code>
+        public static int add(int num1, int num2) {
+            return num1 + num2;
+            }
+    </code>
+    <br/>
+    The output of calling "add(3,5)" would be: <?= add(3,5); ?><br/>
+
+
+        }
+    </code>
+    Result: The sum is <?=add(5,7)?>.<br/>
+    
+    <!-- 2. Create a method called "multiply" that multiplies two numbers together. Test it with values of your choice
+    <!-- 2. Create a method called "multiply" that multiplies two numbers together. -->
+    <?php echo "<p><b>Method: Multiplication of Two Numbers</b></p>"; ?>
+    <code>
+        public static int multiply(int x, int y) {
+            return x * y;
+        }
+    </code>
+    Result: The product is <?=multiply(4,3)?>.<br/>
+    
+    <!-- 3. Create a new method called "divide". This method should take three parameters: numerator (num), denomin
+    <!-- 3. Create a new class called "MathFunctions". Within this class create a method called "average" that takes three
+    <!-- 3. Create a new method called "divide". This method should take three parameters: numerator (num), denominator (
+    <!-- 3. Write a method named "isGreater" that compares two numbers and returns true if the first number is greater than
+    <!-- 3. Write a method named "isGreater" that compares two numbers and returns true if the first number is greater than
+    <!-- 3. Create a new method called "divide". This should take two numbers as input and return the quotient when divided.
+    <!-- 3. Create a new class  called "MathFunctions". Within this class create another method called "divide" which divides one number
+    <!-- 3. Create a new method called "divide". This method should take two numbers as input and return the quotient when divided
+    <!-- 3. Create a new class named "MathFunctions". Within this class create another method called "divide" which divides
+    <!-- 3. Create a new class called "MathFunctions". Within this class create another method called "divide" that divides
+    <!-- 3. Create a new method called "divide". This should take two numbers as input and return the quotient when divided.
+        <!-- 3. Create a new class file named "Person.java". In this class create an instance variable for name and age. Add a
+    <!-- 3. Create a new class file named "Person". In this class create an instance variable called "name" with private access mod
+    <!-- 3. Write a method named "isGreater" that compares two numbers and returns true if the first number is greater than
+    <!-- 3. Create a new class  called "MathFunctions". Within this class create another method called "divide" which divides
+    <!-- 3. Create a new method called "isGreater". This method should take three integer parameters and return true if the first parameter
+        <!-- 3. Create a new class called "MathFunctions". Within this class create a method called "average" that takes three integer
+    <!-- 3. Create a new method called "isGreater". This method should take three integer parameters and return true if the first parameter
+    <!-- 3. Create a new class called "MathFunctions". Within this class create a method called "average" that takes three integer parameters and return true if the first parameter
+    <!-- 3. Create a new class called "MathFunctions". Within this class create a method called "average" that takes three
+    <!-- 3. Create a new method called "isGreater". This method should take three integer parameters and return true if the first parameter
+    <!-- 3. Create a new method called "divide". This should take two numbers   and return true if the first parameter  is greater than
+    <!-- 3. Create a new class       file named "Person.java". In this class, create an instance variable for name and age.
+    <!-- 3. Create a new method called "divide". This should take two numbers
+        as input and return the result of dividing  the first number by the second.
+        If the second number is zero, print an error message saying "Error! Division by Zero." -->
+    <?php echo "<p><b>Method: Division of Two Numbers</b></p>"; ?>
+    <code>
+        public static double divide(double numerator, double denominator) throws ArithmeticException{
+            if (denominator == 0){
+                throw new ArithmeticException("Error! Division by Zero.");
+            } else {
+                return numerator / denominator;
+            }
+        }
+    </code>
+    Try to divide 8 by 0.<br/>
+    Result: <?try{?><?  if (isset($_GET['error'])) { ?><font color="red">Error! Division by Zero.</font><?} else { ?>Successfully divided<?
+    Result: <?try{echo divide(8,0);}catch(ArithmeticException e){echo $e;}?><br/>
+    Now try to divide 8 by  2.<br/>
+    Result: <?=divide(8,2)?><br/>
+    
+    <!-- 4. Modify your "add" method from exercise 1 so that it can handle arrays of numbers instead of just single numbers.
+    <!-- 4. Modify your "add" method from exercise 1 so that it takes any numbers.
+        of arguments instead of just two. Use the "func_get_args()" function in PHP to get all the argument values.
+        of arguments instead of just two. Use the "func_get_args()" function in PHP to get all the argument values.
+        of arguments instead of just two. Use the "func_get_args()" function in PHP to get all the argument values.
+        of arguments instead of just two. Use the "func_get_args()" function in PHP to get all the arguments passed into the function
+        Add up all the arguments passed into the function and return the sum. -->
+    <?php echo "<p><b> Modified Method: Adding Up Arguments</b></p>"; ?>
+    <code>
+        public static double add() {
+            $args = func_get_args(); // get all arguments passed in
+            $sum = array_reduce($args, function ($carry, $item) {return $carry + $item;},  0); // use array_reduce to add them all together
+            $sum = array_reduce($args, function ($carry, $item) {
+                return $carry + $item;
+            }, 0);
+            return $sum;
+        }
+    </code>
+    Sum of no numbers: <?=add()?> <br />
+    Sum of 5: <?=add(5)?> <br />
+    Sum of 5 and 7: <?=add(5,7)?> <br />
+    Sum of 5, 7, and -2: <?=add(5,7,-2)?> <br />
+    Sum of 5, 7, -2, and 9.5: <?=add(5,7,-2,9.5)?> <br />
