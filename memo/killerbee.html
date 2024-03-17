@@ -34,34 +34,237 @@
 <script type="text/ng-template template/modal-body.html">
     <form name="editForm" noval
     "t'editor"  ================
-                     ===================================================================
-                     =                                                                =
-                     =                             EDITOR TEMPLATE                    =
-                     =                                                                =
-                     ===================================================================
+                    ===================================================================
+                    =                                                                =
+                    =                             EDITOR TEMPLATE                    =
+                    =                                                                =
+                    ===================================================================
+                    {% verbatim %}
+                    
+                    {{ form_begin(editForm) }}
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-4">
+                                {{ form_label('Alias') }}
+                                {{ form_widget(field.
 
-        <div class="row"> 
-           <label for="fieldAlias" class="control-label col-sm-3">Field Alias:</label>
-           <div class="col-sm-9">
-              <input id="fieldAlias" name="fieldAlias" type="text" class="form-control" placeholder="Enter Field
-              <input id="fieldAlias" type="text" class="form-control" placeholder="Enter Field Alias" ng-model
-              <input id="fieldAlias" name="fieldAlias" type="text" class="form-control" placeholder="Enter field
-              <input id="fieldAlias" name="fieldAlias" type="text" class="form-control" placeholder="Enter Field Alias" required="" aria-required
-              <input id="fieldAlias" name="fieldAlias" type="text" class="form-control" placeholder="Enter Field
-              <input id="fieldAlias" name="fieldAlias" type="text"  class="form-control" placeholder="Enter Field Alias" required="" aria-required
-              <input id="fieldAlias" name="fieldAlias" type="text" class="form-control" placeholder="Enter field alias
-              <input id="fieldAlias" Name_unfeed.type="text" class="form-control" placeholder="Enter Field Alias" required="" ng-
-              <input id="fieldAlias" name="fieldAlias" type="text" class="form-control" ng-model="item.alias" required />
-              <input id="fieldAlias" name="fieldAlias" type="text" class="form-control" ng-model="item.alias" required />
-              <input id="fieldAlias"
-              name="fieldAlias"
-              required
-              class="form-control"
+        <div class="row">
+            <label for="fieldAlias" class="control-label col-sm-3">Field Alias:</label>
+            <div class="col-sm-9"> 
+                {{ fieldAlias.parent().append(fieldAlias.clone()) }}
+            name="fieldAlias"
+            required
+                class="form-control"
                 required colspan="join:(].length)*" placeholder="Enter Field Alias"
-               ng-model="item.alias"/>
-           </div>
-         </div>
+                ng-model="item.alias"/>
+            </div>
+        </div>
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.fieldAlias.$pristine">Field alias is
+        
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.fieldAlias.$pristine">
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.fieldAlias.$pristine">Field alias
+            <div class="help-block text-error" ng-show="editForm.fieldAlias && editForm.fieldAlias.$pristine && !editForm.fieldAlias.$valid
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.fieldAlias.$pristine">Field alias
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.fieldAlias.$pristine">Field alias is required.</
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.fieldAlias.$pristine">Field alias
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.  fieldAlias.$pristine">
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.fieldAlias.$pristine">Field alias is invalid</div>
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.  fieldAlias.$pristine">This is a required field.</
+        <div class="help-block text-error" ng-show="editForm.fieldAlias.$invalid && !editForm.  fieldAlias.$pristine">
+        <div class="help-block text-error" ng-show="editForm.   fieldAlias.$error.required && editForm.fieldAlias.$touched">This is a required field
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <button type="submit" class="btn btn-primary" ng-disabled="!editForm.$valid">Save Changes</button>
+                <button type="submit" class="btn btn-primary" ng-disabled='!    EditForm.$valid'>Save Changes</button>
+                <button type="submit" class="btn btn-primary" ng-disabled='!editForm.$valid'>Save changes</button>
+                <button type="submit" class="btn btn-primary" ng-disabled='!editForm.$valid'>Save Changes</button
+                <button type="submit" class="btn btn-primary" ng-disabled='!editForm.$valid'>Save changes</button>
+                <button type="submit" class="btn btn-primary" ng-disabled='!editForm.$valid'>Save changes</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled='!editForm.$valid'>Save Changes</button>
+                <button type="submit" class="btn btn-primary" ng-disabled='!editForm.$valid'>Save Changes</button
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                &nbsp;
+                <a href="#" class="btn btn-default" ng-click="cancel()">Cancel</a>
+            </div>
+        </div>
+    {{ form_end(editForm) }}
+{% endverbatim %}*/};
 
+module.exports = {
+    tag: 'editItem',
+    title: 'Edit Item',
+    description: 'This is the edit item page. It allows you to modify an existing item in your inventory.',
+    fields: ['name','type','weight  <span class="text-muted">(optional)</span>'],
+    filedsInOrder:['name','type','weight'],
+    template: template,
+    controllerAs:'ctrl',
+    controller: function($scope,$http){
+        $scope.$on('$viewContentLoaded',function(){
+            // If this is a new item then update the URL accordingly
+            if ($scope.item.id === undefined) {
+                var url = '/api/items';
+                $http.post(url, $scope.item).success(function (data) {
+                    $scope.item.id= data.id;
+                    window.history.replaceState({
+                        "state": "new",
+                        "url":"/inventory/  inventory/items/"+data.id+"/edit"
+                    }, null, "/inventory/items/" + data.id + "/edit");
+                });
+            } else{
+                // Otherwise just set the state as normal
+                window.history.replaceState({"state": "normal"},null);
+            }
+        });
+
+        /**
+         * Cancel editing and return to list view
+         */
+        $scope.cancel = function () {
+            window.location='#!/inventory/items';
+        };
+
+        /**
+         * Save changes made to the item
+         */
+        $scope.save = function() {
+            var url = '/api/items/' + $scope.item.id;
+            $http.put(url, $scope.item).then(function successCallback(response) {
+                console.log("Successfully updated item!");
+                window.location="#!/inventory/items";
+            }, function errorCallback(response) {
+                alert("Error updating item! Please try again later.");
+            })
+        };
+
+        /**
+         * Delete the current item from the database
+         */
+            $scope.deleteItem = function(){
+                var confirm = window.confirm('Are you sure you want to delete this item?');
+                if (!confirm) {
+                    return;
+                }
+                $http.delete('/api/items/' + $scope.item._id)
+                    .success(function(data){
+                        console.log("Deleted Item: " + data);
+                        $scope.back();
+                    }).error(function(data){
+                        alert("Unable to delete item");
+                    });
+            };
+
+        // Checks if user is authorized to edit or delete an item
+        $scope.isAuthorizedToEdit = function (userID) {
+            return AuthenticateService.isUserAdmin() || AuthenticateService.getCurrentUser()._id === userID;
+        };
+
+        /*  Create a new category for the item if it doesn't already exist in the categories array
+            @param catName - The name of the category to be added
+            @return void
+        */
+        $scope.addCategoryIfNotEx
+        ($scope.categories.indexOf($scope.category)===-1)?$scope.categories.push($scope.category):console.log("Category exists"),ist = function(catName){ist = function (catName) {ist = function(catName){ist = function (catName) {ist = function(catName){
+            $scope.addCategoryIfNotExists = function(catName){
+                var foundCat = false;
+                angular.forEach($scope.categories, function(category){
+                    if(category.name == catName){
+                        foundCat = true;
+                        }
+                });
+                if(!foundCat){
+                    ItemsService.createNewCategory(catName).then(function(newCat){
+                        $scope.categories.push(newCat);
+                        $scope.item.categories.push({"_id": newCat._id});
+                    }, function(err){
+                        console.log("Error creating new Category", err);
+                    })
+                }
+            };
+
+        // Initialize page by getting current item and its categories
+        $scope.initItemPage = function(){
+            ItemsService.getItemById($stateParams.itemId)
+                .then(function(response){
+                    $scope.setItem(response.data);
+                    $scope.getCategoriesForItem();
+                }, function(error){
+                    console.log("Failed to get Item: ", error);
+                });
+        };
+
+        // Sets the current item on the scope
+        $scope.setItem = function(item){
+            $scope.loading = false;
+            $scope.item = item;
+            $scope.imageURL = "/images  Files/items/" + $scope.item._id +   "/images/main";
+        };
+
+        // Get all categories associated with this  item from server
+        // then set them on the items "categories" property
+        $scope.getCategoriesForItem = function() {
+            CategoriesService.getCategoriesFor  = function (itemID) { return $http.get("/api/items/"+itemID+"/
+            CategoriesService.getCategoriesForItem($scope.item._id)
+                .success(function (data) {
+                    $scope.item.categories = data.categories;
+                }).error(function () {
+                    console.log("Unable to get categories for item");
+                });
+        };
+
+        // Save changes made to an item in the database, or create a new one    if it doesn't exist yet
+        $scope.saveChanges = function(){
+            var action = ($scope.item._id) ? "Updating" : "Creating New";
+            $scope.loading = true;
+
+            ItemsService.upsertItem($scope.item).then(function(response){
+                FlashMessagesService.sendFlashMessage((action+" Item Successful!"), 'save-changes');
+                $location.path('/admin/inventory');
+            }, function(error){
+                FlashMessagesService.sendFlashMessage((action+" Item Failed"), 'save-changes', 'danger');
+                $location.path('/admin/inventory/' + $scope.item._id + '/edit');
+            })['finally'](function(){
+                $scope.loading = false;
+            });
+        };
+
+        // Delete the currently selected item from the database
+        $scope.deleteItem = function(){
+            var id = $scope.item._id;
+            ItemsService.deleteItem(id).then(function(response){
+                FlashMessagesService.sendFlashMessage('Deletion Successful!','remove-item');
+                $location.path("/admin/inventory");
+            }, function(error){
+                FlashMessagesService.sendFlashMessage('Delete Failed','remove-item','danger');
+            });
+        };
+
+        // Initialize page by getting item information based on URL parameter
+        $scope.init = function(){
+            // If no ID is provided redirect back to inventory list
+            if (!$routeParams.itemId) {
+                $location.path('/admin/in   Inventory');
+            } else {
+                ItemsService.getItem($routeParams.itemId)
+                    .success(function (data) {
+                        $scope.categories = data.categories;
+                        $scope.item = data;
+                        }).error(function () {
+                        FlashMessagesService.sendFlashMessage("Unable to load requested item", 'load-item', 'warning')
+                            FlashMessagesService.sendFlashMessage("Unable to load requested item", ' Unable to load requested item
+                            FlashMessagesService.sendFlashMessage("Unable to load requested item", 'load-item', 'warning')
+                            FlashMessagesService.sendFlashMessage("Unable to load requested item", 'load-item', 'warning')
+                            FlashMessagesService.sendFlashMessage("Unable to load requested item", 'load-item', 'warning')
+                            FlashMessagesService.sendFlashMessage("Unable to load requested item","load-failure", "warning")
+                            FlashMessagesService.sendFlashMessage("Unable to load requested item", 'load-item', 'warning')
+                        FlashMessagesService.sendFlashMessage("Unable to retrieve that item.", 'load-item');
+                        $location.path('/admin/inventory');
+                            });
+            }
+        };
+        
+        // Run init when this controller first loads
+        $scope.$on('$viewContentLoaded', $scope.init);
+});
+                    }
         {% if 'addItem' in view.actions then %}
         <button class="btn btn-primary pull
         -right" ng-click="save()

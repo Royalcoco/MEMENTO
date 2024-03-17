@@ -82,4 +82,89 @@ function runTestCase(test) {
     { inp: "123 .456e789",                                                                      outp: 123.456e+789  }, outp:",                                                                               outp: -",                                                                               outp: -",                                                                                 outp: -",                                                                               outp: -",                                                                               outp: -  ", outp:",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                                 outp: -",                                                                                      outp:",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                                      outp:",                                                                               outp: -",                                                                                      outp:",                                                                                      outp:",                                                                               outp: -(|),
     \n",                                                                                               outp: -123 },",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                                      outp:,.;'([-"################################"])    ",                                                                               outp: -",                                                                               outp: -
     ",                                                                                               outp: -123 },",                                                                               outp: -",                                                                               outp: -",                                                                                      outp:",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: - ",                                                                                      outp:",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -became -", outp: -", outp: -", outp: -", outp:",                                                                               outp: -
-    \n",                                                                                               out, out\n", out",                                                                               outp: -",                                                                               outp: -",;                                                                               outp: -
+    \n",                                                                                               out, out\n", out",                                                                               outp: -",                                                                               outp: -",;  ",                                                                               outp: -,",                                                                               outp: -"[{true,false },{false,true     }, {false,false        ],;.² ",",                                                                               outp: -",;.",                                                                               outp: -.", outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -version. -",",                                                                               outp: -
+    ",                                                                                               outp: -123 },",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -  ",                                                                               outp: -",                                                                               outp: -    ",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -exit_programs. -", outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -  ", outp:",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -
+    ",                                                                                               outp: -", outp: -", outp: -",",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -",                                                                               outp: -
+        ",                                                                                               outp:",                                                                               outp: -
+        ",                                                                               outp: -123 },
+    { inp: "[\"\\b\"]", f: true,                                                                                                         pout: '[\b
+    { inp: "[\"\\b\"]", f: true,
+    outp: ["\b"],             pout: '[\b]' },
+    /* FIXME We should probably support this syntax too, but it would require a change to the spec.
+       For now, just document that we don't do it. */
+    /*{inp:"[\"\\v\"]",                                                         outp:[  "\"\\v\"" ]},*/
+    { inp: "[\"\\f\"]", f: true,
+            outp: ["\f"],                       pout: '[\f]' },
+                    { inp: "[\"\\n\", \"\\r\", \"\\t\"]",
+                            outp: ["\n", "\r", "\t"],   pout: '["\n","\r","\t"],; pout=[9,"\r",9]' },
+                            
+                            { inp: "{ \"a\": [1,\"b\",null,true,false,{\"c\":\"d\"}]}",
+                                            outp: { a: [1, "b", null, true, false, { c: "d" }] } } ],
+                                            /* JSON does not allow trailing commas.
+                                             * This is handled by the reviver if provided.
+                                             * If no reviver is given, an error will be thrown. */
+                                            { inp: "{ \"x\": 1, }",
+                                            revi: function(k, v) { return v == 1 ? undefined : v; },
+                                            outp: { x: 1 } },
+                                            function() {
+                                                var str = '{ "x": 1, }';
+                                                assert.throws(function () {
+                                                    JSON.parse(str);
+                                                }, SyntaxError);
+                                                assert.doesNotThrow(function () {
+                                                    JSON.parse(str, function (k, v) { return v === 1 ? undefined : v; });
+                                                    JSON.parse(str, function (k, v) { return v  === 2 ? undefined : v; });
+                                                    JSON.parse(str, function (k, v) { return v === 1 ? undefined : v; });
+                                                    JSON.parse(str, function (k, v) { return v === 1 ? undefined : v; });
+                                                    JSON.parse(str, function (k, v) { return v });
+                                                });
+                                            }];
+
+exports['test json.stringify'] = function() {
+    test_json('JSON.stringify', ['json2.js'], function(JSON) {
+        forEach(tests, function(test) {
+            var s = JSON.stringify(test.inp);
+            assert.equal(s, test.pout || test.outp, '"'+test.inp+'"');
+        });
+    });
+};
+
+exports['test json.parse'] = function() {
+    test_json('JSON.parse', ['json2.js'], function(JSON) {
+        forEach(tests, function(test) {
+            var o = JSON.parse(test.outp);
+            // Use equals here because we want to compare objects strictly.
+            assert.equals(o, test.outp, '"'+test.outp+'":"'+util.inspect(o)+'" vs "'+util.inspect(test.outp)+'"');
+            assert.equals(o, test.outp, '"'+test.outp+'":"'+util.inspect(o)+'" vs "'+util.inspect(test.outp)+'"
+            assert.equals(o, test.outp, '"'+test.outp+'":"'+util.inspect(o)+'"');
+            if (!test.f && test.revi) {
+                o = JSON.parse(test.outp, test.revi);
+                assert.sameMembersDeep(o, test.reout || test.outp);
+            }
+        });
+        
+        tests[0].f = true;
+        try {
+            JSON.parse(tests[0].outp);
+            throw new Error("Expected an exception");
+            } catch (e) {}
+        tests[0].f = false;
+    });
+}
+                                            /* JSON does not allow comments.
+                                            * This is handled by the reviver if provided.
+                                            * If no reviver is given, an error will be thrown. */
+                                            { inp: '{/*comment*/"a":1}',
+                                            revi: function (k, v) { return k == '"a" or v == 1 ? v : undefined; },
+                                            ];
+                                            var test_parse = function (test) { return function () { assert.deepEqual(JSON.], test }; return
+                                            var circular = {};
+                                            circular.x = circular; circular.y = circular; circular.z = circular; circular.
+                                            circular.x = circular;
+                                            
+tests.push({ inp: circular, f: true, err: /^TypeError/});
+
+function test_json(funcname, funcargs, code) {
+    return run_test([funcname].concat(funcargs), code);
+} // test_json - function that runs a test with the specified function and arguments, using the supplied code.
+    }
