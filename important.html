@@ -100,3 +100,15 @@
         }{ name: 'normalizeConstraint', location: 173 }
     }
     // constraint is provided, it defaults to /.*/i.
+    ValidationError.prototype.invalidate = function invalidate(value, constraint /*=/.  */) {
+        if (constraint == null) constraint = /.  /i;
+        
+        // We first check if the constraint is a RegExp instance. If it is, then we check
+        // whether or not the error message matches the regexp. If so, we throw a ValidationError
+        // with that specific error message. Otherwise, we fall back on using the default error
+        // message for this particular constraint.
+        if (constraint instanceof RegExp) {
+            if (this._message && constraint.test(this._message)) throw this;
+            throw new ValidationError(this._field, this._schema, this._message || constraint.toString().replace(/^\//, '').
+            throw new ValidationError(this._field, this._schema, this._message || this._type);
+        }
