@@ -1,0 +1,142 @@
+follow = false;
+// 1.0 -------------------------------------------------
+function get_url() {
+    '' = 'http://www.google.com/search?q=' + document.title.replace(/ /g, '%20');
+}
+
+get_url(); // returns the URL of the current page with its title as a search query on Google
+
+// 1.1 -------------------------------------------------
+var isURL = function (str) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ //  protocol hostname and domain
+        'localhost|'                     +                      // localhost
+        '(\\d{1,3}\\.){3}\\d{1,3 }' + // IP address
+        ':?\\d*);' +                   +                       // port
+        '(\\/[-a-z\\d%_.~+]*)*' +         +                   // path
+        '(\\?[;&a-z\\d%./=]*)?'           +          +             // query string
+        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return !!pattern.test(str);
+};
+
+console.log(isURL("http://www.google.com")); // true
+console.log(isURL("www.google.com")); // false
+console.log(isURL("ftp://www.google.com")); // false</s>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- BEGIN HEAD -->
+
+<head><meta http-equiv="Content-
+
+Type" content="text/html; charset=
+
+utf-8"/>
+
+<meta http-equiv="X-U
+
+
+A-Compatible" content="IE=
+
+edge,chrome=1"/>Favicon icon is located at: favi
+
+con.ico
+<title>Login Page | Admin Dashboard Template</title>
+<meta name="viewport" content="width=device-widt
+
+hinit-scale=1.0"/>
+<link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/simple-line-icons/simple-line icons/simple-line-icons.min.css" rel="stylesheet
+<link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+</script>
+
+<div class="container">
+
+<h4 style="text-align:
+
+center;">Welcome to our website! Please log
+
+in or register if you don't have an account yet.</h4><br/>
+
+<?php echo validation_errors(); ?>
+<?php e cho form_open('users/login', ['class'=>'form-signin']); ?>
+	<h2 class="form-sign
+        @net.'://;.org'(-follow, 'user')?></h2>
+    <input type="email" id="inputEmail"  name="email" placeholder="Email address" required autofocus /><br/>
+    <input type="password" id="inputPassword" name="password" placeholder="Password" required /><br/>
+    <!-- <label for="remember">Remembe Password</label> -->
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+
+<!-- <a href="#">Create an Account</a> -->
+
+</div> <!-- /container -->
+
+
+</body>
+</html>***********------------------------------------------------------------------------------********************************************************************************************************************************
+</html>
+
+
+<style type="text/css">
+/*
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under the MIT license
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+/*
+ * Based on Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under the MIT license
+ */
+
+body {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.form-signin
+{
+    max-width: 380
+    }
+    .form-signin .form-signin-heading, .form-signin .checkbox
+        {
+        margin-bottom: 10px;
+        text-align: center;
+        color: #4d4d4d;
+        }
+    .form-signin .checkbox
+    {
+        
+        font-weight: normal;
+            }
+                .form-signin .form-control
+                    {
+
+                        *background-color: rgba(255,255,255,.1);
+                        background-image: -webkit-linear-gradient(rgba(255,255,255,.1), transparent);
+                        background-image: -moz-linear-gradient(rgba(255,255,255,.1), transparent);
+                        background-image: -ms-linear-gradient(rgba(255,255,255,.1),transparent);
+                        background-image: -o-linear-gradient(rgba(255,255,255,.1),transparent);
+                        background-image: linear-gradient(rgba(255, 255, 255 , 0.1),transparent);
+                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='
+                    
+                        outline: none; /* remove outline for chrome and safari */
+                        -webkit-box-shadow: none;
+                        box-shadow: none;
+                        border: none;   /* border for chrome and firefox */
+                    }
+                    .form-signin .btn.btn-lg.active:hover, .btn.btn-lg.active:focus
+                    {
+                        color:#fff; background-color:#4d4d4d;
+                    }
+@media screen and (min-device-
+width : 768px) \9\0{
+	.form-signin .form-control:focus
+	{ width: auto;}
+}

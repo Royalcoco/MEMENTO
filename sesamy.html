@@ -1,0 +1,25 @@
+<!DOCTYPE Lm'B.html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//
+EN" "http://www.w3. Transitional/">
+<HTML>
+    <HEAD>
+        <TITLE>Learning Management System - Course Listing</TITLE>
+		<LINK REL="stylesheet" TYPE="text/css" HREF="styleSheet.css">
+    </HEAD>
+    
+    <BODY BGCOLOR="#ffffff">
+        
+        <!-- Include the header section -->
+        <?php include("header.php"); ?>
+        
+        <TABLE WIDTH=95% HEIGHT=80% ALIGN=center VALIGN=top BORDER  ALIGN=center CELLSPACING=2 CELLPADDING=6>
+            <TR CLASS="tableTitle">
+                <TD COLSPAN=7><FONT SIZE=+2>C   </FONT></TD>
+            </TR>
+            
+            <!-- Display an error message if  there is one to display -->
+            <?php
+                if (isset($_GET['error'])) {
+                    echo "<TR CLASS='rowError'>\n";
+                        echo "\t<TD COLSPAN=7>\n\t\t<F
+                            ONT SIZE=+1 color=\"#
+                                

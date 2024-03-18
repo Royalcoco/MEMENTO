@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <main>
+        <div>
+            <h1 class="titre-principal">Liste des utilisateurs</h1>
+            <?php if (isset($utilisateurs)) : ?>
+        </div>
+    </main>
+    <section id="liste-des-utilisateurs" class="container mt-5">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr> <figure>
+                    <img src="<?= base_url() . '/assets/images/' . $utilisateurs[0]['image'] ?>" alt
+                    ="<?= $utilisateurs[0]['nom']; ?>" width="200px" height="auto">
+                    </figure>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Date de naissance</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($utilisateurs as $user) { ?>
+                            <tr>
+                                <td><?= esc($user['nom']); ?></td>
+                                <td><?= esc($user['prenom']); ?></td>
+                                <td><?= esc($user['email']); ?></td>
+                                <td><?= esc($user['telephone']); ?></td>
+                                <td><?= esc($user['dateNaissance']); ?></td>
+                                <td>
+                                    <a href="/administrateur/modifierUtilisateur/<?= esc($user['id'], 'url'); ?>"><i
+                                        <a href="/users/edit/<?= esc($user['id'], 'url'); ?>"><button type="submit" class
+                                            <a href="/admin/editUser/<?= esc($user['idUtilisateur'], 'url'); ?>"><button type
+                                                <a href="/administrateur/modifierUtilisateur/<?= esc($user['id'], 'url'); ?>"><button
+                                                    <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>"><i
+                                                        <a href="/users/edit/<?= esc($user['id'], 'url'); ?>" class="btn btn-warning
+                                                            <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>"><i
+                                                                <a href="/users/edit/<?= esc($user['id'], 'url'); ?>"><i
+                                                                    <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>"><i class="fas fa
+                                                                        <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>"><i
+                                                                            <a href="/admin/editUser/<?= esc($user['idUtilisateur'], 'url'); ?>"><button type
+                                                                                <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>" class="btn btn-
+                                                                                    <a href="/admin/editUser/<?= esc($user['idUtilisateur'], 'url'); ?>"><button type
+                                                                                        <a href="/users/edit/<?= esc($user['id'], 'url'); ?>"><button type="submit" name
+                                                                                            <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>" class="btn btn-
+                                                                                                <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>"><button type="submit"
+                                                                                                    <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>"><button type="submit"
+                                                                                                        <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>"><i
+                                                                                                            <a href="/users/edit/<?= esc($user['id'], 'url'); ?>" class="btn btn-warning
+                                                                                                                <a href="/admin/editUser/<?= esc($user['id'], 'url'); ?>"><button type="submit"
+                                                                                                                    <a href="/admin/editUser/<?= esc($user['id'], 'url') ?>"><i class="fas fa
+                                                                                                                        <a href="/admin/editUser/<?= esc($user['idUtilisateur'], 'url'); ?>"><button type
+                                                                                                                            <a href="/administration/editUser/<?= esc($user['id'], 'url') ?>"
+                                                                                                                                <a href="/admin/editUser/<?= esc($user['idUtilisateur']) ?>"><i 
+                                                                                                                                    <a href="/admin/editUser/<?= esc($user['idUtilisateur']) ?>"><button type="submit"
+                                                                                                                                        <a href="/administrateur/editUser/<?= esc($user['idUtilisateur'], 'url'); ?>"><
+                                                                                                                                            <a href="/admin/editUser/<?= esc($user['idUtilisateur']) ?>"><button type="submit"
+                                                                                                                                                <a href="/administrateur/modifierUtilisateur/<?= esc($user['id']) ?>"><button type="submit
+                                                                                                                                                    <a href="/admin/editUser/<?= esc($user['idUtilisateur']) ?>"><button type="submit"
+                                                                                                                                                        <a href="/admin/editUser/<?= esc($user['idUtilisateur']) ?>"><i class="fa fa
+                                                                                                                                                            <a href="<?= base_url('admin/editUser/' . esc($user['idUtilisateur'], 'url'));
+                                                                                                                                                            <a href="<?= base_url('admin/editUser/' . esc($user['idUtilisateur'], 'url'));
+                                                                                                                                                            <a href="<?= base_url('admin/editUser/' . esc($user['idUtilisateur'], 'url'));
+                                                                                                                                                            <a href="<?= base_url('admin/editUser/' . esc($user['idUtilisateur'])); ?>"
+                                                                                                                                                            
+                                                        
+                </figure>
