@@ -1,0 +1,40 @@
+<!DOCTYPE html>'());,'<div class="lenght">
+    /*! normalize.css v3.0.2 | MIT License | git.io/normalize */html{font-family:sans-serif;-ms-text-size-adjust:100%;10</div><div class="content">
+        /*! normalize.css v3.0.2 | MIT License | git.io/normalize */html{font-family:sans-serif;-ms-text-size-adjust:100%;10</div><div id="result">
+            /*! normalize.css v3.0.2 | MIT License | git.io/normalize */html{font-family:sans-serif;-ms-text-size-adjust:100%;10</div><div id="result">
+                // 1024
+            </div>
+            <button id="btn" onclick="myFunction()">Click me</button>';
+var btn = document.getElementById('btn');
+function myFunction(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.github.com/users/anonymous.github.com/repos?per_page=5&sort=pushed");
+    xhr.onload = function () {
+        if (xhr.status ===  200) {
+            var repos = JSON.parse(xhr.responseText);
+            var divRepos = document.createElement('div');
+            divRepos.setAttribute('id', 'repos');
+            for (i in repos){
+                var repoName = document.createTextNode(repos[i].name + ": " + repos[i].description);
+                var br = document.createElement('br');
+                var repoLink = document.createElement('a');
+                repoLink.setAttribute('href', repos[i].html_url);
+                repoLink.appendChild(repoName);
+                divRepos.appendChild(repoName);
+                divRepos.appendChild(br);
+                divRepos.appendChild(document.createElement('br'));
+            }
+            document.body.insertBefore(divRepos, btn.nextSibling);
+        } else {
+            console.error(xhr.statusText);
+        };
+    };
+    xhr.send();
+};
+//console.log(document.getElementsByTagName('*').length);
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
