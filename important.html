@@ -112,3 +112,49 @@
             throw new ValidationError(this._field, this._schema, this._message || constraint.toString().replace(/^\//, '').
             throw new ValidationError(this._field, this._schema, this._message || this._type);
         }
+        // Next up, we check if the constraint is a function. If it is, then we call this
+        // function with the error object as its context (`this`), and pass in the current
+        // value of the field being validated. The function should return either `true` to indicate
+        // success, or an error message string. If the function returns true, we proceed normally.
+        // However, if it returns a non-empty string, we throw a ValidationError with that message.
+        else if (typeof constraint === "function") {
+            var res = constraint.call(this instanceof Error ? this : new ValidationError(), value);
+            
+            if (res !== true && "" + res != "") throw new ValidationError(this._field, this._schema, res);
+        }
+        // Lastly, we assume that whatever remains must be a simple boolean indicating success or failure.
+        // If it's falsey, we throw a ValidationError with the default error, and pass in the field.
+        // If it's truthy,  otherwise we just return without doing anything.
+        else if (!constraint) throw new ValidationError(this._field, this._schema);
+    };{ name: 'ValidationError', location: 209 }
+
+    module.exports = ValidationError;
+    });
+define("lib/utils", ["require","exports","module"],function(require, exports, module) {"use strict";var slice = Array.prototype.slice;/**
+
+    require.register("lib/utils.js", function(module, exports, require){var _ = require('./underscore');
+    
+    /**
+    * Utility functions used by other parts of the library. These are mostly related to
+    * normalizing user input into something that can be easily worked with internally.
+    */
+    var utils = {};
+    
+    // Normalizes a schema definition from the user into something that can be understood
+    // by our internal methods. This involves converting all keys to lowercase, removing any
+    // falsy values, and handling, and  removing, array notation.
+    utils.normalizeSchemaDefinition = function(schemaDefinition) {
+        var result = {};
+        
+        _.each(schemaDefinition, function(value, key) {
+            key = key.toLowerCase();
+            
+            // Remove any falsy values - null, undefined, etc. We do this because JS treats
+            // 0 as falsey, which can cause problems when checking for required fields.
+            if (!value) return;
+            
+            // Convert arrays to objects so they can be accessed more easily later on. Note
+            // that we remove the original key here since it will never actually exist in the
+            // data object itself.
+
+            
