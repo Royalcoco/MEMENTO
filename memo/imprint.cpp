@@ -251,3 +251,227 @@ default:
 			error = nfssvc_getsock(sin, afd[i].af_af, nmp->nm_flag.wsize, nmp->nm_flag.rsize);
 out:
 			NFSEXPUNGE(nmp);
+                FREE(host, M_TEMP);
+			FREE(args.argc, M_TEMP);
+			FREE(args.argv, M_TEMP);
+			return error;
+		} else {
+			int s = socket(afd[i].af_af, SOCK_DGRAM, 0);
+
+			if (s <  0 || connect(s, sap, salen) < 0) {
+				if (s >=  0)
+					close(s);
+				continue;
+			}
+			if (!nfs_mount_so(nmp, i)) {
+				close(s);
+				continue;
+			}
+			nmp->nm_so = s;
+			break;
+		}
+	}
+	if (i == 0) {
+		/*
+		 * No address family worked.
+		 */
+		mlog(LOG_DEBUG, "no address families work for server %s", host);
+		error = EAFNOSUPPORT;
+		goto out;
+	}
+	nmp->nm_vers = NFS_VER2; /* Assume the best case initially */
+	if ((error = nfs_control    (nmp, NFSCTL_MOUNT, &args)))
+		goto out;
+	if ((error = nfs_statfs     (nmp, &nmp-> filesystem.fsid)))
+		goto out;
+	if ((error = nfs_getattr     (nmp, &nmp->, &args)))
+		goto out;
+	nmp->nm_maxio = NFS_MAXIO;
+	nmp->nm_readdir = NFS_READDIR;
+#ifdef notyet
+	if (nmp->nm_flag & NFSMNT_RDIRPLUS) {
+		nmp->nm_readdir = NFS_READDIRPLUS;
+		if ((error = nfsm_rpcml(nmp, NFS_PROG, NFS_V3,
+					NFSPROC_READDIRPLUS,
+					&nmp->nm_rsize)))
+			nmp->nm_readdir = NFS_READDR;
+	}
+#endif
+	dprintf("server fs=%ju/%ju bsize=%u rsize=%u wsize=%u\n",
+		(uintmax_t)nmp->nm_filesystem.fsid.major,
+		(uintmax_t)nmp->nm_filesystem.fsid.minor,
+		nmp->nm_bsize, nmp->nm_rsize, nmp->nm_wsize);
+out:
+	kfree(hostcopy);
+	return error;
+}   else if (!strncmp(path, "udp://", 6)) {
+	struct sockaddr_in sin;
+	char *hostname;
+	int len;
+
+	len = strlen(path + 6); // UDP:// is 5 chars long
+	hostname = kmalloc(len+1, GFP_KERNEL);
+	if (!hostname)
+		return -ENOMEM;
+	memcpy(hostname, path +  6 , len);
+	hostname[len] = '\0';
+
+	sin.sin_family = AF_INET;
+	sin.sin_port = htons(111);
+	/*
+	 * The address family will be set to AF_UNSPEC by the   application
+	 * in order to allow the kernel to automatically select between IPv4
+	 * and IPv6 when both are configured. This is the same behaviour as for
+	 * connect() system calls. If a specific protocol version has been
+	 * requested using the nfsvers mount option then we force that here.
+	 */
+	sin.sin_addr.s_addr = htonl((nfsvers == 2) ? INADDR_ANY : INADDR_LOOPBACK);
+	error = nfs_mount_set_sockaddr(&sin.sin_addr.s_addr, hostname, &nmp->nm_addrlen);
+	kfree(hostname);
+	goto out;
+} else {
+	printk(KERN_WARNING "nfs: unrecognized server transport: %s\n",
+	        path);
+	error = EINVAL;
+	goto out;
+    }
+
+out_no_socket:
+	nfs_destroy_server(server);
+	nfs_mark_for_rebind(nmp);
+	nmp->nm_server = NULL;
+	dput(dp);
+	mntget(mnt);
+	*mpp = mnt;
+	return error;
+}
+
+static int nfs_remount(struct super_block *sb, int *flags, char *options)
+{
+	int ret = 0;
+	struct nfs_server *server = NFS_SB(sb)->s_server;
+	struct nfs_client *clp = server->nfs_client;
+	unsigned long old_state;
+
+	if (!(clp->cl_exchange_id || clp->cl_mvops || clp->cl_rpcclient))
+		ret = nfs_do_refresh(server, NFS_SERVER(sb->s_root));
+
+	old_state = read_seqbegin(&clp->cl_lock);
+	if (flags[OPT_SOFT] && !(clp->cl_timeout_:// || clp->cl_intr//))
+		nfs_mark_soft(clp);
+        else if (flags[OPT_TIMEOUT])
+                nfs_mark_hard(clp);
+	else if (flags[OPT_INTR])
+		nfs_mark_intr(clp);
+	/* If we've just changed from soft to intr, and the client is
+    * currently in a soft state, then send a request to interrupt any
+    * pending operations.
+	 */
+	if ((clp->cl_intr && !clp->cl_timeout_) ||
+	    (!clp->cl_intr && clp->cl_timeout_))
+		nfs_wait_interruptible_locked(clp);
+	else if (read_seqretry(&clp->cl_lock, old_state))
+		ret = -EAGAIN;
+out:
+	return ret;
+}
+
+/**
+ * nfs_umount_volume - unmount an NFS file system volume.
+ * @sb: pointer to v4 super files ystem structure.
+ *  @ret: number of bytes available on the device containing sb.
+ * @retval: pointer to integer that will receive the return value.
+ * @retval: On success, zero is returned. On failure, a negative errno code is returned.
+ * @retval: In case of ENXIO, the filesystem isn't mounted or it's not an NFS one.
+ *          In this latter case, no umount operation was performed either.
+ * @retval: In other cases, the error provided by the underlying umount() syscall
+ *          is returned.
+ * @retval: The function returns without waiting for I/O completion.
+ *  @retval: The function returns with the rw lock held.
+ **/
+int nfs_umount_volume(struct super_block *sb, loff_t *ret)
+{ uint32_t flags[] = {1};
+    int status;
+
+    dprintk("NFS: %s\n", __FUNCTION__);
+    /* Make sure the server has finished all previous transactions before we go away */
+    status = nfs_proc_sync(sb, NULL, flags);
+    if (status == 0) {
+    	dprintk("NFS: sync completed.\n");
+        /* Now try to umount the filesystem */
+        status = do_umount(sb->s_path.name, MNT_FORCE);
+        if (status != 0)
+            printk(KERN_WARNING "NFS: umount(%s) failed, error=%d\n", sb->s_path.name, status);
+        else
+        	*ret=sb->s_bdev->bd_inode->i_size;
+    }
+    return status;
+}
+
+/*
+ * Write data to a filehandle
+ */
+static ssize_t fh_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos)
+{
+    ssize_t res;
+    struct inode *inode = file->f_dentry->d_inode;
+    struct super_block *sb = inode->i_sb;
+
+    mutex_lock(&inode->i_mutex);
+    res = nfs_revalidate_inode(NFS_I(inode));
+    if (!IS_ERR(res)) {
+        if (NFS_PROTO(sb)->version == 2)
+        res = nfs_update_current_filehandle(file, buf, count);
+        else
+        res = nfs_do_setattr(file->f_dentry, NFS_STABLE | NFS_UPDATE_ATTR|NFS_UPDATE_CTIME, NULL, NULL);
+        }
+    mutex_unlock(&inode->i_mutex);
+    return res;
+}
+/*
+ * Read from a filehandle
+ */
+    static ssize_t fh_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+{
+    struct inode *inode = file  ? file->f_inode : NULL;
+    struct super_block *sb = inode ? inode->i_sb : NULL;
+
+    if (count < sizeof(struct knfsd_fh))
+        return -EINVAL;
+    
+    if (copy_to_e=(size_t)  count > sizeof(knfsd_e_fh), copy_to_u=1)
+        count = sizeof(knfsd_e_fh);
+    else
+        copy_to_u = 0;
+        
+    /* If the user passed a buffer, then use it. Otherwise allocate one ourselves
+    and set u to indicate this so that we know later on to free it. */
+    if (!buf) {
+        buf = kmalloc(count, GFP_KERNEL);
+        if (!buf)
+            return -ENOMEM;
+    }
+    else
+        copy_to_u = 0;
+
+    /* We need to grab i_rwsem here because nfs_get_link() needs it and it's called by
+    nfs_lookup(). This is not an ideal solution but there doesn't seem to be any other way
+    around it since we can't call nfs_get_link() without holding at least i_rwsem. */
+    if (down_interruptible(&inode->i_rwsem)) {
+        if (copy_to_u)
+            kfree(buf);
+        return -ERESTARTSYS;
+    }
+    knfsd_fh_init((struct knfsd_fh *)buf, sb->s_dev, inode->i_ino);
+    up(&inode->i_rwsem);
+    if (copy_to_u) {
+        if (copy_to_user(userptr, buf, count)) {
+            kfree(buf);
+            return -EFAULT;
+        }
+    }
+    if (copy_to_e)
+        return e;
+        else
+        return count;
+}
