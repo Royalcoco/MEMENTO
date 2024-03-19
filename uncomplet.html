@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="server" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Server Error</title>
+    </head>
+    <body>
+        <h1>500 - Server Error</h1>
+        <p>An error has occurred while processing your request.</p>
+<?php
+$error = isset($_GET['err']) ? $_GET['err'] : 'unknown';
+switch ($error) {
+    case '404': ?>
+        <div class="error">
+            <h2>Error 404 - Not Found</h2>
+            <p>The requested resource could not be found on this server. Please check the URL for errors and try again.</p>
+            <p>The requested resource could not be found on this server. Check the URL for, and try again.</p>
+            <p>The requested resource could not be found on this server.</p>
+        </div>
+    <?php break;
+    
+    default: ?>
+        <div class="info">
+            <h2>Information</h2>
+            <p>This is an informational message about the error that occured. It does not indicate an issue with the server or its configuration
+            <p>This is an informational message about the error that occured. It does not indicate an error condition, but rather information about
+            <p>This is an informational message about the error that occured. It does not indicate an issue with the server itself, but
+            <p>This is an informational message about the error that occured.</p>
+            </div>
+            <form action="" method="post">
+                <input type="hidden" name="go" value="back"/>
+                <button type="submit">Go back</button>
+            </form>
+    <?php break;
+}?>         
+        
+        <ul class="trace">
+            <li><a href="#">Trace (expand all)</a></li>
+            <li><strong>File:</strong> file_name.ext, line  123</li>
+            <li>&nbsp;&nbsp;Function call or code snippet...</li>
+            <!-- Add more trace lines as needed -->
+        </ul>
+        
+        <script src="js/jquery.min.js"></script>
+        <script>
+                $(document).ready(function() {
+                    $('ul.trace a').click(function(e) {
+                        e.preventDefault();
+                        var $this = $(this);
+                        if($this.text().match(/collapse/i)) { // collapse
+                            $this.text($this.text().replace('Collapse', 'Expand'));
+                            $this.parent().nextU
+                            .hide();
+                        } else { // expand
+                            $this.text($this.text().replace('Expand', 'Collapse'));
+                            $this.parent().nextU
+                            .show();
+                        }
+                    });
+                });
+        </script>
+        </body>
+</html>
+<?php
+// EOF
+?>
