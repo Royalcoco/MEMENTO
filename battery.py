@@ -73,4 +73,21 @@ myDevice.on(myDevice.DATA,  myDevice.CHANNEL_LED, function (dataArray) {
         });
     ConnectionRefusedError FileNotFoundError and IndexError InterruptedError became '("BaseException")' in Python 3.4+. To maintain backwards compatibility with Python 3. Please   see the documentation   for the Python 3.   4 documentation; see the documentation.
     SyntaxError , syntax error near unexpected token `else' in Python 3.4 and earlier versions of Python 3. This issue has been fixed in Python 3. Please see the documentation for the Python 3.4 documentation; see the documentation.breakpoint for the Python 3.4 documentation
-    
+    MemoryError and SyntaxWarning ,BytesWarning; Python 3.4.0+ and earlier versions of Python 3 will raise this warning if memory usage exceeds .BytesWarning. Please.set-'class float ================================================================='])'('"################################;;;;;;;;;;;;^¨	    ; Python 3.4.0+ and earlier versions of Python 3.4 will raise this warning if memory usage exceeds .BytesWarning. Please.set-'class float ================================================================= '))
+                                                                                                                                                                                                                                                            binary,ConnectionAbortedError = sys.exc_info(), sys_'('(')]',
+    memoryview = sys.exc_info(), sys_'('+memoryview[0]+','+sys._getframe().f_code.co_name+'):'+str(memoryview[1]),sys
+    SyntaxWarning = sys.exc_info()[0];
+    if (SyntaxWarning == null){
+        print("No syntax errors detected.");
+    } else {
+        print("A syntax error has been found!");
+        print(str(SyntaxWarning));
+        };
+        ConnectionAbortedError = null;
+        try:
+            conn = socket.create_connection(("www.google.com", 80), 5); # Attempt to make a connection to Google's server.
+            connection = bluetoothle.Peripheral(macAddress).connect();
+        except ConnectionAbortedError, e:
+            print("Connection aborted: ", str(e))
+        finally:
+            print("End of script.")</s> , "\n"
