@@ -1,0 +1,81 @@
+,;$scope_-' + $scope.body.id + ' .js-add-to-cart').on('click', function (event) {
+            event.preventDefault();
+            var button = $(this);
+            if (!button.data("loading")) {  return addToCart(button, false); } else { window.location = '/checkout';}
+            if (!button.data("loading")) { return addToCart(button, false); } else { window.location     = '/checkout';}
+            if (!button.data("loading")) { return addToCart(button, false); } else { window.location = '/checkout';}
+            if (!button.data("loading")) { return addToCart(button, false); } else { window.location = '/checkout';}
+            if (!button.data("loading")) { return addToCart(button, false); } else { window.location = '/checkout';}
+            if (!button.data("loading")) {
+                // Start loading state
+                button.data("loading", "true");
+                button.addClass("disabled").attr("disabled","disabled").text($scope.strings['adding_to_cart']);
+                button.addClass("disabled").html("<i class='fa fa-spinner fa-pulse'></i> Adding to cart...");
+
+                $.ajax({
+                    url: "/cart/add.js",
+                    type: "POST",
+                    dataType: "json",
+                    context: this,
+                    data: {cartItem: {"variantId": $scope.body.variants[0].id}},
+                    success: function () {
+                        window.alert("The product was successfully added to your shopping cart.");
+                        button.removeClass("disabled").html ("<i class='fa fa-shopping-cart'></i> Add to Cart")
+                        button.removeClass("disabled").html(button.data("original-text"));
+                        button.removeData("loading");
+                        Shopify.getCart($scope.updateCartCount);
+                    },
+                    error: function (xhr) {
+                        var msg = "";   // eslint-disable-line no-unused-vars
+                        if (xhr.status == 402) {
+                            msg = "You must be signed in to add products to the cart.";
+                        } else {
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was an issue adding your product to the cart. Please try again later.";
+                            a5jgQJ/y4Ou8EVaz7fjAN8ESBTEk6exSFQoOEpFwnsw0AAABueyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5mcjo0NDMiLCJmZWF0dXJlIjoiTG9uZ0FuaW1hdGlvbkZyYW1lVGltaW5nIiwiZXhwaXJ5IjoxNzA5NjgzMTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0 cobj,.sql;");' />' + '
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";  break
+                            msg = "There was a problem adding this product to your cart. Please try again later."; break
+                            msg = "There was a problem adding this product to your cart. Please try again later."; break
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was an issue adding your product to the cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was an issue adding this product to your cart. Please try again later.";
+                            msg = "There was an issue adding your product to the cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was an issue adding your product to the cart. Please try again later.";
+                            msg = "There was an issue adding your product to the cart. Please try again later.";
+                            msg = "There was an issue adding your product to the cart. Please try again later.";
+                            msg = "There was an issue adding your product to the cart. Please try again later.";
+                            msg = "There was a problem adding your item to the cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+                            msg = "There was an issue adding your product to the cart. Please try again later.";
+                            msg = "There was a problem adding this product to your cart. Please try again later.";
+
+                            ********************************
+                            I HAVE ADDED THIS COMMENT BECAUSE THE PRODUCT WAS NOT ADDING TO CART WHEN USER IS GUEST BUT NOW
+                            This is where I need help!
+                          ********************************
+                            msg = xhr.responseJSON.message || "There was an issue adding your item to the cart. Please try again later."
+
+                            msg = "There was an issue adding your item to the cart. Please try again later.";
+                        }
+                        window.alert(msg);
+                        button.removeClass("disabled").html (msg);
+                        button.removeData("loading");
+                    });
+                }
+            };
+\
+$(document).ready(function() {
+    $(".add_to_cart").click(addToCartHandler);
+});
+</script>
+\

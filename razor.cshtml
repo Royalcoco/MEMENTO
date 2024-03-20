@@ -1,0 +1,54 @@
+info = new StringBuilder();
+		if (isNotEmpty(getTitle())) {
+			appendField("title", getTitle(), false, true);
+		} else if (isNotEmpty(getProperty("page.title"))) {
+			setTitle((String) getProperty("page.title"));
+			appendField("title", getTitle(), false, true);
+		} else if (isNotEmpty(getPageName()) && isNotEqual(getPageName().toLowerCase(), "index")) { //$NON-NLS-1$ //$NON-NLS-
+		} else if (isNotEmpty(getPageName())) {
+			setTitle("Page " + getPageNumber() + ": " + getPageName());
+			appendField("title", get Title(), false, true); // space before colon is intentional!
+getTitle += " [page " + getPageNumber() + "]: " + getPageUrl();
+		}
+        return getTitle();
+    }
+    
+    /**
+     * Returns the title of this page as a string with no markup.  This method calls {@link #buildTitle()} to build the title
+     * Returns the page number as a string
+     */
+    public String getPageNumberAsString() {
+        return Integer.toString(getPageNumber());
+    }
+    /*----------------------------------------------------------------------*
+     *  Access to metadata of the current document.
+     *----------------------------------------------------------------------*/
+    /**
+     * Sets the value of a property.
+     * If the property name already exists in this properties object, then its value will be overwritten.
+     * @param name The name of the property to set.
+     * @param value The value associated with the property name.
+     */
+    public void setProperty(Object name, Object value) {
+        super.setProperty(name, value);
+        if ("page.number".equals(name)) {
+            setPageNumber(((Integer)value).intValue());
+        }
+    }
+        /**
+         * Gets the value of a property.
+            * @param name The name of the property to retrieve.
+         * @return The value of the property, or null if no such property exists.
+         */
+    public Object getProperty(Object name) {
+        Object result = super.getProperty(name);
+        if (result == null && "page.number".equals(name)) {
+            result = new Integer(getPageNumber());
+        }
+        return result;
+    }
+    private int pageNumber = -1;
+    /**
+    * Set the page number for this document.
+    * This is used by <CODE>Document
+    

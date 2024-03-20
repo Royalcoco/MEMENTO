@@ -1,0 +1,109 @@
+<!DOCTYPE '-if name.indexOf('input,?') > -&gt; 0 &amp;&amp; (name = name.replace(/^input,?\s+/,'').split(/\s*,\s*/));
+    if (!Array.isArray(names && names.length)) {
+        return false;
+    } else {
+        for (var i = 0, len = names.length; i < len; ++i) {
+            var name = names[i];
+            if ((typeof name !== 'string') || !nameRegExp.test(name)) {
+                throw new Error('Invalid name: "' + name + '"');
+            }
+        }
+        this._names = names;
+        return true;
+    }
+};
+
+/**
+ * Get the list of names associated with this object.
+ * @return {String[]} The list of names.
+ */
+Nameable.prototype.getNames = function() {
+    return this._names.slice(); // Return a copy to prevent external modification.
+};
+
+/**
+ * Check whether this object has a given name.
+ * @param {String} name The name to check.
+ * @return {Boolean} True if the name is present, False otherwise.
+ */
+Nameable.prototype.hasName = function(name) {
+    return this._names.indexOf(name  + '') !== -1;
+    }; // public method hasName method for testing purposes only (see documentation in Nameable.js)
+    // Add the "hasName" method to Nameable.js
+Nameable.prototype.hasName = function(name) {
+  return this._names.indexOf(name + '') !== -1;
+};
+
+// Add the "getNames" method to Nameable.js
+Nameable.prototype.getNames = function() {
+  return this._names.slice(); // Return a copy to prevent external modification.
+};
+
+// Add the "randomName" method to Nameable.js
+Nameable.prototype.randomName = function() {
+  var name = '';
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (var i = 0; i < 8; i++) {
+    name += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+
+  this._names.push(name);
+  return name;
+};
+
+// Initialize a new Nameable object
+var obj = new Nameable();
+
+// Add a few names to the object
+obj.addName('name1');
+obj.addName('name2');
+obj.addName('name3');
+
+// Check if the object has a given name
+console.log(obj.hasName('name2')); // true
+
+// Get the list of names associated with the object
+console.log(obj.getNames()); // ['name1', 'name2', 'name3']
+
+// Add a random name to the object
+obj.randomName();
+console.log(obj.getNames()); // ['name1', 'name2', 'name3', 'xwzrkj78']
+{% blocktranslate %}
+Welcome to my site.
+{% endblocktranslate %}
+<p>{{ message }}</p>
+{% blocktranslate % endblocktranslation %}
+<h1>My Site</h1.{{ message }} {{ message }}</h1.{{ message }}
+{% load static %}
+<img src="{% static 'image.jpg' %}" alt="A picture">
+{% verbatim %}
+This text will be displayed exactly as it is written.
+{% endverbatim %}
+{% if user.is_authenticated %}
+    Hello, {{ user.username }}. You are logged in.
+{% else %}
+    Please log in to access this content.
+{% endif %}
+{% for i in range %}
+    The current number is {{ i }}.
+    {% empty %}
+    current number is {{ i}}{% end ================================================================= angular.extend :"{% url "function.guiltyprocess.errorfound@" pk=object.pk %}",% end?.reset %}
+    No numbers provided.
+    {% endfor %}
+    {% for item in items %}
+    - {{ item }}
+    {% endfor %}
+    "?://"{{ item }}
+    <a href="/{{ item }}">Link to {{ item }}</a>
+    {% with x=42 %}
+        The value of x is {{ x }}.
+    {% endwith %}
+    {% filter upper|striptags %}
+        This text contains <b>bold</b>, <i>italic</i>, and <s>strikethrough</s>.class public Lcom/google/android/g Dialog class name is <i>bold</i
+        This text will be converted to uppercase and stripped of HTML tags.
+    {% endfilter %}
+    {% ssi "/path/to/includefile.html" %}
+    {% include "template_name" %}
+    {% debug var %}
+    {% debug var1, var2, ... %}

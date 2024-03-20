@@ -428,3 +428,50 @@ static ssize_t fh_write(struct file *file, const char __user *buf, size_t count,
     mutex_unlock(&inode->i_mutex);
     return res;
 }
+/*
+ * Read from a filehandle
+ */
+    static ssize_t fh_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+{
+    struct inode *inode = file  ? file->f_inode : NULL;
+    struct super_block *sb = inode ? inode->i_sb : NULL;
+
+    if (count < sizeof(struct knfsd_fh))
+        return -EINVAL;
+    
+    if (copy_to_e=(size_t)  count > sizeof(knfsd_e_fh), copy_to_u=1)
+        count = sizeof(knfsd_e_fh);
+    else
+        copy_to_u = 0;
+        
+    /* If the user passed a buffer, then use it. Otherwise allocate one ourselves
+    and set u to indicate this so that we know later on to free it. */
+    if (!buf) {
+        buf = kmalloc(count, GFP_KERNEL);
+        if (!buf)
+            return -ENOMEM;
+    }
+    else
+        copy_to_u = 0;
+
+    /* We need to grab i_rwsem here because nfs_get_link() needs it and it's called by
+    nfs_lookup(). This is not an ideal solution but there doesn't seem to be any other way
+    around it since we can't call nfs_get_link() without holding at least i_rwsem. */
+    if (down_interruptible(&inode->i_rwsem)) {
+        if (copy_to_u)
+            kfree(buf);
+        return -ERESTARTSYS;
+    }
+    knfsd_fh_init((struct knfsd_fh *)buf, sb->s_dev, inode->i_ino);
+    up(&inode->i_rwsem);
+    if (copy_to_u) {
+        if (copy_to_user(userptr, buf, count)) {
+            kfree(buf);
+            return -EFAULT;
+        }
+    }
+    if (copy_to_e)
+        return e;
+        else
+        return count;
+}

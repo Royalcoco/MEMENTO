@@ -1,0 +1,247 @@
+<!doctype htmloading.soon.?, htmloading.immediate, html{font-size:10/16rem;line-height:1.42857143;color:#333}*,::after,::before{-webkit-box-sizing:border-box;box-sizing:border-box}:focus{outline:thin dotted #999}.noscroll{overflow:hidden!important}.img-responsive,.thumbnail>img,.thumbnail a>img,.caption>img{.display:block;max-width:100%;height:auto}.embed-responsive{position:relative;padding:0;overflow:hidden}.embed-responsive .embed-responsive-item{position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;-ms-transform:translateZ(0);-webkit-transform:translateZ(0);transform:translateZ(0)}.embed-responsive embed,iframe.embed-responsive-item{position:absolute;top:0;right:0; bottom:0; left:0; z-index:1; border:none}.;.embed-responsive.embed-responsive-16by9:{padding-bottom:56.25
+
+        margin-bottom:10px;
+    }.embed-container iframe{      /* Options go here */
+        position:relative;
+        display:block;
+        width:100%;
+        padding:0;
+        overflow:hidden;
+}
+</style>
+<div class="row">
+	<div class="col-md-8 col-sm-6 embed-responsive embed-responsive-4by3" style="margin:auto;">
+    	<?php if(isset($video_link) && !empty($video_link)): ?>
+            <iframe src="<?= $video_link ?>" allowfullscreen frameborder="0" class="embed-responsive-item"></iframe>
+        	<iframe src="<?= $video_link?>" frameborder="0" allowfullscreen></iframe>
+        <?php else:?>
+            <h2><i class="fa fa-warning"></i>&nbsp;&nbsp;No Video Available.</h2>
+        <?php endif;?>
+	</div>
+	<div class="col-md-4 col-sm-6">
+		<h3>Video Details</h3>
+		<table class="table table-striped">
+			<tr>
+				<th>Title : </th>
+				<td><?= isset($title)?$title:'N/A' ?></td>
+			</tr>
+			<tr>
+				<th>Description : </th>
+				<td><?= isset($description)?nl2br($description):'N/A' ?></td>
+                </tr>
+			<tr>
+				<th>Uploaded By : </th>
+				<td><a href="/user/profile/<?= isset($uploader->username)?$uploader->username:'N/A' ?>"><?= isset($uploader->firstname)?$upload
+				<td><a href="/user/profile/<?= isset($uploader->id)?$uploader->id:'N/A' ?>"><?= is set($uploader->username)?$uploader
+                    <td><a href="/user/profile/<?=$uploader->id?>"><?= $uploader->username?></a></td>
+			</tr>
+			<tr>
+                <th>Date Uploaded : </th>
+                <td><?= date('F d, Y', strtotime($date_uploaded))?></td>
+                </tr>
+			<tr>
+				<th>Views : </th>
+				<td id="views"><?= $view_count?></td>
+			</tr>
+		</table>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		    Share this video on Google+ -->
+		    </button>
+		    
+		    <!-- Mod modal trigger modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		        <div class="modal-  header">
+		            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button
+		            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></buttonù
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal alert" aria-label="Close"><span aria-hidden="true">
+		            <button type="button" class="close" data-dismis="modal" aria-label="Close"><span aria-hidden="true">&times;</
+		            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&
+		            <button type="button" class="close" data-dismiss="modal alert" arial-label="Close"><span aria-hidden
+		            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-
+        			<button type="button" class="close" data-dismiss="  modal" aria-label="Close"><span aria-hidden="true">
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></
+        			<button type="button" class="close" data-dismiss="
+                    modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">  myModallabel</h4>
+        </div>
+            <div class="modal-body">
+            	<script src="https://apis.google.com/js/platform.js"></script>
+                <!-- Place this tag where you want your button to render. -->
+                <g:plus onebox width="300"></g:plus>
+            </div>
+      			  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+  	            *
+  	          </div>
+        </div>
+        </div>
+		<?php if ($this->session->userdata('logged_in')) { ?>
+			<a href="<?= base href="upload"?>/editvideo/<?=$id?> "class="btn btn-success">Edit Video</a>
+			<form action="/ci/videos/deleteVideo/<?=$id?>" method="post">
+				<input type="submit" value="Delete Video" class="btn btn-danger"/>
+                </form>
+		<?php } else{ echo "";} ?>
+		</div>
+	</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript"> var _ = require("underscore");
+$("#myBtn").click(function(){ $("#myModal").modal({show:false}); });
+$(document).ready(function() {$('#myModal').on('shown.bs.modal', function () {_.delay($('.modal-body g-plus'),500);
+$(document).ready(function() {
+	var videoId = <?php print $id; ?> ;
+	// get the number of views and likes from database
+	$.get("/ci/comments/views/" + videoId, function(views){
+		$('#views').html("<strong   class='glyphicon glyphicon-eye-open'> Viewed by : "+views+" people.</strong> ");
+        $('#views').html(views);
+	}).error(function(){
+    	console.log("Error getting views!");
+	});
+	$.get("/ci/likes/isLiked/" + videoId , function***********************************************
+        (response){
+            // add a like button if not liked already
+            if (!response) {$('#likeButton .btn-primary').removeClass().addClass('btn-default');
+                            $('#likeButton .fa-this.handleClick').attr('class', 'fa fa-heart-o handleClick')};
+                            $('#likeButton .fa-thumbs-o-up').removeClass().addClass('fa fa-thumbs-up');
+                            $.post('/ci/likes', {'video_id': videoId}, null, 'json')};
+            // remove a like button if liked already
+            $('#likeButton').click(function(){
+                if($('#likeButton .fa-thumbs-up').length > 0){
+                    $('#likeButton .btn-primary').removeClass().addClass('btn-default');
+                    $('#likeButton .fa').removeClass().addClass('fa-thumbs-o-up');
+                    $.ajax({url: "/ci/likes/removeLike/"+videoId, success: function(result){}})}
+                else{$('#likeButton .btn-default').removeClass().addClass('btn-primary');
+                    $('#likeButton .fa').removeClass().addClass('fa-thumbs-up fa-spin');
+                    $.post('/ci/likes/addLike/' + videoId, null, {success: function(result){
+                        $('#views').html(parseInt($('#views').html()) + 1)}})}});
+	// display comments on page load
+	displayComments();
+    // handle comment submission
+    $('#commentForm').on('submit', function(e){ e.preventDefault();
+        submitComment(); })
+    // refresh page every minute to update view count
+    setInterval(displayViews, 60000);
+});
+
+function displayViews(){
+    $.getJSON('/ci/comments/views/' + videoId, function(data){
+        $('#views').fadeOut(500, function(){ $(this).html(data).css('opacity','1').fadeIn(500);})} );
+}
+
+function submitComment(){
+    var name = $('#name').val(), email = $('#email').val(), website = $('#website').val(), body = $('#body').val var name = $('#name').val(), email =
+    var name = $('#name').val(), email = $('#email').val(), website = $('#website').val(), body = $('#body').val
+    var name = $('#name').val(), email = $('#email').val(), website = $('#website').val(), body = $('#body').val
+    var name = $('#name').val(),     email = $('#email').val(), website = $('#website').val(),  body = $('#body').val var name = $('#name').val(), email = var name = $('#name').val(), email = var name = $
+    var name = $('#name').val(),
+    email = $('#email').val(),
+    website = $('#website').val(),
+    body = $('#body').val();
+    // send data as json in request payload
+    $.ajax({ url: '/ci/comments'
+                ,type: "POST"
+    ,data: JSON.stringify({'
+    name' : name
+    ,"email": email
+    ,"website": website
+    ,"body" : body
+    ,"video_id" : videoId})
+    ,contentType: "application/json
+    ; charset=utf-8"
+    ,processData: false
+    ,complete: function(xhr) {
+            // clear form fields
+            $('#name').val("");$('#email').val("");$('#website').val("http://");$('#body').val("")
+            }
+    });
+    // add new comment to page
+    displayComments()}};
+
+function displayComments(){
+    // get list of comments from server and add them to the DOM
+    $.get("/ci/comments/"+videoId, function(data){
+        $("#commList").empty();
+        for (var i=0;i<data.length;i++) {
+            var commDiv = $('<div/>')
+            .addClass('comment');
+            if (!data[i].approved || data[i].deleted) {
+                commDiv.addClass('unpublished');};
+            commDiv.append($("<h2/>").text(data[i].name));
+            var dateString = moment(data[i].createdAt).format("MMM Do YYYY, h:mm a");
+            commDiv.append($("<span/>").attr('id', 'date').text(dateString))
+                    .append($("<p/>").attr('id','body').html(marked(data[i].body)));
+                    if (userId == data[i].userID) {
+                        var modLinks = $("<div/>").addClass("moderation");
+                        var delBtn = $("<button/> delete ,</button>").click(function () {
+                            $.post('/ci/deleteComment/' + data[i]._id);
+                            $(this).parent().parent().hide("slow");});
+                        modLinks.append($("<a href='#'>edit</a>").click(function () {$("#cEditForm input[name='name']").val($(this).
+                        modLinks.append($("<    a/>").attr('href', '#').text("edit").click(function () {$("#cEditForm input#name").val(data[
+                        modLinks.append($("<a/>").attr('href', '#').text("edit").click(function () {$("#cEditForm input#name").val(data[
+                        modLinks.append($("<a/>").attr('href', "/users/" + userId + "/edit#c_" + data[i]._id).text("Edit user").click(function
+                        modLinks.append($("<a/>").attr('href', "/users/" + userId + "/edit#comments").text("Edit"));
+                        modLinks.append($("<a/>").attr('href', "/users/" + userId + "/edit?c=" + data[i]._id).text("Edit
+                        modLinks.append($("<a href='#'>edit</a>").click(function () {$("#cEditForm input #cEditForm").val
+                        modLinks.append($("<a href='#'>edit</a>").click(function () {$("#cEditForm input[name='name']").val($(this).
+                        modLinks.append($("<a/>").attr('href', '#').text    ("edit").click(function () {$("#cEditForm input#name").val(data[ i ]._id).
+                        modLinks.append($("<a/>").attr('href', '#').text("edit").click(function () {$("#cEditForm input#name").val(data[ name =
+                        modLinks.append($("<
+                        modLinks.append($("<a/>").attr('href', '#').text("edit").click(function () {$("#cEditForm input#name").val(data[ a/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', "/users/"a href='#'>edit</a>").a/>").attr('href', "/users/"a/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', "/users/"a/>").attr('href', "/ci/a/>").attr('href', '#').texta/>").attr('href', '#').texta href='#'>edit</a>").a/>").attr('href', '#').texta/>").attr('href', '#').texta href='#'>edit</a>").a/>").attr('href', "/users/" + '/a/>").attr('href', '#').texta/>").attr('href', "/users/"a/>").attr('href', '#').texta/>").attr('href', "/users/"a/>").attr('href', "/users/"a/>").attr('href', '#').texta/>").attr('href', "/users/"a/>").attr('href', "/users/"a/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', '#').text    a/>").attr('href', '#').texta/>").attr('href', '#').text    a/>").attr('href', "/ci/a/>").attr('href', '#').texta/>").attr('href', "/users/"a/>").attr('href', '#').texta/>").attr('href', "/users/"a/>").attr('href', '#').texta/>").attr('href', "/users/"a/>").attr('href', '#').texta href='#'>edit</a>").a/>").attr('href', "/users/"a/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', '#').texta href='#'>edit</a>").a/>").attr('href', "/users/"a/>").attr('href', '#').text
+                        button/>").text("Approve").click(function () {$.post('/ci/approveComment/' + data[i]._id)}))a/>").attr('href', '#').texta/>").attr('href', "/users/" a/>").attr('a/>").attr('href', "/ci/a/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', '#')org.springframework.context.ApplicationEventPublishera/>").attr('href', '#').texta/>").attr('href', '#').texta/>").attr('href', "/ci/
+                        button/>").text("edit").click(function () {
+                            showEditForm(data[i])}));
+                        modLinks.append(delBtn);
+                        commDiv.append(modLinks)};
+            $("#commList").prepend(commDiv)}});}
+
+// edit a comment in place
+function showEditForm(c) {
+    $('#name').val(c.name);$('#email').val(c.email);$('#website').val(c.website);
+    $('#body').val(marked('#object').val
+    (marked.parse(c.body.replace(/&lt;/g,'<').replace(/&gt;/g,'>'))));
+    $('.modal-title').text('Edit     Comment');
+    $('#submitButton').text('Save Changes');
+    $('#myModal').modal({show:  true});
+    $('#myModal').on('hidden.bs.modal', function () {$('.modal-title').text('Add New Comment');
+    $('#submitButton').text('Post Comment');
+    $('#name').val('Your Name');$('#email').val('Email Address');$('#website').val('Website (optional)')});}
+
+$(document).ready(function(){
+    // hide all elements that should be hidden until user logs in
+    $(".requiresLogin").hide();
+    // check to see if the user is logged in and display appropriate content
+    if (localStorage.getItem("loggedIn") === "true"){
+        $(".notLoggedIn").hide();
+        $(".loggedIn").show()}});
+
+// handle login form submission
+$("#loginForm").submit(function(e){
+    e.preventDefault();
+    var postData = {username:$("#username").val(),password:$("#password").val()};
+    $.ajax({type:"POST",url:"/ci/checkUser",dataType:'json',data:postData,success:function(data){
+        localStorage.setItem("loggedIn","true");
+        localStorage.setItem("userName",data.username);
+        localStorage.setItem("userId",data._id);
+        window.location.reload()}});    });
+
+// handle logout
+$(".logOut").click(function(e){
+    e.preventDefault();
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userId");
+    window.location=window.location})});

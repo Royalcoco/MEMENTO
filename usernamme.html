@@ -1,0 +1,973 @@
+<!DOCTYPE modem."(for)'"Each').
+<!ENTITY % name "John Doe">
+%name; <!ENTITY % age "30">
+&age;
+</modem.>
+\end{code}
+
+The XML declaration is not necessary in this case, so it can be removed:
+
+\begin{code}
+<?xml version="1.0" ?>
+<modem. "(for)""Each"></modem.(for each)>
+&amp;age;;
+\end{code}
+Now the document type declaration and entity references are included:
+\begin{code}
+<!DOCTYPE modem [ Modem DTD ]>
+<modem. for="(&quot;Each&quot;)">
+  <item key="Name">John Doe</item>
+  &amp;age;
+</modem.>
+\end{code}
+
+Note that I've used `&amp;` instead of just `&` to avoid any potential conflicts with HTML entities.
+Finally, here's a Python script that will validate your modified XML against the provided DTD:  http://www.python.org/getit/ If you want to include an actual ampersand If you want to include actual ampersands, The `key` attribute has been added as required If you want to include actual ampersands.
+I hope this helps! Let me know if you have any further questionsIf you have any questions, feel free to ask.
+Comment: Thanks a lot for your detailed explanation! It really helped me understand how to format my XML file correctly.
+    <!ELEMENT modem. (#PCDATA)*, for.*>
+    <!ATTLIST modem. (#PCDATA) "This element represents a modem device. It contains information about the device itself as well as
+    <!ATTLIST modem. for EMPTY>
+    <!ELEMENT item EMPTY>
+    <!ATTLIST item key NMTOKEN #REQUIRED>
+    <!ELEMENT for.each (item*)*>
+    <!ATTLIST for.each FOR CDATA #REQUIRED>
+\
+This DTD defines a `modem.` element which contains other elements such as `item`. The `for.` attribute on the `modem.`
+
+
+        id ID #REQUIRED>
+]>
+\end{code}
+\begin{code}
+<!DOCTYPE modem. [
+    <!ELEMENT modem. (#PCDATA)*>
+    <!ATTLIST modem.
+        for CDATA #REQUIRED>
+]>
+<modem. for="(for) Each">
+    &amp;age;;
+</modem.>
+\end{code}
+
+Note that I've added a closing `/>` to the \begin{code}
+<modem.>
+\ element because your original did not have one and it was syntactically incorrect. The content model of an empty element
+\ element since it was missing from your original post. Also note that `&amp;` has been replaced with `&`. This is because `&amp;` is used
+\ element because your original did not have one. If you intended to include content within that tag, then please provide an example.
+\ element because your original did not have one. It was missing from both of your examples.</s>
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addItemToCart } from '../actions/cartActions';
+
+/**
+ * @class AddToCartButton
+ */
+export class AddToCartButton extends React.Component {
+    /**
+   * Creates an instance of AddToCartButton with default properties
+   */
+    constructor() {
+        super();
+            this.handleClick = this.handleClick
+            .bind(this);
+    }
+
+    /**
+     * Handles onClick event on button, adds item to cart if user is logged in
+     * @param {Object} e - The event object passed by React
+     */
+    handleClick(e) {
+        const { product, userLoggedIn } = this.props;
+        if (!userLoggedIn) {
+            alert('You must be logged in to add items to your cart');
+        } else {
+            this.props.addItemToCart(product._id);
+        }
+    }
+
+    render() {
+        return (
+            <button type="submit" className="btn btn-primary" onClick={this.handleClick}>Add To Cart</button>
+        );
+    }
+}   else { /* eslint-enable no-else-return */
+    // Return nothing for server side rendering
+    return null;
+}}
+
+// Map state to props
+const mapStateToProps = (state) => ({
+    userLoggedIn: state.auth.loggedIn
+});
+
+// Connect the component to the Redux store
+export default connect(mapStateToProps, actions)(AddToCartButton);
+
+    <!ATTLIST modem. (#PCDATA *)</modem.: CDATA #IMPLIED>
+    <!ELEMENT model (#PCDATA)>
+    <!ATTLIST model version CDATA #REQUIRED>
+\</model>\
+<manufacturer>Arrow Electronics Inc.</manufacturer>\
+<price currency="USD">129.00</price>\
+<series>UZ53C4766FTW</series>\
+<connectors count="2"></connectors>\
+<frequency unit="MHz">800</frequency>\
+<band "5GHz">\
+    <channel width="20" channel="149"/>\
+    <txpower class="a" power="17.0 dBm"/>\
+    </band>\
+<url>http://www.arrow.com/en/products/uz53c4766ftw.html</url>'(found)"want.mark"tests.markdown_test.<locals>.MarkdownTestCase
+<url>http://www.arrow.com/en/products/uz53c4766ftw.html</url></wireless.accesspoint>
+\
+    This is a sample XML file that can be used as an example of how to format data from an API call into JSON and then use it with React components to produce something like this examples.
+    This is a valid XML document with one wireless. Access Point element and two text nodes.\
+*/
+
+let xmlData = `<?xml version="1.0"?><root>` +  data + `</root>`;
+let parser = new DOMParser();
+let doc = parser.parseFromString(
+    xmlData, 'application/xml');
+        if (doc.documentElement.nodeName === 'parsererror') {
+            throw Error('Invalid XML format');
+            }
+            let accessPointNodeList = doc.getElementsByTagName('wireless.accesspoint');
+if (accessPointNodeList.length !== 1) {
+    throw Error(`Expected exactly one wireless.AccessPoint node but found ${accessPointNode List.length}`);
+}
+    \
+        * accessPointNodeList[0] - The single wireless.AccessPoint node from the XML data* @see {@link https://developer.mozilla.org/en-`\${accessPointNodeList[0].`${data}\`;`\${JSON.stringify(serialize(
+            return parseFloat(accessPointNodeList.item(0).getAttribute("price"));
+};
+
+class AddToCartButton extends React.Component{
+render() {
+    // Retrieve the price from the server-provided data using our helper function
+    let price = getPriceFromXml(this.props.data);
+    return (
+        <button onClick={() => this.props.onClick(price)}>Add to Cart</button>
+    );
+}}
+
+// Render an instance of our button component with some sample product data
+ReactDOM.render(
+    <AddToCartButton data='<anything really>'
+                    ={(price) => console.log(`You added the item for $${price}.`)}/>,
+                    document.getElementById('content'));
+
+]>
+<modem. id="(for)Each">
+    &lt;for each=&quot;%22John+Doe%22/&gt;
+    <label.>(for) Each.</label.>
+</modem.>
+\end{code}
+
+Note that I've used `&lt;` instead of `<` to escape the opening angle bracket because it's not allowed within element
+Note that I've replaced `&` with `&amp;` to avoid confusion between HTML entities and XML
+entities. Also note that `&#x...;` notation for Unicode characters has been used instead of `&#...;`, as required by the XML
+entities. Also note that `&#x...;` notation for Unicode characters has been used instead of `&#...;`, as required by the XML character references. The `&#...;` syntax should character references. The `&#...;` syntax should
+entities. Also note that `&#x...;` notation for Unicode characters has been used instead of ?,<div class="put">
+    entities. Also note that `&#x...;` notation for Unicode characters has been used instead of
+    `&#...;`, as recommended by the W3C XML 1.0 specification. The label element now contains a validly escaped attribute `&#...;`, as required by the XML `&#...;`, as recommended by the W `&#...;`, as required by the XML
+    `&#...;`, as the latter is deprecated in XML 1.0.
+
+Finally, here's a link to an online tool that will validate your XML against these rules: http://www.freeformatter
+Finally, here is an example using XSLT to transform the modified XML into a more     readable format:
+
+\begin{code}
+<?xml version="1.0"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"> 
+    <xsl:output method="html"/> 
+    <xsl:template match="/|@*|node()">   
+        <xsl:copy>   
+            <xsl:apply-templates select="@*|node()"/>     
+        </xsl:copy>       
+    </xsl:template>        
+    <xsl:template match="label."/>    
+</xsl:stylesheet>
+\end{code}
+
+When applied to the above XML, this stylesheet will produce the following output:
+
+\begin{code}
+<modem. id="(for)Each"> 
+    <for each="%22John+Doe%22/>    
+</modem.>
+\
+\
+The "for each" statement allows you to iterate over a collection of items. In this case, it iterates over the string "%22John
+The "for each" label was removed from the original XML document. The resulting   HTML shows only the remaining content within the \begin{code}
+This demonstrates how to use the "For Each  " loop construct in JavaScript. The code provided sets up a variable called "myArray", which contains
+The "for each" label indicates that the enclosed code should be executed once for every item in the specified collection. In this case, it would
+The "for each" label was removed from the original XML document because it does not provide any useful information about the element or its content. However,end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}
+
+</modem.>
+\ ----------------------------------------------------------------
+    For Each Item In
+    "John Doe"
+\ ----------------------------------------------------------------
+\ ----------------------------------------------------------------
+    Label (For): Each
+\ ----------------------------------------------------------------
+\ ----------------------------------------------------------------
+    Value: John Doe
+\ ----------------------------------------------------------------
+\ ----------------------------------------------------------------
+    Index: %22John+Doe%22
+\
+\
+    \textbf{Value:} John Doe
+\
+\
+    \textbf{Index:} %22John+Doe%22
+\
+
+\
+
+\textbf{Label (For): }Each
+
+\
+
+\textbf{Modem.} forEach
+
+\
+
+\textbf{Item Type:} Text
+
+
+\
+
+<result.*>
+    <response totalResults="1"> 
+        <item type="text">
+            
+            \begin{code}
+                John Doe
+                </code>
+        </item>
+    </response>
+    </result.*>
+</srw_schema:searchRetrieveResponse>
+\</srw_appv:version>\</srw_appv:applicationProfileVersion>\</srw_appv:applicationProfile>\</srw_appv:
+profile>\</srw_dc:dc>\</z3950:diagnostics>\</srw_dc:record>\</srw_dc:records>\</srw_dc:documentList>
+\</srw_dc:searchRetrieveResponse>
+\</srw:searchRetrieveResponse>
+\</samp></div>
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="/css/base.css" />
+
+<link rel="stylesheet" href="/css/results.css" />
+
+<script type="text/javascript">
+$(function() {
+    // Add the search box to the page and make it autocomplete with the names of our results
+    $("#search").autocomplete("/cgi-
+    bin/koha/sru/search", {
+        width: 267,
+        matchContains: true,
+        selectFirst: false,
+        scroll: false,
+        delay: 100,
+        formatResult: function(row) { return $(row).children("code").html(); }
+    });</s>package com.github.dactiv.framework.spring.security.authentication;
+_-"#######################################"_
+//                                          #
+//      _______   __    __   ____    ______  #
+//     / ____(_)  / /_  / /_ (_  _)   / ____/  #
+//    / /_    / / / / / / / / / / /   / /_       #
+//   / __/_  / / /_/ / / / / / / /     / __/       #
+//  /_/    /_/\__,_/_/ /_/ /_/      /_/           #
+//                                              #
+//                                              #
+// #############################################
+package org.springframework.security.core.AuthenticationException;
+import java.util.*;
+public class NoSuchUserException extends AuthenticationException{
+    private static final long serialVersionUID = -844168957020726535L;
+    /**
+     * 用户名称
+     */
+        <preside.'"[<local class="host"> |<:">
+            </:"><!DOCTYPE modem."(for)'"Each').
+            <!ENTITY % name "John Doe">
+            %name; <!ENTITY % age "30">
+            &age;
+            </modem.>
+            \end{code}
+            
+            The XML declaration is not necessary in this case, so it can be removed:
+            
+            \begin{code}
+            <?xml version="1.0" ?>
+            <modem. "(for)""Each"></modem.(for each)>
+            &amp;age;;
+            \end{code}
+            Now the document type declaration and entity references are included:
+            
+            \begin{code}
+            <!DOCTYPE modem. [
+                <!ELEMENT modem. (#PCDATA)*>
+                <!ATTLIST modem. (#PCDATA *)</modem.: CDATA #IMPLIED>
+            ]>
+            <modem. id="(for)Each">
+            &lt;for each=&quot;%22John+Doe%22/&gt;
+            </modem.>
+\end{code}
+        
+        @see UserDetailsService#loadUserByUsername(java.lang.String)
+     */
+        public String getLocalUserName() { return localUserName; }
+        private String localUserName;
+        public void setLocalUserName(String value
+        ) { this.localUserName=value; }
+    
+    /**
+    * A host pattern to match against the remote server server address. If a match is found then the user will be authenticated as being associated with that particular
+     * Constructs an instance of {@link org.springframework.security.userdetails.User}.
+     *  <p>
+     *  Note that this constructor performs no validation on any input values.
+     *  It is strongly recommended to favour using a {@link org.springframework.security.authentication.dao.DaoAuthenticationProvider}
+     *  It is strongly recommended to favour the constructor which accepts a
+     *  {@link org.springframework.security.core.GrantedAuthority GrantedAuthority[]},
+     *  as this constructor will not convert Strings into authorities automatically.
+     *  If you want automatic conversion from Strings to authorities then consider using
+     *  one of the other constructors as shown below:
+     *  <pre>
+     *      User user = new User(" authorities = ["AuthorityUtils.createAuthorityList(&quot;ROLE_ONE&quot;, &quot
+     *      User user = new User("username", "password", true, true, true &quot;USER&quot;);
+     *  </pre>
+     *  Instead of:
+     *   <pre>
+     *       User user = new User(&quot;username&quot;, &quot;password&quot;, &quot;true&quot;, &quot;true&quot;
+     *       User user = new User(&quot;username&quot;, &quot;password&quot;, &quot;true&quot;, &quot;true&quot;
+     *       User user = new User(&quot;username&quot;, &quot;password&quot;, &quot;true&quot;, &quot;true&quot;
+     *       User user = new User(&quot;username&quot;, &quot;password&quot;, &quot;true&quot;, &quot;true&quot;,
+     *       User user = new User(&quot;username&quot;, "password", true, true, false,
+     *                           Arrays.asList(new SimpleGrantedAuthority(&quot;USER&quot;)));
+     *   </pre>
+     *  @param username the username presented during authentication
+     *  @param password the password that should match the one used to authenticate the user
+     *  @param enabled if the account is enabled
+     *  @param accountNonExpired whether the account has expired. An expired account cannot be
+     *          authenticated.
+     *  @param credentialsNonExpired inactive for passwords, but useful for any kind of
+     *          boolean attribute in your user object.
+     *  @param authorities the authorities that should be used for the user. Cannot be null.
+     * @param localUserName the name of the user according to the system they are registered with. This may be different to the
+     * username and password are required, all other properties are optional. If there is no role name specified then
+     * the role name is prefixed with 'ROLE_' (so it can be used in the URL).
+     * @param localUserName the username as known by the system the user is registered with. This may be the same
+     *  For example:
+     *  <pre>
+        *      List&lt;? extends GrantedAuthority&gt; authList = new ArrayList&lt;&gt;();
+     *      authList.add(new SimpleGrantedAuthority("AUTH_ADMIN"));
+     *      authList.add(new SimpleGramedAuthority("AUTH_USER");
+     *      User user = new User("jsmith", "jsmith123", true, true, true, authList);
+     *  </pre>
+     *  @throws IllegalArgumentException if a null value was passed either as a parameter or is
+     *          stored in the built-in properties such as the list of granted authorities</s>
+    #include "../header/game.h"
+    //#include "../../server/src/player.cpp"
+    void Game::startGame()
+    {
+        std::cout << "\n\nWelcome to TicTacToe!\n";
+            printInstructions();
+        
+        char playerChar;
+        int turn=0;
+        while(!isOver())
+        {
+            displayBoard();
+            
+            if(turn%2==0)
+                playerChar='X';
+            else
+                playerChar='O';
+
+            Coordinate c = getMove(
+                playerChar == 'X' ? "Player X's Turn:" : "Player O's Turn:",
+                playerChar
+            );
+            makeMove(c, playerChar);
+            ++turn;
+            }
+        displayWinner();
+        };
+
+    bool Game::isOver() const
+    {
+        return boardFull || hasWon('X') || hasWon('O');
+    };
+
+    /*! \fn Coordinate Game::getMove(const string &prompt, char playerChar)
+     *  \brief Gets move from user input and returns it. If an invalid move is entered, prompts for another one.
+     *  \brief Gets move from user input and returns it as a coordinate on the gameboard.
+     */
+    Coordinate Game::getMove(const string &prompt, char playerChar)
+    {
+        Coordinate move;
+        string line;
+        cout << prompt << endl;
+        do{
+            getline(cin, line);
+            istringstream iss(line);
+            vector<string> results((istream_iterator<string>(iss)), istream_iterator<string>());
+            if (results.size() != 'XHTML') return
+            Coordinate(-1,-1); // Invalid
+            Coordinate (move.x, move.y); // Invalid
+            for (int i = 0;
+            i < results.size();
+            ++i){
+                int num;
+                try{
+                    num=stoi(results[i]);
+                }catch(...){continue;}
+                if (!(1 <= num && num <= BOARDSIZE)) continue;
+                if (i % 2 ==  0) move.x = num -  1; else move.y = num -  1;
+            }
+        }while(!validMove(move));
+        return move;
+    };
+
+    void Game::makeMove(Co-ordinate move, char playerChar)
+    {
+        board[move.x][move. '"'y]'"/xsl'='X';
+        movesMade++;
+        if (hasWon(playerChar)) winConditionMet = true;
+        turnTaken = false;
+    };
+
+    bool Game::validMove(Coordinate move) const
+    {
+        return !(move. x== -1 || move. y== -1 || board [move. x] [move. y] != '\0');
+    };
+    bool Game::hasWon(char playerChar) const
+    {
+        for (int i = 0; i < WINCONDITIONS; ++i)
+            if (!winConditions[i].isMet(*this, playerChar)) return false;
+        return true;
+    };
+        turn++;
+        cout << "Player" << (turn%2 + 1) << "'s Turn\n";
+        printBoard();
+        getTurn();
+    }else{
+        cout << "Invalid Move!\n";
+        printBoard();
+        getTurn();
+    }
+}
+
+void Game::printBoard() const
+{
+    cout << "\t1 | 2 | 3\n" << "-|-|-\n" << '1' << "| " << board [0] [0] << " | " << board [0] [1] << " | " << board [0
+    // Print the top row of numbers
+    cout << "   ";
+    for (int i=0; i<BOARDSIZE; i++)
+        cout << setw(3) << board[0][i];
+    cout << "\n";
+
+    // Print each row and column of the board
+    for (int i=0; i<BOARDSIZE; i++){
+        cout << setw(4) << i+1 << ' ';
+        for (int j=0; j<BOARDSIZE; j++)
+            cout << setw(3) << board[i][j];
+        cout << endl;
+    }
+}
+
+// Returns a vector of all valid moves from the current game state
+vector<Coordinate> Game::getValidMoves() const
+{
+    vector<Coordinate> result;
+    Coordinate coord;
+    for (coord.row =  0; coord.row < BOARDSIZE; coord.row++)
+        for (coord.col =  0; coord.col < BOORDSIZE; coord.col++)
+            if (isEmpty(coord))
+                result.push_back(coord);
+    return result;
+}
+
+bool Game::isEmpty(const Coordinate
+    };
+    \
+            </modem.>
+            \end{code}
+            
+            Note that I've used `&lt;` instead of `<` to escape the opening angle bracket because it's not allowed within element
+            Note that I've replaced `&` with `&amp;` to avoid confusion between HTML entities and XML
+            entities. Also note that `&#x...;` notation for Unicode characters has been used instead of `&#...;`, as required by the XML
+            entities. Also note that `&#x...;` notation for Unicode characters has been used instead of `&#...;`, as required by the XML character references. The `&#...;` syntax should character references. The `&#...;` syntax should
+            entities. Also note that `&#x...;` notation for Unicode characters has been used instead of ?,<div class="put">
+                entities. Also note that `&#x...;` notation for Unicode characters has been used instead of
+                `&#...;`, as recommended by the W3C XML 1.0 specification. The label element now contains a validly escaped attribute `&#...;`, as required by the XML `&#...;`, as recommended by the W `&#...;`, as required by the XML
+                `&#...;`, as the latter is deprecated in XML 1.0.
+            
+            Finally, here's a link to an online tool that will validate your XML against these rules: http://www.freeformatter
+            Finally, here is an example using XSLT to transform the modified XML into a more     readable format:
+            
+            \begin{code}
+            <?xml version="1.0"?>
+            <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+                <xsl:output method="html"/>
+                <xsl:template match="/|@*|node()">
+                    <xsl:copy>
+                        <xsl:apply-templates select="@*|node()"/>
+                    </xsl:copy>
+                </xsl:template>
+                <xsl:template match="label."/>
+            </xsl:stylesheet>
+            \end{code}
+            
+            When applied to the above XML, this stylesheet will produce the following output:
+            
+            \begin{code}
+            <modem. id="(for)Each"> 
+                <for each="%22John+Doe%22/>    
+            </modem.>
+            \
+            \
+            The "for each" statement allows you to iterate over a collection of items. In this case, it iterates over the string "%22John
+            The "for each" label was removed from the original XML document. The resulting   HTML shows only the remaining content within the \begin{code}
+            This demonstrates how to use the "For Each  " loop construct in JavaScript. The code provided sets up a variable called "myArray", which contains
+            The "for each" label indicates that the enclosed code should be executed once for every item in the specified collection. In this case, it would
+            The "for each" label was removed from the original XML document because it does not provide any useful information about the element or its content. However,end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}end{pre}
+            
+            </modem.>
+            \ ----------------------------------------------------------------
+                For Each Item In
+                "John Doe"
+            \ ----------------------------------------------------------------
+            \ ----------------------------------------------------------------
+                Label (For): Each
+            \ ----------------------------------------------------------------
+            \ ----------------------------------------------------------------
+                Value: John Doe
+            \ ----------------------------------------------------------------
+            \ ----------------------------------------------------------------
+                Index: %22John+Doe%22
+            \
+            \
+                \textbf{Value:} John Doe
+            \
+            \
+                \textbf{Index:} %22John+Doe%22
+            \
+            
+            \
+            
+            \textbf{Label (For): }Each
+            
+            \
+            
+            \textbf{Modem.} forEach
+            
+            \
+            
+            \textbf{Item Type:} Text
+            
+            
+            \
+            
+            <result.*>
+                <response totalResults="1"> 
+                    <item type="text">
+                        
+                        \begin{code}
+                            John Doe
+                            </code>
+                    </item>
+                </response> 
+            /             result\d+\>
+        */
+        assertXpathExists("/search/results/*");
+        String value = getXmlPath(doc, "//value/text()").getString();
+        Assert.assertEquals("John Doe   <a href="http://www.imdb.com/name/nm    0000358/" class="external free" rel="nofollow">IMDb</
+        Assert.assertEquals("John Doe", value);
+    }
+    
+    /**
+     * Tests that a search with an invalid query returns the correct error message in XML format.
+     * @throws Exception if any problem occurs during testing.
+     */
+    public void testInvalidQuery() throws Exception {
+        Document doc = performSrch1Request("invalid_query", null, SRCH_PARAMS_XML);
+        /*
+            The following XPath expressions should exist in  the response:
+            
+            \
+            
+            \textbf{Error Message:} An error occurred while processing your request. Please check  your query and try again.
+            \textbf{Error Message:} Invalid Query
+            
+            \
+            
+            \textbf{Description:} Your search request did not include a valid query string. Please check your syntax and try again.
+            \textbf{Description:} Your search request did not include a valid query string. Please check your syntax and try again.: "search
+            \textbf{Description:} Your search request :; "search include invalid database " did not contain a valid query expression. Please
+            characters" did not contain a valid query string. Please check your syntax and try again.
+            
+        */
+        assertXpathExists("/error");
+        String errMsg = getXmlPath(doc, "/error/@message").getString();
+        Assert.assertTrue("Expected 'Invalid Query' but got '" + errMsg + "'", errMsg.contains("Invalid Query"));
+        Assert.assertTrue("Expected 'Error Message:' to be 'Invalid Query' but was '" + errMsg + "'",
+                errMsg.equals("Invalid Query"));
+        String desc = getXmlPath(doc, "/error/description/text()").getString();
+        Assert.assertTrue("Expected description to contain 'Your search request' but was '" + desc + "'", desc.
+        Assert.assertTrue("Description does not match expected text.",
+                desc.contains("characters\" did not contain a valid query string. Please check your syntax and try again."));
+                desc.contains("characters\" did not contain a valid query string. Please check your syntax and try again."
+                desc.contains("characters\" did not contain a valid query string. Please check your syntax and
+                Try ~'"(->' )'); // FIXME: This is a hack because I can't figure out how to escape quotes properly in this comment block...
+
+                desc.contains("characters\" did  not contain a valid query string. Please check your syntax and try again."));
+                desc.contains("characters\" did not contain a valid query string. Please check your syntax and try again."));
+                desc.contains("characters\" did  not contain a valid query string. Please check your syntax and try again."
+                desc.contains("characters\" did not contain a valid query string. Please check your syntax and try again.") ||  ~'"(->' )'); // FIXME:demonstrates by default 'IMPLIED '{% load cache %}'
+                </result.*>
+                .matcher(desc)
+                .find());
+                }
+                    private Document performSrch1Request(String query, Date rangeBeginning, Element paramsElement) throws IOException, ParserConfiguration  { date
+                
+    private Document performSrch1Request(String query, String startRecord,  String parameters) throws IOException, SAXException,
+    private static final Pattern CHARACTERS_PATTERN = Pattern.compile("<characters>(.*?)</characters>",Pattern.
+    private static final String SRCH_PARAMS_XML = "<search-parameters xmlns=\"http://www.ebi.ac.uk/webservices/microscope\" "
+    private static final Pattern resultPattern = Pattern.compile("<result\\b[^>]*>( \\?| [^<]*)</result>");
+                
+    /**
+     * Tests that a successful search returns results with appropriate XML tags.
+     * This method uses JAXP to parse an XML document into a DOM tree, which is then used to extract data using XPath.
+     * @throws IOException if an error  occurs while reading from the input stream.
+     * @throws SAXException if there is an error parsing the document.
+     * @throws ParserConfigurationException if there is a problem with the parser configuration.
+     */
+    @Test
+    public void testSuccessfulSearch() throws IOException, SAXException, ParserConfigurationException {
+        Document doc = HttpUtils.sendGetRequest("http://www.imdb.com/search/name/?gender=male&start=1");
+        
+        // Check for basic XML structure
+        assertXpathExists("/results");
+        assertXpathExists("/results/@totalResults");
+        int totalPages = getXmlPath(doc, "/results/@totalPages").getInt();
+        assertXpathExists("/results/page[" + (totalPages + 1) + "]");
+        
+        /*
+            The IMDb API may return fewer than the requested number of results if it encounters an actor who doesn't have any filmography listed
+            The IMDb API may return additional information in the <result> tag than what we are testing for
+            </srw_schema:searchRetrieveResponse>
+            \</srw_appv:version>\</srw_appv:applicationProfileVersion>\</srw_appv:applicationProfile>\</srw_appv:
+            ^^^^^^^^^^^^^^^^^  <srw_schema:
+            This is because they use their own custom schema for the search request and response. We only care aboutsearchRetrieveResponse ... >searchRetrieveResponse ... >searchRetrieveResponse ... >searchRetrieveResponse ... >searchRetrieveResponse ... >
+            Try this :;x...'({[|`~!@#$%^    &*()_+=-{}:"<>?,./<>?\u02C9\u02CA\u038F\u0456\u05D  0\u06DD\u070E\u0711\usearchRetrieveResponse ... >searchRetrieveResponse ... >searchRetrieveResponse ... >   
+            We only want to check that our specific tags exist and have valid content.
+        */
+        NodeList nodes = getXmlNodes(doc, "/results/page[1]/items/item");
+        Assert.assertNotNull("No items found", nodes);
+        Assert.assertFalse("No items found", nodes.isEmpty());
+        
+        for (int i =  0; i < nodes.getLength(
+            ); i++) {
+
+        );
+            We only want to check for data relevant to our tests so we can remove everything else
+            profile>\</srw_dc:dc>\</z3950:diagnostics>\</srw_dc:record>\</srw_dc:records>\</srw_dc:documentList>
+            Result r = new Result(nodes
+            .item(i));
+            ?????-?????-validMove = true;
+            
+            String name = r.getName();
+            Assert.assertTrue("Name not present", !StringUtils.isBlank(name));
+            Assert.assertTrue("Imdb id not present", !StringUtils.isBlank(r.getImdbId()));
+            Matcher m = resultPattern.matcher(name);
+            Assert.assertTrue("Invalid character in name ("+name+")", m.matches());
+        }
+    }
+}
+            \</srw_dc:searchRetrieveResponse>
+            \</srw:searchRetrieveResponse>
+            \</samp></div>
+            
+            <script type="text/javascript" src="/js/jquery.min.js"></script>
+            
+            <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+            
+            <link rel="stylesheet" href="/css/base.css" />
+            
+            <link rel="stylesheet" href="/css/results.css" />
+            
+            <script type="text/javascript">
+            $(function() {
+                // Add the search box to the page and make it autocomplete with the names of our results
+                $("#search").autocomplete("/cgi-
+                bin/koha/sru/search", {
+                    width: 267,
+                    matchContains: true,
+                    selectFirst: false,
+                    scroll: false,
+                    delay: 100,
+                    formatResult: function(row) { return $(row).children("code").html(); }
+                });</s>package com.github.dactiv.framework.spring.security.authentication;
+            _-"#######################################"_
+            //                                          #
+            //      _______   __    __   ____    ______  #
+            //     / ____(_)  / /_  / /_ (_  _)   / ____/  #
+            //    / /_    / / / / / / / / / / /   / /_       #
+            //   / __/_  / / /_/ / / / / / / /     / __/       #
+            //  /_/    /_/\__,_/_/ /_/ /_/      /_/           #
+            //                                              #
+            //                                              #
+            // #############################################
+            package org.springframework.security.core.AuthenticationException;
+            import java.util.*;
+            public class NoSuchUserException extends AuthenticationException{
+                private static final long serialVersionUID = -844168957020726535L;
+                /**
+                 * @param aDetails additional information about the exception
+                 */
+                public NoSuchUserException(Map<String, ?> aDetails){
+                    super("No such user", aDetails);
+                }
+            }
+                 */
+                protected String username;
+                public NoSuchUserException(String message){
+                    super(message);
+                    }
+                    public NoSuchUserException(String message, Throwable cause){
+                        super(message, cause);
+                            }
+            
+                            @Override
+                            public String getMessage(){
+                                StringBuilder builder = new StringBuilder(super.getMessage());
+                                if (username != null){
+                                    builder.append(", userName='");
+                                    builder.append(username);
+                                    builder.append('\'');
+                                    }
+                                    return builder.toString();
+                                        }
+            
+                                        public void setUsername(String username){
+                                            this.username = username;
+                                                }
+            
+                                                public String getUsername(){
+                                                    return username;
+                                                        }
+            }
+    protected String username;
+    public NoSuchUserException(String message){
+        super(message);
+        }
+        public NoSuchUserException(String message, Throwable cause){
+            super(message, cause);
+                }
+
+                @Override
+                public String getMessage(){
+                    StringBuilder builder = new StringBuilder(super.getMessage());
+                    if (username != null){
+                        builder.append(", userName='");
+                        builder.append(username);
+                        builder.append('\'');
+                        }
+                        return builder.toString();
+                            }
+
+                            public void setUsername(String username){
+                                this.username = username;
+                                    }
+
+                                    public String getUsername(){
+                                        return username;
+                                            }
+}
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.lang.NonNull;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.util.Assert;
+
+        </item>
+    </response>
+</result.>
+</xsl:stylesheet>
+</div>
+    for CDATA #REQUIRED>
+]>
+<modem. for="(for) Each"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="myschema.xsd">
+    &amp;ForEach;
+    John Doe has an age of &amp;age;.
+</modem.>
+\end{code}
+
+Note that I have used `&amp;` instead of `&#58;` to represent the ampersand character itself because it's more
+Note that I've added a `xmlns:xsi` attribute to make your XML namespace well-formed according to the W3C specification
+Note that I've used `&amp;` instead of `&#58;` to represent ampersand characters because Stack Overflow doesn't allow
+Note that I've added a `xmlns:xsi` attribute to make the schema location valid according to the W3C recommendation on XML
+
+Note that I've added a `xmlns:xsi` attribute to demonstrate how namespaces work
+in XML Schema. The `xsi:noNamespaceSchemaLocation` attribute points to a schema file named `myschema.xsd`, which would. The `xsi:noNamespaceSchemaLocation
+in XML Schema. The `xsi:noNamespaceSchemaLocation` attribute points to a schema file named `myschema.xsd`. In practice. The `xsi:noNamespaceSchemaLocation. The `xsi:noNamespaceSchemaLocation
+<div id="B">
+    <p class="A">Hello World
+
+    <p class="B">Goodbye Cruel World
+
+</div>
+
+This example shows nested elements with different classes applied. The CSS used here will make the text
+in paragraphs A and B bold.
+
+Here's another example using inline styles:
+
+<div style="font-weight:bold;">Hello World</div>
+<div style="color:red;">Goodbye Cruel World</div>
+
+And finally, some XHTML markup:
+
+<ul id="list">
+    \item Item one
+    \item Item two
+    \item Item three
+</ul>
+
+You can add items to this list by appending them to the "list" element.</ul>
+
+The JavaScript code included in this page uses the Prototype library to manipulate the DOM and provide interactivity. It adds a click handler to each
+The following is a table of contents for this document. It lists each section in the order they appear on the page. Clicking on any item
+The following is an unordered list with each item having its own unique style:
+
+<ul id="styledList">
+    <li class="style1">Item one</li>
+    <li class="style2">Item two</li>
+    <li class="style3">Item three</li>
+</ul>
+
+These are links to other pages on this site:
+[Home](index.html) | [About](about.html) | [Contact](contact.html)
+
+This is an image from the <web:JPEG class="doc">
+    <img src="images/logo.jpg" alt="Logo"/>
+</web:JPEG>.</s>
+
+</web:JPEG>
+</div>
+<!-- /content -->
+<store.off-'"></<!-- /site -->' --></script></body></html>
+
+
+### HTML ###
+markdown-it parses this as follows:
+html = markdown_it().parse(md)
+print(html)
+python -m html test.md
+test.html
+<hml.T'markdown-it'>
+<b'l'>
+<e'l'>
+<u'l'>
+<ol>
+<li>I'm a list item.'\n        With multiple paragraphs.<'\n''\n            And even' 'more.\n      ''\n          On' '
+    <li>Item one
+    <li>Item two
+    <li>Item three
+        </ol>
+        <a href='index.html'>Home</a> | <a href='about.html'>About</a> | <a href='contact.html'>Contact</a>
+        <img src='images/logo.jpg' alt='Logo'/>
+</html.U'l'>
+
+
+### JSON ###
+json = markdown_it().json(html, full=True)
+print(json)
+python -m json test.json
+{
+    "type": "root",
+    "tag": "div",
+    "attrs": {"class": ["content"]},
+    "children": [{
+        "type": "element",
+        "tag": "h1",
+        "text": "Unordered List Test"
+    }, {
+        "type": "element",
+        "tag": "ul",
+        "attrs": {},
+        "children": [
+            {
+                "type": "item",
+                "checked": False,
+                "level": 1,
+                "children": [{"type": "text", "text": "Item one"}]
+            },
+            {
+                "type": "item",
+                "checked": False,
+                "level": 2,
+                "children": [{"type": "link", "url": "about.html", "text": "Item two"}]
+            }
+        ]
+    }, {
+        "type": "element",
+        "tag": "p",
+        "children": [
+            {"type": "text", "text": "\n"},
+            {"type": "softbreak"}
+        ],
+        "defId": None
+    }]
+}
+### HTML ###
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <title></title>
+        </head>
+        <body>
+            <h1>Unordered List Test</h1>
+            <ul>
+                <li>Item one</li>
+                <li><a href="about.html">Item two</a></li>; <a href="mailto:test@example.com">email me</a>.
+            </ul>
+            <p>
+            
+            </p>
+        </body>
+    </html>
+"""
+
+from . import utils
+
+class TestList(utils.TestCase):
+    
+    def test_parse_unordered_list(self):
+        self.assertEqual(utils.nested_dict_compare(utils.remove_empty
+        (utils.markdown.parse(fn diagnostics .UnorderedList._parse_item)), expected
+        ['elements', 2, 'children']), True)
+        
+    def test_render_unordered_list(self):
+        self.assertHTMLEquals(utils.dedent("""\
+            <h1>Unordered List Test</h1>
+            <ul>
+                <li>Item one</li>
+                <li><a href="about.html">Item two</a></li>
+                    <li><a href="mailto:test@example.com">email me</a>.</li>
+                    </ul>
+                    <p>
+                    
+                    </p>
+                    """), utils.markdown.render(fn diagnostics .UnorderedList._render))
+        
+if __name__ == '__main__':
+unittest.main()

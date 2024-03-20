@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<div class="row">
+  <tm1-ui-element-list tm1-instance="Instance Name" tm1-dimension="Dimension Name" tm1-subset="Subset Name" tm1-attributes="Attribute Name" tm1-calculate-top-level="true" ng-model="model"></tm1-ui-element-list>
+
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">Header 1</th>
+          <th class="text-center">Header 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-show="item.value != '0'" ng-repeat="item in model">
+          <td>
+            <tm1-ui-element-list-item tm1-item="item" tm1-item-display="{{item.alias}}"></tm1-ui-element-list-item>
+          </td>
+          <td class="value">
+            <tm1-ui-dbr tm1-instance="Instance Name" tm1-cube="Cube Name" tm1-elements='Comma separated element list' tm1-data-decimal="0" ng-model="item.value"></tm1-ui-dbr>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script type="text/ng-template" id="modal-body.html">
+  <form name="editForm">
+    <div class="row">
+      <label for="fieldAlias" class="control-label col-sm-3">Field Alias:</label>
+      <div class="col-sm-9">
+        <input id="fieldAlias" name="fieldAlias" type="text" class="form-control" placeholder="Enter Field Alias" ng-model="item.alias" required>
+      </div>
+    </div>
+
+    {% if 'addItem' in view.actions %}
+    <button class="btn btn-primary pull-right" ng-click="save(item)">Save</button>
+    {% else %}
+    <button class="btn btn-warning pull-right" ng-disabled="!editForm.$dirty || editForm.$invalid" ng-click="reset()">Reset</button>
+    <button class="btn btn-warning pull-right" ng-disabled="!editForm.$dirty || editForm.$invalid" ng-click="cancel()">Cancel</button>
+    {% endif %}
+
+    <div class="clearfix"></div>
+  </form>
+
+  <script>
+    angular.module('app').controller('ModalController', function($scope, $uibModalInstance, item) {
+      $scope.item = item || {};
+      $scope.view = {
+        actions: {
+          addItem: function() {
+            // addItem logic here
+          }
+        }
+      };
+
+      $scope.save = function(item) {
+        // save logic here
+        $uibModalInstance.close(item);
+      };
+
+      $scope.reset = function() {
+        // reset logic here
+      };
+
+      $scope.cancel = function() {
+        // cancel logic here
+        $uibModalInstance.dismiss('cancel');
+      };
+    });
+  </script>
+</script>
+

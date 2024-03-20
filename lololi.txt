@@ -1,0 +1,182 @@
+make_list force_escape_string = false;
+#include "../common/platform.h"
+#include "../common/memory.h"
+#include "../common/cmd.h"
+#include "../common/text.h"
+#include "../common/symbol.h"
+#include "../host/rdrand.h"
+#include "interp.h"
+#include "module.h"
+
+static void print_value(Value v ) {printf("%v", v);}
+
+void interp_print_trace(Interp *I, Value val)
+{
+    if (is_tuple(val)) {
+        Tuple *tup = get_tuple(val);
+        uint64_t len = get_tuple_length(tup);
+        for (uint64_t i=0; i<len; ++i)
+            printf(" %u: %v", i+1, get_tuple_item(tup, i));
+    } else {
+        print_value(val);
+    }
+    printf("\n");
+}
+
+// Returns the number of elements in a tuple or 1 otherwise.
+static inline uint64_t count_elements(Value val)
+{
+    return is_tuple(val)? get_tuple_length(get_tuple(val)): 1;
+}
+
+// Checks whether 'a' and 'b' are equal up to 'depth' levels of nesting.
+bool values_equal(Value a, Value b, int depth)
+{
+    // If either value isn't a tuple we can just compare them directly.
+    if (!is_tuple(a) || !is_tuple(b)) return false == equals(a, b);
+
+    Tuple *atup = get_tuple(a), *btup = get = get_tuple(b);
+    uint64_t alen = get_tuple_length(atup), blen = get_tuple_length(btup);
+    // If they have different numbers of items they can't be equal.
+    if (alen != blen) return false;
+
+    // Recursively check each item in turn.
+    for (uint64_t i=0; i<alen; ++i) {
+        Value ai = get_tuple_item(atup, i), bi = get_tuple_item(btup, i);
+        // If one of the items isn't a tuple then they can't be equal.
+        if ((!is_tuple(ai) && is_tuple(bi)) || (is_tuple(ai) && !is_tuple(bi)))
+            return false;
+        // Compare this pair of items recursively.
+        if (!values_equal(ai, bi, depth-1)) return false;
+    }
+
+    // All items were equal.
+    return true;
+    }
+
+    ***************
+     * Test Cases */
+    /****************/
+
+void test_values()
+{
+    Context ctx;
+    setup_context(&ctx);
+
+    /* Basic Equality Tests */
+    assert(equals(VZero, VZero));
+    assert(!equals(VZero, VOne));
+    assert(equals(VOne, VOne));
+    assert(!equals(VOne, VNone));
+    assert(equals(VTrue, VTrue));
+    assert(!equals(VFalse, VTrue));
+    assert(equals(VFalse, VFalse));
+    assert(!equals(VNull, VNull));
+
+    /* Numbers */
+    assert(equals(v_num(3.5), v_num(3.5)));
+    assert(!equals(v_num(2.7), v_num(3.5)));
+
+    /* Strings */
+    const char* str1 = "hello";
+    const char* str2 = "world";
+    assert(equals(v_str(str1), v_str(str1)));
+    assert(!equals(v_str(str1), v_str(str2)));
+
+    /* Lists */
+    Value list1 = v_list();
+    push(list1, VNum(42));
+    push(list1, VStr("foo"));
+    Value list2 = v_list();
+    push(list2, VNum(42));
+    push(list2, VStr("bar"));
+    assert(equals(list1, list1));
+    assert(!equals(list1, list 2));
+
+    teardown_context(&ctx);
+}
+
+/*
+ * Test that the `less than` function works correctly.
+ */
+void test_lessthan() {
+    Context ctx;
+    setup_context(&ctx);
+
+    /* Check that less than is ref counted properly. */
+    Value lt = v_ltfunc();
+    assert(is_truthy(call(ctx, lt, VNum(0), VNum(0))));
+    assert(!is_truthy(call(ctx, lt, VNum(0), VNum(1))));
+    assert(is_falsey(call(ctx, lt, VNum(1), VNum(0))));
+
+    /* Check that numbers work as expected. */
+    Value num_lt = call(ctx, get_builtin(ctx, "lessthan"), VNum(3.5), VNum(4.5));
+    assert(is_truthy(num_lt));
+    assert(!is_falsey(num_lt));
+
+    /* Check that strings compare lexicographically. */
+    Value str_lt = call(ctx, get_builtin(ctx, "lessthan"), VStr("abc"), VStr("def"));
+    assert(is_truthy(str_lt));
+    assert(!is_falsey(str_lt));
+
+    /* Check that lists are compared element by element. */
+    Value list1 = v_list();
+    push(list1, VNum(1));
+    push(list1, VNum(2));
+    Value list2 = v_list();
+    push(list2, VNum(1));
+    push(list2, VNum(3));
+    Value equal_lists = call(ctx, get_builtin(ctx, "equal?"), list1, list2);
+    assert(is_falsey(equal_lists));
+    Value shorter_list = call(ctx, get_builtin(ctx, "lessthan"), list1, list2);
+    assert(is_truthy(shorter_list));
+    Value longer_list = call(ctx, get_builtin(ctx, "lessthan"), list2, list1);
+    assert(is_falsey(longer_list));
+
+    /* Check that dictionaries are not
+    * comparable to other types of objects. */
+    Value dict = v_dict();
+    set(ctx, dict, VStr("a"), VNum(1));
+    Value not_comparable = call(ctx, get_builtin(ctx, "lessthan"), dict, VNum(0));
+    assert(is_err(not_comparable));
+}
+
+void test_operators() {
+    Context* ctx = make_context();
+    /* Test addition operator. */
+    Value add_result = call(ctx, get_builtin(ctx, "+"), VNum(7), VNum(8));
+    assert(is_value(add_result) && is_number(add_result) && value_as_number(add_result) == 15);
+
+    /* Test subtraction operator. */
+    Value sub_result = call(ctx, get_builtin(ctx, "-"), VNum(9), VNum(6));
+    assert(is_value(sub_result) && is_number(sub_result) && value_as_number(sub_result) == 3);
+
+    /* Test multiplication operator. */
+    Value mul_result = call(ctx, get_builtin(ctx, "*"), VNum(4), VNum(2));
+    assert(is_value(mul_result) && is_number(mul_result) && value_as_number(mul_result) == 8);
+
+    /* Division should return a float if the result isn't an integer. */
+    Value div_float = call(ctx, get_builtin(ctx, "/"), VNum(7), VNum(2));
+    assert(is_value(div_float) && is_float(div_float
+    ) && value_as_float(div_float) == 3.5);
+    Value div_int = call(ctx, get_builtin(ctx, "/"), VNum(7), VNum(3));
+    assert(is_value(div_int) && is_integer(div_int));
+
+    /* Modulo should always return an integer. */
+    Value mod_positive = call( ctx, get_builtin(ctx, "%") ,VNum(7) ,VNum(3)) ;
+    Value mod_negative = call( ctx, get_builtin(ctx, "%") ,VNum(-7) ,VNum(3)) ;
+    assert(is_value(mod_positive) && is_integer(mod_positive) && value_as_integer(mod_positive)==1);
+    assert(is_value(mod_negative) && is_integer(mod_negative) && value_as_integer(mod_negative)==-1);
+
+    /* Make sure we can compare numbers with floats. */
+    Value cmp_num_float = call(ctx, get_builtin(ctx, "=="), VNum(7), VFloat(7.0));
+    assert(is_truthy(cmp_num_float));
+
+    /* Check that strings can be concatenated using '..'. */
+    Value concat_result = call(ctx, get_builtin(ctx, ".."), VStr("Hello "), VStr("World"));
+    assert(is_value(concat_result) && is_string(concat_result)
+            && strlen(value_as_cstr(concat_result)) == 11
+            && memcmp(value_as_cstr(concatenate(ctx)), "Hello World", 11) == 0);
+
+    free_context(ctx);
+}

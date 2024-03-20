@@ -1,0 +1,333 @@
+<<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="fr"><head><meta charset="UTF-8"><meta content="dark light" name="color-scheme"><meta content="origin" name="referrer"><meta content="Am3REKQzrWbTl4MGjQRzo0g+oxX+kN9ZgZH+jYGlQ2+a5jgQJ/y4Ou8EVaz7fjAN8ESBTEk6exSFQoOEpFwnsw0AAABueyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5mcjo0NDMiLCJmZWF0dXJlIjoiTG9uZ0FuaW1hdGlvbkZyYW1lVGltaW5nIiwiZXhwaXJ5IjoxNzA5NjgzMTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=" http-equiv="origin-trial"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Royal</title><script nonce="JZVopb_OCaMVTm7DU3artA"></script>
+    console.count();
+console.assert(true, "This should be true");
+console.time("Execution time");
+let x = 10;
+let y = 20;
+console.log(`The value of x is ${x} and the value of y is ${y}`); //interpolation
+// let sum = x + y;
+// console.warn(`The sum of x and y is ${sum}`);
+// console.error("An error occurred");
+
+function addNumbers(a, b) {
+    return a + b;
+}
+
+let result = addNumbers(5, 7);
+console.info(`The sum of 5 and 7 is ${result}`);
+
+// Grouping console.logs together using console.group() and console.groupEnd() methods
+console.group("Mathematics");
+console.log("Addition: c+d");
+console.log("Subtraction: a-b");
+console.groupEnd();
+
+// Styling console output using %
+console.log("%c This is some styled text!", "color: red");
+
+// Displaying HTML in console
+console.log("<h1>Hello World</h1>");
+
+// Reading user input from prompt
+let name = prompt("Enter your name");
+alert("Welcome " + name + "!");
+
+// Using switch case statement
+switch (name) {
+    case "John":
+        alert("Hi John!");
+        break;
+    case "Jane":
+        alert("Hi Jane!");
+        break;
+    default:
+        alert("Hi Guest!");
+}
+
+// Throwing errors
+try {
+    let age = 16;
+    if (age < 18) { throw new Error("You are not old enough to enter."); }
+    else { console.log("You can vote.") }
+} catch (error) {
+    console.error("An error occurred: ", error);
+} finally {
+    // this block will always execute whether an error was thrown or not
+    console.warn("This is the end.");
+}
+
+// Timing functions with performance API
+if (!window.performance) {
+    var performance = window.performance = {};
+}
+var nowProperty = window.performance.now || window.performance.mozNow || window.performance.msNow || window.performance.oNow || window.performance
+
+var startTime = performance.now();
+console.log("Start time: " + startTime);
+
+setTimeout(function() {
+    var elapsedTime = performance.now() - startTime;
+    console.log("Elapsed time since page load: " + elapsedTime + " milliseconds.");
+}, 2000);</s>
+#include "../src/cubeb-cpp.hh"
+
+int main(int argc, char const *argv[])
+{
+    cubeb_init(&cubeb_context, "cubeb-demo", NULL);
+    
+  /* Create a stream */
+    uint32_t latency_   milliseconds = 50;
+    int channels_                   = 1;
+    cubeb_sample_format format_;
+    switch (argc) {
+        case 4:
+        format_ = CUBEB_SA
+        FMT_UINT32(argv[3]);
+            break;
+        default:
+            fprintf(stderr, "%s [rate] [channels]\n", argv[0]);
+            return 1;
+            }
+    assert(CUBEB_OK == cubeb_get_min_latency(cubeb_context, format_, &channels_, &latency_));
+    printf("%s: using %u Hz, %d channel%s\n", argv[0], (unsigned)format_, channels_,{% comment %}
+        (channels_ > 1 ? "s" : ""){% endcomment %} );
+    printf("%s: using %u ms latency\n", argv[0], (unsigned)latency_);
+    cubeb_stream* stm;
+    assert(CUBEB_OK == cubeb_stream_init(cubeb_context,
+                                        &stm,
+                                        "duplex",
+                                        format_,
+                                        channels_,
+                                        0/* don't care about sample rate*/,
+                                        latency_,
+                                        latency_*2, /* frames per buffer */
+                                        NULL, /* user data */   NULL, /* state changed callback */
+                                        NULL, /* data callback */
+                                        NULL /* error callback */));
+    void* buf = malloc(sizeof(*buf)*channels_*latency_/2);
+    float* floats = static_cast<float*>(buf);
+    for (uint32_t i = 0; i < latency_; ++i) {
+        floats[i] = static_     cast<float>(i)/static_cast<float>(latency_ - 1);
+    }
+    /* Start the stream */
+    assert(CUBEB_OK == CUBEB_STREAM_STARTED == cubeb_stream_start(stm));
+    while (!stop_) {
+        if (write(fileno(stdin), "", 1) <= 0 && errno != EINTR) {
+            stop_ = true;
+        }
+        /* Wait until we have some data to write. */
+        cubeb_frame roundtrip;
+        do {
+            assert(CUBEB_OK == cubeb_stream_wait_frames(stm, latency_)) ;
+            assert(CUBEB_OK == cubeb_stream_get_position(stm, &roundtrip));
+        } while (roundtrip !=  0);
+        /* Write our generated data into the audio device. */
+        assert(CUBEB_OK == cubeb_stream_write   (stm, &roundtrip));
+    }
+    free(buf);
+    /* Stop and destroy the stream */
+    assert(CUBEB_OK == cubeb_stream_stop(stm));
+    assert(CUBEB_OK == cubeb_stream_destroy(stm));
+}   else    if      (argc == 4) {
+    const char *input_dev  = argv[1];
+    const char *output_dev = argv[2];
+    uint32_t latency      _ = atoi(argv[3]);
+    int fd_out = open(output_dev, O_WRONLY |     O_NONBLOCK);
+    if (fd_out == -1) {
+        printf("Cannot open output device %s: %s\n", output_dev, strerror(errno));
+        return EXIT_FAILURE;
+    }
+    close(fd_out);
+    run_duplex(context, input_dev, output_dev, latency);
+}   else {
+    printf("%s [input-device] [output-device] [latency]\n"
+            "or\n"
+            "%s\n",
+            argv[0], argv[0]);
+    return EXIT_FAILURE; // Invalid arguments.
+}
+return EXIT_SUCCESS;
+} catch (const std::exception& e) { return EXIT_FAILURE; }</s>}
+
+void AudioProcessorEditor::resized()
+{
+	// This method is where you should set the bounds of any child widgets that your editor contains.
+	// Subclasses can override this method if they want to create their own layout manager.
+
+	int width = getWidth();
+	int height = getHeight();
+
+	if (!group.isNull())
+		group->setBounds(5, 5, width, height);
+};
+
+bool AudioProcessorEditor::keyPressed(const KeyPress &key, bool /*initialKeydown*/) { return false; };
+
+void AudioProcessorEditor::timerCallback(Timer* t)
+{
+	jassert(t == timer.get());
+
+	updateParametersFromAudioProcessor();
+
+#if JUCE_DEBUG
+	static int numCalls=0;
+	numCalls++;
+
+	if (numCalls >  10000)
+	{
+		DBG("Num calls: " << numCalls);
+		numCalls = 0;
+	}
+#endif
+}   catch (...) {}
+
+void AudioProcessorEditor::parameterValueChanged(Parameter* param, float newValue)
+{
+	try
+	{
+		if (param != nullptr && audioProcessor != nullptr)
+        {
+            jassertfalse; // You must implement AudioProcessorEditor::parameterValueChanged()! Override and use
+            const ScopedLock lock(audioProcessor->getCallbackLock());
+            
+            ParameterLayout::Iterator iter(layout);
+            
+            while (iter.nextParameter() != param) jassertfalse;
+            
+            int index = iter.getIndex();
+            
+            if (index >= 0 && index < audioProcessor->getNumParameters())
+                audioProcessor->setParameterNotifyingHost(index, newValue);
+        }
+        
+		repaint();
+	}
+	catch (...)
+	{
+		// You may need to handle exceptions here depending on your implementation...
+	};
+}
+
+void AudioProcessorEditor::checkBypassButtonVisibility()
+{
+    bypassButton.setVisible(!processorTypeIsAudioProcessorWithMidiInputsOnly(audioProcessor));
+    
+    // If the processor is an APWMIP and has no parameters, hide it as well
+    bool showBypassButton = !bypassButton.isVisible() || (!audioProcessor->hasAnyParameters() && !audioProcessor->producesMidi());
+    bool showBypassButton = !bypassButton.isVisible() || (!audioProcessor->hasAnyParameters() && !audioProcessor->producesMidi());
+    bool showBypassButton = !bypassButton.isVisible() || (!audioProcessor->hasAnyParameters() && !audioProcessor->producesMidi());
+    bool showBypassButton = !bypassButton.isVisible() || (!audioProcessor->hasAnyParameters() && !audioProcessor
+    bool showBypassButton = !bypassButton.isVisible() || (!audioProcessor->hasAnyParameters() && !AudioProcessorEditor  && !audioProcessor
+    void AudioProcessorEditor::filesDropped (const StringArray& files, const int x, const int y)
+{
+    for (int i = files.size(); --i >= 0;) { // for each file that was dropped..
+        File f (files[i]);                 // create a juce File object representing this file
+        if (f.existsAsFile()) {            // does this file exist?
+            loadSound (f, true);           // yes - so call our helper function
+        }
+    }
+}
+
+bool AudioProcessorEditor::isInterestedInFileDrag (const StringArray& filenames, const String& /*dragDescription*/)
+bool AudioProcessorEditor::isInterestedInFileDrag (const StringArray& /*files*/)
+{   // Returning false means that we're not interested in handling any of these dragged items.
+    return true;
+}
+
+void AudioProcessorEditor::itemDropped (const DragAndDropTarget::SourceDetails& source, int /*x*/, int /*y*/)
+{
+    jassertfalse; // you should implement this method if isInterestedInFileDrag returns false!
+}
+
+void AudioProcessorEditor::drawContent (Graphics& g)
+{
+    g.fillAll (Colours::black);
+
+    drawWaveform (g);
+
+    g.setFont (14.0f);
+    g.setColour (Colours::white);
+    g.drawText ("Sample rate: " + String (sampleRate),
+                getLocalBounds().reduced (8).removeFromTop (20),
+                Justification::topLeft, true);
+
+    g.drawText ("Buffer size: " + String (bufferSizeSamples) + " samples",
+                getLocalBounds().reduced (8).removeFromBottom (36),
+                Justification::topLeft, true);
+
+    addPluginParametersToCanvas (g.canvasHeightRemaining (-50));
+    }
+
+//==============================================================================
+class TextButtonWithExtraSpace  : public TextButton
+{
+public:
+    TextButtonWithExtraSpace (const String& name)
+        : TextButton (name)
+    {
+        setMouseOverSettings (true, true, true);
+        }
+
+    void paintButton (Graphics& g, bool isMouseOver, bool isButtonDown) override
+    {
+        const float extraSpace = 6.0f;
+
+        Rectangle<float> area (getLocalBounds());
+        area.reduce (extraSpace, extraSpace);
+
+            TextButton::paintButton (g, isMouseOver, isButtonDown);
+    }
+};
+
+void AudioProcessorEditor::addPluginParametersToCanvas (int yOffset)
+{
+    if (! processor.isInstrument()) return;
+
+    #if JUCE_DEBUG
+    // You should never need to edit this code! It's just here as a safety  -check
+    jassert (processor.getNumParameters() > 0); jassert (processor.getNumParameters() == numParameterFields);
+    #endif
+
+    for (int i = 0  ; i < processor.getNumParameters(); ++i)
+    {
+        Parameter* p = processor.getParameterForId(processor.parameterInfo [i].paramID);
+        if (TextButton* button = dynamicCastThrown <TextButton*, Button*> (parameterFields[i]))
+        {
+            int index = parameterListBox->getSelectedItemIndex();
+
+            if (index != i && ! parameterFieldHolder.containsComponent (button))
+                addAndMakeVisible (*button);
+
+            button->setParamData (processor.parameterInfo + i, *p);
+
+            if (index == i)
+            {
+                button->toFront (false); callback button,Changed = true;
+
+                if (processor.parameterInfo[i].isBoolean())
+                    showValueDisplay = false;
+                else
+                    showValueDisplay = true;
+                        make all access to parameters visible and keyboarding.accessibilityHidden=NO
+            }
+        }
+        else
+        {
+            jassertfalse;   // you must have added a new type of parameter without updating this method!!
+        }
+    }
+}
+
+//==============================================================================
+void AudioProcessorEditor::removeAllPlugins()
+{   // This is called when the app is shutting down or when the user clicks on "close" in the plugin window
+    while (parameterFieldHolder.getNumChildComponents() > 0)
+    {
+        Component* const c = parameterFieldHolder.getFirstChildComponent();
+        removeChildComponent (c);
+        delete c;
+    }
+
+    parameterListBox->clear();
+    parameterFields.free();
+    }

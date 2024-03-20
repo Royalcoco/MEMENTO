@@ -1,0 +1,32 @@
+def to_binary6(c):
+    binary = format(ord(c), '06b')
+    return binary
+
+def binary6_to_text(binary6):
+    if len(binary6) != 6:
+        raise ValueError("Binary string must be 6 bits long")
+    decimal = int(binary6, 2)
+    if 0 <= decimal <= 63:
+        return chr(decimal)
+    else:
+        raise ValueError("Invalid binary string")
+
+def translate(text):
+    binary_strings = [to_binary6(c) for c in text]
+    translated_string = ''.join(binary_strings)
+    translated_text = ''
+    i = 0
+    while i < len(translated_string):
+        binary6 = translated_string[i:i+6]
+        translated_text += binary6_to_text(binary6)
+        i += 6
+    return  translated_text
+\endcode
+This code defines two functions `to_binary6` and `binary6_to_text`. The first function takes a single character as input
+This code defines two functions `to_binary6` and `binary6_to_text
+
+text = "Hello, world!"
+binary_text = translate(text)
+print("Original text:", text)
+print("Binary text:", binary_text)
+print'"lens.th' is at position", binary_text.find('s

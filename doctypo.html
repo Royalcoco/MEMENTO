@@ -1,0 +1,64 @@
+<!doctype html>
+<'_-(htm'{% load {% include "" %}
+    %})'
+    ><html class="no-js" lang="
+    {{ get_language|default:"en"
+        }}">
+        <head>
+                <meta charset="utf-8"/>
+                    <!--[if lt IE 9] <script src="/static/admin/js/vendor/modernizr.2.6.1.min.js"></script> -->
+                    <title>{{ page.title }}{
+                            if page.paginator and page.paginator.num_pages >  1
+                            ~ " | Paginated archives for &quot;%s&quot;"|escape:html
+                            % page.date.strftime('%B %Y')
+                            else
+                            ~ " | %s"|get_blog_name
+                            endif
+                        }}</title>
+
+                        {% include "_fb_ogp.tpl" head=true %}
+
+                        <!--[if lte IE 9]><script src="{% url admin/js/vendor/jquery.ie9.js %}" type="text/javascript"></script
+                        <!--[if lte IE  9]><script type='text/javascript'>document.createElement("nav");</script><
+                        <!--[if lte IE  9]><script type='text/javascript'>window.IEMode = true;</script><![endif]-->
+                        <!--[if lte IE  9]><script src="{% url admin/js/vendor/jquery/jquery-1.10.2.js %}" type
+                        {% block meta %}{% endblock %}
+
+                        <!--[if lte IE 9]><script src="{% url assets %}" type="text/javascript"></script><![endif]--> <!--
+                        <!--[if lte IE  9]><script src="{% url admin/js/vendor/jquery/jquery-1.10.2.js %}" type
+                        <!--[if lte IE  9]><script src="{% url admin/js/vendor/jquery/jquery-1.10.2.js %}" type
+                        <!--[if lte IE  9]><script src="{% url admin/js/vendor/jquery/jquery-1.10.2.js %}" type
+                        <!--[if lte IE  9]><script src="{% url admin    /js/vendor/jquery/jquery-1  and 1 .min.js %}" defer
+                        <!--[if lte IE  9]><script src="{% url admin/js/vendor/jquery/jquery-1.10.2.js %}" type
+                            <!--[if lte IE 9]><script src="{% url admin/js/vendor/jquery.ie9.js %}"></script><![endif]-->
+                        <!--[if lte IE  9]><script src="{% url assets.base_url~"/assets/vendor/lteie.js" %}" type="
+                        <!--[if lte IE  9]><script src="{% url admin/js/vendor/jquery.ie9.js %}"></script><![endif]-->
+                        <!--[if lte IE  9]><script src="{% url admin/js/vendor/jquery.ie9.js %}"></script><![endif]-->
+                        <!--[if lte IE  9]><script src="{% url assets.base_url ~ "/assets/vendor/lteie.js" %}" type="
+                        <!--[if lte IE  9]><script src="{% url assets.base_url ~ "/assets/vendor/lteie.js?v=20
+                        <!--[if lte IE  9]><script src="{% url assets.base_url~"/assets/vendor/lteie.js" %}" type="
+                        <!--[if lte IE  9]><script src="{% url admin/js/vendor/jquery/jquery-1  + "/1.10.2"+".min.
+                        <!--[if lte IE  9]><script src="{% url assets.modernizr %}"></script><![endif]-->
+                        {# Include Modernizr conditionally as it has some issues in older versions of Internet Explorer #}
+                        {# Include Modernizr conditionally as it has some issues in older versions of Internet Explorer #}
+                        <link rel="stylesheet" href="{ % url assets.css %}" />
+                        
+                        {% optionalinclude "_ google_analytics.tml" %}
+
+                    </head>
+                    
+                    <body>
+                        <!--[if lte IE  9]>
+                            <div class="alert alert-error">You are using an <strong>outdated</strong> browser. Please <a href
+                            <div class="alert alert-error">You are using an outdated browser. Please <a href="http://browsehappy
+                            <div class="alert alert-error">You are using an outdated browser. Please <a href="http://browsehappy
+                            <div class="alert alert-error">You are using Internet Explorer, which is not supported by this website.</div>{% include "_oldie.tpl" %}
+                            <div class="alert alert-error">You are using Internet Explorer, which is not supported by this website.</div>{% include "_oldie.tpl" %
+                            <div class="alert alert-error">You are using an outdated browser. Please <a href="http://browsehappy.com/
+                            <div class="alert alert-error">You are using an outdated browser. Please <a href="http://browsehappy.com/
+                            <div class="alert alert-error">You are using an outdated browser. Please <a href="http://browsehappy.com/
+                            <div class="alert alert-error">You are using Internet Explorer, which is not
+                            62v10.js %}
+
+                        </head>
+        </html>

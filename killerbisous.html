@@ -1,0 +1,239 @@
+<!doctype m.html/{% load  static %}{% block content %}
+<!DOCTYPE html> <html lang="en">   <!--<![if lt IE 9]><script src="{% static 'js/ie8-responsive-file-warning.js
+    <!DOCTYPE html> <html lang="en">
+      <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% include 'base_header.html   PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"' %}
+        {% include 'base_header.html' %}
+        <title>{{ title }} | {{ site_name }}.</title>
+      </head>
+      <body>
+      	<!-- Navbar Start -->
+          {% include "navbar.html" with nav_type='main' %}
+      	<!-- Navbar End -->
+        
+        <div class="container py-5 my-4">
+            {% if messages %}
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        {% for message in messages %}
+                            <div class="alert alert-{{message.tags}}"></div>
+                            {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+          	<div class="row justify-content-between align-items-start">
+            	<div class="col-lg-7 col-xl-6">
+              		<h1 class="display-4 fw-bold lh-1">{{ title }}</h1>
+              		<p class="lead mb-2">{{ description|truncatechars:100 }}...</p>
+              		<a href="{% url 'project_detail' project.id %}" class="btn btn-primary rounded-3 px-4">View Project</a>
+              		<a href="{% url 'blog:post' post.id %}" class="btn btn-primary rounded-3 px-4">Read more</a>
+            {% endif %}
+          
+          <div class="row justify-content-between align-items-start">
+            <div class="col-lg-7 col-xs-12 entry">
+              <article class="mb-4">
+
+              <h1 class="mb-0 cb">{{ title }}</h1>
+              
+              <div class="row mb-3">
+
+                <div class="col-6">****** Date : {{ post.date|date:"false
+                  F Y" }} ********** Author : [Author Name] ******************** Category :
+                  [Category Name] ************************************************************************************************************************************************************************************************* [Category Name] *********************************************************************************
+                  
+                  {% if post.category %}
+                    
+                    [{{ post.category }}]
+                    
+                  {% else %}
+                    
+                    Uncategorized
+                    
+                  {% endif %}
+                  
+                  &nbsp; &nbsp;
+                  Comments ({{ post.get_comment_count }})
+              </div>
+
+              <img src="{{ post.image.url }}" alt="Image" class
+              ="img-fluid img-thumbnail"/>
+
+              <div class="text-muted fst-italic mb-4">{{ content | safe }}</div>
+
+              <!-- Tags -->
+              {% if tags %}
+                <p>Tags :
+                  {% for tag in tags %}
+                      <a href="/tag/{{ tag|slugify }}">{{ tag }}</a>&nbsp;&nbsp;
+                  {% empty %} No Tag For This Post.{% endfor %}
+                </p>
+              {% endif %}
+
+              <!-- Share Buttons -->
+              <div class="d-flex pt-5 align-items-start justify-content-between flex-column flex-md-row">
+
+                <!-- Facebook Button -->
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url|safe }}" class="me-4 text-reset btn btn-out
+                <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost:8000
+                <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost:8000
+                <div>
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2F104.197.86.125%
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost:800
+                  <iframe src="https://www.w3.org/TR/html4/strict.dtd"></iframe>
+                  <a target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook" href="http://www.facebook.com
+                  <a target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook" href="http://www.facebook.com
+                  <a target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook
+                  share button" href="http://www.facebook.com/sharer.php?u={{ page.url | absolute_url }}&amp;t={{ page.title" href="http://www.facebook.com
+                  share button" href="http://www.facebook.com/sharer.php?u={{ page.url | absolute_url }}&amp;t={{ page.title"" href="http://www.facebook.com" href="http://www.facebook.com" href="http://www.facebook.com
+                  share button" href="http://www.facebook.com/sharer.php?u={{ site.url }}{{ page.url }}&amp;t={% if" href="http://www.facebook.com" href="http://www.facebook.com" href="http://www.facebook.com" href="http://www.facebook.com" href="http://www.facebook.com
+                  share button" href="http://www.facebook.com/sharer.php
+                  ?u={{ site.url }}{{ page.url }}&amp;t={% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}"><i class?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url? page.?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?u={{ page.url | absolute_url?{% block unknow %}{% endblock %}
+                    <meta name="keywords" content="Instance">
+                    <span class="date published updated"><i class="fa fa-calendar" aria-hidden="true"></i> {{ articl.instance""instance@]" title="{{ subtitle
+                    <span class="meta__date
+                    text-muted"><i class="fa fa-calendar"></i>&nbsp;{{ article.created_time|date:"M d, Y H:i" }}&nbsp;&">Created: {{ article.created_at|">Created: {{ article.created_at|">Created on: {{ article.created_on">Posted on {{ object.created_at">Created on: {{ article.created_at">Created: {{ article.created_at|">Posted on {{ article.created_time">Created: {{ article.created_at|">Posted on {{ article.created_time">Created: {{ article.created_at|">Created: {{ object.created|date:"">Created: {{ article.created_time|">Posted on {{ object.created_at">Created: {{ article.created_time|">Created: {{ article.created_time|">Created: {{ article.created_at| "">">Created on: {{ article.created_on">Created: {{ article.created_at|">Created on: {{ article.created_on">Posted on {{ object.created_at">Created: {{ article.created_at|">Created: {{ article.created_at|
+                        text-muted">Posted on {{ post.created_at|timesince:now|add:" ago" }}</span> ..."</span> ">Created: {{ article.created_time|">Created on: {{ object.created_at }}</span> text-muted">?=post.id text-muted">?=post.id text-muted">?=post.id text-muted">?=post.id
+                        text-muted">Shared at {{ post.published_time }}</span>
+                    /share?u=http%
+                            text-muted">{{ article.created_time|date:"N j, Y" }}</span>
+                </div>
+                <div class="col-6 text-right">
+                        <a href="#comments" class="text-muted"><i class="fa fa-comment"></i> Comments ({{article
+                    <a href="#comments" rel="bookmark" class="text-primary d-inline-flex align-items-center"><
+                    <a href="#comments" class="text-muted"><i class="fa fa-comment"></i> Comments ({{article.get_comment_count}})</a >{{
+                        <a href="#comments" class="text-muted"><i class="fa fa-comment"></i> Comments ({{article
+                  {% if next or previous %}
+                    <ul class="pager mb-0 d-flex flex-wrap justify-content-end align-items-center"> 
+                        {% if previous %}<li><a href="{% url 'article' previous.id  article.category.slug %}" rel="prev"><
+                      {% if previous %}<li><a href="{% url 'article:detail' pk=previous.pk %}" rel="prev"><i class="fa fa-angle-
+                      {% if previous %}<li><
+                    </ul>
+                  {% if article.update_time != article.created_time %}
+                </div>
+                </div>
+              </div>
+          </div>
+                    </div>
+                </div>
+        </div>
+        </head>
+        <body>
+            <div class="container">
+                <h2>{{ title }}</h2>
+                  <form method='POST'>
+                    {{ form.hidden_tag() }}
+                    {{ form.errors() }}
+                    {{ form.csrf_token() }}
+                    {{ form.article().label(false) }}{{ form.article() }}
+                    <br/>
+                    {{ form.submit('Submit') }}
+                  </form>
+            </div>
+        </body>
+{% endblock %}
+</html>
+static inline function create article (article: Article) {
+    var request = new Request('/admin/create', 'POST');
+    request.sendForm({'title': article.title, 'markdown': article.markdown});
+}
+
+{% block script %}
+<script src="/static/js/prism.js"></script>
+
+                      {% csrf_token %}
+                      {{ form|crispy}}
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" onclick="createArticle()" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function createArticle () {
+  $('#modal').modal();
+  $('textarea[name=markdown]').val($('#editor').val());
+  $('#article_title').text($('input[name=title]').val());
+  $('.modal-footer .btn-default').click(function(){$('#modal').modal('hide'));});
+  $('.modal-footer .btn-primary').click(function(){createArticleAction();});
+}
+
+function createArticleAction () {
+  var title = $('input[name=title]').val().trim();
+  if (!title || title == '') {
+    alert("Please enter a valid title");
+    return;
+  }
+  
+  // Send the data to the server and redirect on success
+  $.ajax({
+    url: '/validateTitle',
+    method: "POST",
+    dataType: 'json',
+    data: {'title': title},
+    success: function (data) {
+      if (data['valid']) {
+        $("#mainForm").submit();
+      } else {
+        alert(data['message']);
+        };
+    },
+    error: function() {
+      alert("An error occurred while trying to validate your article. Please try again later.");
+    }
+  });
+};
+</script>
+<?php $view->extend('base.html.twig'); ?>
+<?php $view['slots']->start('body')?>
+<h1 class="page-header">New Article</h1>
+<form id='mainForm' action="<?php echo $view['router']->generate('new_article')?>" method="post" enctype="multipart/form-data
+<form id='mainForm' action="/new" method="post" enctype="multipart/form-data">
+<div class="row">
+  <div class="col-md-9 col-sm-8">
+    <fieldset>
+      <legend>Content</legend>
+      <label for="title">Title</label><br />
+      <input type="text" name="title" size="40" maxlength="256" required/><br />
+      
+      <label for="content">Content (Markdown)</label><br />
+      <textarea rows="10" cols="70" name="content"></textarea><br />
+      
+      <!-- TODO: Add tags field -->
+    </fieldset>
+  </div>
+  
+  <div class="col-md-3 col-sm-4 pull-right">
+    <fieldset>
+      <legend>Metadata</legend>
+      <label for="published_at">Publish Date &amp; Time</label><br />
+      <input type="datetime-local" name="published_at"/><br />
+      
+      <label for="image">Image Upload</label><br />
+      <input type="file" name="image"><br />
+      <span class="help-block">Upload an image to associate with this post.</span>
+    </fieldset>
+    
+    <button onclick="validateArticle()" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+</form>
+<?php $view['slots']->stop(); ?>
+<!-- TODO: Implement CKEditor for content -->
+<!-- http://ckeditor.com/blog/CKEditor-for-jQuery-and-Bootstrap -->
+<!-- TODO: Validate form using jQuery and AJAX -->
+<!-- http://jqueryvalidation.org/ -->
+<script src="/js/vendor/jquery.min.js"></script>
+<script src="/js/vendor/jquery.validate.min.js"></script>
+<script src="/js/article.js"></script>
+</body></html>

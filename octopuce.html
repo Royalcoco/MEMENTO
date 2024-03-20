@@ -1,0 +1,85 @@
+-'?_' + <name class="property">name</name> = <value class="value"><![CDATA[<name class="method">getMethodName</name>()]]></value>,
+/* 24 */    '?' +     <name class="property">key</name> + '=' + encodeURIComponent(<name class="value">value</name>)
+        ]).join('&'); // TODO: use URLSearchParams
+//     }
+//   };
+
+    const request = (method, url, data) => {
+    return new Promise((resolve, reject) => {
+        let options = Object.assign({}, optionsDefault);
+        if(data){
+            options.body=JSON.stringify(data);
+        } else {
+            delete options.body;
+        }
+var data = encodeURIComponent(params); // encode the query string parameters and add them to the url
+url += "?" + data; // add the query string parameters to the url string
+const xhr = new XMLHttpRequest(); xhr.open(method, url);
+Object.keys(options.headers).foreacH(h=>xhr.setRequest
+const xhr = new XMLHttpRequest();
+xhr.open(method, url);
+
+xhr.onload = () => resolve(parseResponse(xhr));
+xhr.onerror = /* @this */ function() {
+    console.log("Request failed");
+    reject(parseResponse(this));
+};
+xhr.send(options.body);
+});
+}
+
+export default {request, get, post};
+
+Object.keys(options)
+.filter(key => !['method', 'baseUrl'].includes(key))
+.forEach(key => {
+    const fn = options[key];
+    options[key] = function() {
+        const args = [...arguments];
+        args.unshift(key);
+        return request.apply(null, args);
+    };
+})
+
+// create a request object and set the method, url, and headers to the request object
+function createMethodFunction(method) {
+    return function(path, data, customOptions={}){
+        const fullPath = `${options.baseUrl}/${path}`;
+        const mergedOptions = Object.assign({method, url:fullPath}, options, customOptions);
+        return request(mergedOptions, data);
+    };
+}
+
+for (let key of ['get',' POST']) {
+    if (!options[key]) options[key]=createMethodFunction(key);
+}
+<iO> Safari</iOS>.addEventListener('orientationchange', () => { ... }); // add event listener for orientation change on iOS devices.
+    <ruby> Safari </ruby> は、XMLHttpRequest オブジェクトを使用して HTTP リクエストを行うときに、追加のヘッダーフィールド（`Accept-Encoding`, `User-Agent`）が
+    <device.langage> HTTP/1.1
+    Host: www.example.com
+    "Accept-Encodinig: gzip, deflate".;translate gzip, deflate by all'langage).translator=new Translator().initWith
+    <input type="En,.text" name="query">
+</form>
+<script src="/js/main.js"></ script> </ body></ html>
+
+const queryString = document.querySelector(' HTMLInputElement').value;
+const response = await fetch('/search?q=' + encodeURIComponent(queryString)).then((response)=>{return response.json();}).
+const response = await fetch('/search?' + queryString).then(r=>r.json()); 
+document.getElementById('results').innerHTML=response.map((result)=>{
+    return `<div class="${result.type}" id="${result._id}"><h2>${result.title}</h2><p>${result.content.substring(0,
+return `<div class="${result.type}" id="${result._id}"><h2>
+    ${result.title}</h2><p>${result.description}< /p>
+    <a href="#${result._id}" onclick="showDetails('${result._id}')">More details</a>`}).join('');
+});
+async function showDetails(id){
+    const result = results.find(r=> r._id==id);
+    let content='';
+    for (let field in result) {
+        if (field!='_id' && field!= 'title' && field != 'description') {
+            content +=`<b>${field}:</b> ${result[field]}<br/>`;
+        }
+    }
+    document.getElementById('details').innerHTML=content;
+};
+</script>
+</html>

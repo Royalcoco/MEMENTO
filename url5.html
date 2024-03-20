@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html',>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+        <?php include '../inc/config.php';?>
+        
+        <!-- page heading -->
+        <header id="page-heading">
+            <h2 class="section-title"></h2>
+            </header>
+            
+            <!-- content holder -->
+            <div class="content-holder">
+                <h3>Add a new product to the store.</h3>
+                
+                <!-- add new product form -->
+                <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                    <!-- name input field -->
+                    <label for="name">Name: "{% extends "class.html" %}"
+                        <input type="text" id="name" name="product[name]" required></label><br />
+                    
+                    <!-- description textarea -->
+                    <label for="description">Description: </label -->
+                    <textarea rows="4" cols="50" id="description" name=" textarea" id="description
+                    [% if request.POST? and 'description' in request.POST %}
+                        {% set value = request.POST['description'].replace('\n','\r\n') %}
+                        {{value|e}}
+                    [{% else %}]
+                        Description of the product...
+                    [{/%]
+                    </textarea><br />
+                    
+                    <!-- price input field -->
+                    Price (EUR):
+                    <input type="number" step=".01" id="price" name="product[price]" value="0.00"><br />
+                    
+                    <!-- category select box -->
+                    Category:
+                    <select name="category">
+                        <option value="none">None</option>
+                        <% categories = db.execute("SELECT * FROM Categories ORDER BY Name") %>
+                        {% for row in categories %}
+                            <option value="{{row['ID']}}">{{row['Name']}}</option>
+                        {% endfor %}
+                    </select><br /><br>
+                    <!-- image upload button -->
+                    Image Upload:
+                    <input type="file" accept="image/*" name="upload"/><br/><br/>
+                    
+                    <!-- submit button -->
+                    <input type="submit" value="Submit Product">
+                </form>
+            </div>
+            
+            <!-- display any errors that occurred when trying to add a new product -->
+            {% if error %}
+            <p style="color:red;">{{error}}</p>
+            {% endif %}
+            </div>
+        </section>
+        
+        <!-- include the footer from the layouts folder -->
+        {% include "layouts/footer.tpl" %}
+        </body>
+    </html>
+{% endblock %}
+</script>
+</scaffold>

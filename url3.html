@@ -1,0 +1,142 @@
+<? href="../../../../../../../../../../.gitbook/assets/image%20%2815%29.jpg"
+
+# This is a markdown file, and it uses the Markdown language to format text.
+
+## Headers
+markdown uses # for headers. The number of # determines the level of header. For example: header 1 is `#`, header 2 is `
+markdown header 3 is `markdown header 3`
+## Formatting Text
+**Bold**: Use double asterisks (`**`) for bold text. The number of asterisks can be increased for additional emphasis.
+**Bold**: Use double asterisks (`**`) for bold text. The number of asterisks doesn't matter - as long as they're even.
+**Bold**: Use double asterisks (`**`) for bold text. The number of asterisks can be adjusted to increase or decrease the level of emphasis. For
+**Bold**: Use double asterisks (`*`) before and after the word you want bolded.
+_Italic_: Use single underscores (`_`) before and after the word you want italicized.
+***Bold & Italic***: Combine them with `**` and `_`.
+
+<s>Strikethrough</s>: Waveform::Waveform(const std::string& name)
+: AudioStream(name, false /* not virtual */),
+    m_bufferSizeFrames(0),m_bufferSizeSeconds(0.f),
+    m_currentFrameIndex(0),m_playbackState(Stopped),
+    m_looping(false),m_interpolationMethod(LinearInterpolation),
+    m_volume(1.0f),m_pan(0.0f),m_sampleRate(44100)
+{
+},
+
+/*! @brief Destructor for Waveform class. */
+Waveform::~Waveform() { }
+
+//--------------------------------------------------------------
+void Waveform::initAudioIo() {
+	if (isInitialised()) return; // Already initialised? Exit.
+
+	// Call the parent's implementation of this method first...
+	AudioStream::initAudioIo();
+
+	// ...then do some additional initialisation that we need specifically for our own use:
+	assert(!getBuffer().isEmpty()); // The buffer should have been set by now. If not, there's an error somewhere else in
+	assert(!m_audioData.empty());
+	setBufferSize(static_cast<unsigned int>(m_audioData[0].size()));
+}
+
+//--------------------------------------------------------------
+void Waveform::deInitAudioIo() {
+	// Nothing specific to de-initialise in this class. Just call the superclass's method.
+	AudioStream::deInitAudioIo();
+}
+//--------------------------------------------------------------
+bool Waveform::allocateBuffers(int bufferSizeFrames) {
+	// If no buffer size has been set yet, just use whatever the audio device suggests:
+	if (!bufferSizeFrames) bufferSizeFrames = getDeviceBufferSize();
+
+	// Check if the requested buffer size is unchanged from last time... if so, there's nothing to do.
+	if (bufferSizeFrames == m_bufferSizeFrames) return true;   // Success!
+
+	// Otherwise, attempt to reallocate the buffers with the new buffer size:
+	try {
+		AudioDataContainer::iterator it;
+		for (it=m_audioData.begin(); it!=m_audioData.end(); ++it) {
+			(*it).reAllocateBuffer(bufferSizeFrames);
+		}
+		m_bufferSizeFrames = bufferSizeFrames;  // Store the new buffer size.
+		return true;                           // Success!
+	} catch (RtAudioError& e) {                // If an error occurred, report it and fail.
+		e.printMessage();
+		return false;
+	}
+}
+
+//--------------------------------------------------------------
+void Waveform::stopAudio() {
+	// Stop all processing threads by calling their stop methods. This will also cause any running
+	// "convertAndCallUserFunc" calls to terminate gracefully once they have finished converting
+	// the current buffer. Note that these calls may take a little while to actually finish - but as
+	// soon as they've stopped calling user code, they won't be making any more calls. This is why they should call soon soon soon
+	// soon as they've stopped calling user code, further audio I/O can be safely shut down.
+	m_queue.signalStop();
+	m_processorThread.join();
+}
+
+//==============================================================
+// Protected Methods
+//==============================================================
+/*
+ * Overriding AudioStream::processBatch() purely for the sake of providing some additional
+ * debugging output. processBatch() is called when the RtAudio callback thread needs more data,
+ * and we override it here in order to provide our own version of this function which can print
+ * out information about how full the queue is, etc.
+ */
+void Waveform::processBatch(int frameCount, float* outputs[]) {
+    const int nChannels = getNumInputChannels();
+    double now = TimeSupport::getMillisecondTime();
+
+	// Print out some diagnostic info if requested:
+#if defined(__DEBUG__) || defined(DEBUG)
+	std::cout << "\n\n*** AUDIO CALLBACK (" << now << ") ***\n";
+	std::cout << "   Buffer Size Frames:      " << m_bufferSizeFrames << '\n';
+	std::cout << "   Number of Input Channels: " << nChannels << '\n';
+	std::cout << "   Queue Size:              " << m_queue.getQueueSize() << '\n';
+    std::cout << "   User Function Callbacks:  ";
+    if (!m_userCallback) {
+        std::cout << "OFF\n";
+    } else {
+        std::cout << "ON\n";
+    }
+#endif
+
+	// If there are no input channels or the user has turned off the callback, just return zeroes:
+	if (nChannels == 0 || !m_userCallback) {
+		for (int i=0; i < frameCount; ++i) {
+			for (int j=0; j < nChannels; ++j) {
+				outputs[j][i] = 0.0f; // Return silence...
+			}
+		}
+		return;
+	}
+
+	// Otherwise, try to add as many frames from the user's buffer as possible to the dsp::Buffer:
+    try {
+    	m_dspBuffer->setSampleRate(getSampleRate());
+    	m_dspBuffer->setFrameLength(frameCount);
+    	m_dspBuffer->zero();
+    	while (m_dspBuffer) {
+        	const long result = m_queue.pop(*m_dspBuffer);
+        	if (result == 0) break; // Successfully added a buffer - continue on to next iteration.
+        	else if (result == rtaudio::RTAUDIO_OUT_ of result) throw result; // An error occurred! Throw an exception.
+        	else if (result == rtaudio::RTAUDIO_OUT_OF_ORDER) {
+            	// Out-of-order packet - discard and keep trying...
+            	continue;
+        	} else if (result == rtaudio::RTAUDIO_MEMORY_ERROR) {
+            	throw std::bad_alloc(); // Throw an exception so that we can handle it properly...
+        	} else {
+                // Unexpected error code - print a warning and stop processing buffers.
+            	DBGMSG("Warning: RtAudio callback received unexpected error code %ld.\n", result);
+            	break;
+        	}
+    	}
+    } catch (const std::exception& e) {
+    	handleError(e);
+    }
+
+	// Process the audio with the DSP library:
+	processDspBuffer(m_dspBuffer.get(), outputs, frameCount);
+}
