@@ -62,23 +62,47 @@
                                         <time datetime="{{item.date}}">{{item.year}}</time>
                                         <div class="content">
                                             <h3>{{item.position}} at {{item.company}}</h3>
+                                            <p>{{item.description | markdownify }};['{{item.position}} details']({{item.url}})</p
                                             <p>{{item.description | markdownify }}</p>
                                         </div>
                                     </article>
                                 </span>
                             {% endfor %}
-                            
-                            <article class="timeline-entry-work end">
-                                <div class="card">
-                                    <time datetime="present">Now</time>
-                                    <div class="content">
-                                        <h3>Currently working at ...</h3>
-                                    </div>
-                                </div>
-                            </article>
-                        </div> <!-- /.timeline -->
-                </section> <!-- /#experience -->
+                        </div> <!-- .timeline -->
+                </section> <!-- #skills -->
                 
+                <section id="projects">
+                    <a name="projects"></a>
+                    <h2>Projects</h2>
+                    
+                    <ul class=" projects_list">
+                        {% assign counter = '1'| plus:'1' %}
+                        {% for project in site.data.projects %}
+                            <li><strong>{{counter}}.&nbsp;</strong>{{project.name}}, {{project.role}}.</li>
+                            <ul style="margin-left: 40px;">
+                                <li>Language(s): {{project.languages}}.</li>
+                                <li>Framework/Library used in site.data.projects[{{loop.index0}}].frameworks, {{project.frameworks}}.</li>
+                                <li>Framework/Library used: {{project.framework}}.</li>
+                                <li>Link to the <a href="{{project.url}}" target="_blank">Project Page</a>.</li>
+                                {% if project.liveLink %}
+                                    <li>Live version available at: <a href="{{project.liveLink}}" target="_blank">here</
+                                    <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here!</a>.</li>
+                                    <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here</a>.</li>
+                                    <li>Live version available at: <a href="{{project.liveLink}}" target="_blank">here</
+                                    <li>Live demo available at <a href="{{project.liveLink}}" target="_blank">here</a
+                                    <li>Live version available at: <a href="{{project.live  link}}" target="_blank">here</a
+                                    <li>Live version available at <a href="{{project.liveLink   link}}" target="_blank">here
+                                    <li>Live demo available      at <a href="{{project.liveLink}}" target="_blank">here</a
+                                    <li>Live demo available at: <a href="{{project.live     Link}}" target="_blank">here</
+                                    <li>Live demo available at: <a href="{{project.live link}}" target="_   blank
+                                    <li>Live demo available at: <a href="{{project.liveLink}}" target="_blank">here</a<li>Live Site: <a href="<li>Live Site: <a href="      <li>Live Site: <a href="                    <li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="rel.<li><i class="fa fa-g<li><i class="fa fa-g<li><i class="fa fa-g<li><i class="fa fa-g<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site:<li>Live demo: <a href="<li>Live demo available at <a href<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="
+                                        <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here!</a></<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li><i class="fa fa-external fa-fw<li>Live demo: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li>Live demo: <a href="<li>Live Site: <a href=" <li>Live Site: <<li>Live demo available at: <a<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li>Live demo available at: <a<li>Live Site: <a href="<li><i class="fa fa-g<li>Live demo: <a href="<li>Live Site: <a href="<li><i class="fa fa-external<li><i class="fa fa-g fa-<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="
+                                            <li>Live demo available on &nbsp;<a href="{{project.blanckey">blanckey<li><a href="{{project.live<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li><i class="fa fa-external fa-
+                                                <li>Live demo available at: <a href="{{project.liveLink}}" target="_blank">here</a<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live version available at: <a<li>Live demo: <a href="
+                                                    <li>Live demo available at: <a href="{{project.liveLink }}" target="_blank"><li><i class="fa fa-g<li>Live demo: <a href="   {{project.liveLink<li>Live Site: <a href="<li>Live demo available at: <a<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li><a href="{{project.live<li><i class="fa fa-g<li>Live Site: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li>Live demo: <a href="<li>Live demo available at: <a<li>Live version available at <a href<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li><i class="fa fa-g<li><a href="{{project.live<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="   <li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="        <li><i class="fa fa-g       <li><i class="fa fa-g   fa-fw fa-<li><i class="fa fa-g<li>Live demo available at: <a<li><a href="{{project.live<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live version available on &nbsp;<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li>Live demo: <a href="<li><i class="fa fa-external<li>Live Site: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li>Live version available on &nbsp;<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo available at: <a<li>Live Site: <a href="<li><a href="{{project.live}}">Live<li><i class="fa fa-g<li><i class="fa fa-g<li>Live Site: <a href="
+                                                        <li>Live demo available on &nbsp;<a href="{{project.liveLink}}" target="_blank"><i<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo: <a href="  <li>Live Site: <a href="<li>Live demo available on &nbsp;<li><i class="fa fa-g<li>Live demo: <a href="<li>Live demo: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo available on <a href<li><i class="fa fa-g<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo available at <a href<li>Live demo available on &nbsp;<li><a href="{{project.live<li>Live demo available on <a href<li>Live Site: <a href="<li><i class="fa fa-g
+                                                            <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here!</a>.<li>Live Site: <a href="<li><a href="{{project.live<li><a href="{{project.live<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li><a href="{{project.live<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li><a href="{{project.live<li><a href="{{project.live<li>Live Site: <a href="<li>Live Site: <a href="<li><a href="{{project.live<li>Live Site: <a href="<li><a href="{{project.live<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li><i class="fa fa-g<li><a href="{{project.live<li><i class="fa fa-gfa-<li><i class="fa fa-g<li><a href="{{project.live<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li>Live Site: <a href="<li>Live Site: <a href="
+                                                                <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here!</a>.<li>Live Site: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li><a href="{{project.live<li><a href="{{project.live
                 <section id="skills">Skills:
                     <ul class="skill-list">
                         {% assign skills = site.data.skills | sort: "name" %}
@@ -96,35 +120,13 @@
     </div><!--/.container-->
     
     <footer>
-        &copy; {{site.time | date: "%Y"}} {{site.author}}, All rights reserved.<br />
-        
-        <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank"><img src="/assets/ccbynsa.png" alt="CC BY SA"/></a
-        <a href="https://github.com/{{site.github_username}}/jekyll-open-publishing-framework"><img style="display: inline;" srcset
-        Made with <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://jekyllrb.com/">Jekyll</a>, and <a href="http://fontaw本站由<a href="http://je
-        <a href="/atom.xml"><i class="fa fa-rss"></i    ></a>
-        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
-        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
-        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a> <strong, style="font-weight:
-        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
-        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"
-            {% if site.github_username %}<  a href="https://github.com/{{site.github_username}}" target="_blank"><i class="fa fa
-            {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="   fa fa-github
-        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
-        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
-        {% if site.github_username %}</a>{% endif %}{% if site.twitter_username %}<a href="https://twitter.com/{{site.twitter_username}}
-                    </ul>
-                    </nav>
-                                </div>
-                            </article>
-                                    </article>
-                                </span>
-                                </div>
-                            </article>
-                </section>
-                    </ul>
-                </section>
-                </section>
-                </header>
-            </div>
-    </body>
+        &copy; {{site.time | date: "%Y"}} {{site.author}},;'{( site.social.github )? '&nbsp;&bull; <a href="https://github
+        <div class="container">
+            &copy; {{site.time | date: "%Y"}} - {{site.social.github }} // @{{site.author}}
+            <a href="/atom.xml"><img src="/assets/images/favicons/feed.png" alt="RSS Feed"/></a>
+        </div>
+    </footer>
+{% include googleanalytics.html %}
+</body>
 </html>
+</script>
