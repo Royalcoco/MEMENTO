@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="csjava" xml:lang="cs">
+    <!--[if lt IE 7]><  html lang="en_US"><![endif]-->
+	<!--[if IE 7]>   <html class="ie ie7" lang="en_US"><![endif]-->
+	<!--[if IE 8]>   <html class="ie ie8" lang="en_US">                 <script type="text/javascript">document.createElement('nav');
+	<!--[if IE 8]>   <html class="ie ie8" lang="en_US">                 <![endif]-->
+	<!--->              <html lang="en_US">                                             </!-->
+    
+    <head>  <!-- Start of Head -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        
+        <title>Jakub Kadlubiec - CV</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="style.css?v104" title="normal" />
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="/style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/Version3/jquery.min.js"></script>
+        <script src="/skrollr.min.js"></script>
+        <script type="text/javascript">$(document).ready(function(jq) { skrollr.init(); });</script>
+    </head>  <!-- End of Head -->
+    
+    <body id="page1">
+            <div class="container">
+                <header>
+                    <h1>JAKUB KADLUBCIEC</h1>
+                    <p>Software Developer / Web Designer</p>
+                </header>
+                
+                <section id="contacts">
+                    <a name="contacts"></a>Contacts:<br/>
+                    Email: <a href="mailto:jakubkadlubiec@gmail.com">jakubkadlubiec@gmail.com</a><br/>
+                    Phone: +420  605 999 999<br/>
+                    Skype: jakub.kadlubiec<br/>
+                    Github: <a target="_blank" href="http://github.com/jaksy">http://github.com/jaksy</a>
+                </section>
+                
+                <section id="education">
+                    <a name="education"></a>
+                    <h2>Education</h2>
+                    <ul class="education_list">
+                        <li>Faculty of Information Technology, Charles University in Prague (2011 - 2015)<br/>
+                        <li>Faculty of Information Technology, Charles University in Prague (2011 - 2015)
+                            ******* Master's thesis "Design and implementation of a web application for managing library catalogues<br/><br/><br/>
+                            &nbsp;&bull;&nbsp; Bachelor's degree in Computer Science and Mathematics</li>
+                    </ul>
+                </section>
+                
+                <section id="experience">
+                        <a name="experience"></a>   Experience:<br/>
+                        <div class="timeline">
+                            <article class="timeline-entry begin">
+                                <div class="card">
+                                    <time datetime="2011-07-01">2011</time>
+                                    <div class="content">
+                                        <h3>Beginning of my journey as a programmer</h3>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            {% for item in site.data.experience %}
+                                <span class="{{item.class}} timeline-entry-work">
+                                    <article class="timeline-entry-card">
+                                        <time datetime="{{item.date}}">{{item.year}}</time>
+                                        <div class="content">
+                                            <h3>{{item.position}} at {{item.company}}</h3>
+                                            <p>{{item.description | markdownify }}</p>
+                                        </div>
+                                    </article>
+                                </span>
+                            {% endfor %}
+                            
+                            <article class="timeline-entry-work end">
+                                <div class="card">
+                                    <time datetime="present">Now</time>
+                                    <div class="content">
+                                        <h3>Currently working at ...</h3>
+                                    </div>
+                                </div>
+                            </article>
+                        </div> <!-- /.timeline -->
+                </section> <!-- /#experience -->
+                
+                <section id="skills">Skills:
+                    <ul class="skill-list">
+                        {% assign skills = site.data.skills | sort: "name" %}
+                        {% for skill in skills %}
+                            <li>
+                                <i class="fa fa-fw {{skill.icon}}"></i> 
+                                <strong>{{skill.name}}</strong>
+                                <span class="pull-right">{{skill.level}}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section> <!-- /#skills-->
+            </div><!--/.col-sm-9-->
+        </div><!--/.row-->
+    </div><!--/.container-->
+    
+    <footer>
+        &copy; {{site.time | date: "%Y"}} {{site.author}}, All rights reserved.<br />
+        
+        <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank"><img src="/assets/ccbynsa.png" alt="CC BY SA"/></a
+        <a href="https://github.com/{{site.github_username}}/jekyll-open-publishing-framework"><img style="display: inline;" srcset
+        Made with <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://jekyllrb.com/">Jekyll</a>, and <a href="http://fontaw本站由<a href="http://je
+        <a href="/atom.xml"><i class="fa fa-rss"></i    ></a>
+        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
+        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
+        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a> <strong, style="font-weight:
+        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
+        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"
+            {% if site.github_username %}<  a href="https://github.com/{{site.github_username}}" target="_blank"><i class="fa fa
+            {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="   fa fa-github
+        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
+        {% if site.github_username %}<a href="https://github.com/{{site.github_username}}"><i class="fa fa-github"></i></a>
+        {% if site.github_username %}</a>{% endif %}{% if site.twitter_username %}<a href="https://twitter.com/{{site.twitter_username}}
+                    </ul>
+                                </div>
+                            </article>
+                                    </article>
+                                </span>
+                                </div>
+                            </article>
+                </section>
+                    </ul>
+                </section>
+                </section>
+                </header>
+            </div>
+    </body>
+</html>
