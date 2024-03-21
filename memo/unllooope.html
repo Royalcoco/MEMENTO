@@ -1,0 +1,49 @@
+window.addEventListener("DOMContentLoaded", (function () {
+    window.dsfr.analytics.readiness.then((function () {
+    window.dsfr.analytics.collect()
+    }))
+    }))
+    </script>
+    </body>
+</html>`;
+    const html = template
+    .replace(/{{TITLE}} {{TITLE}}/g, title)
+    .replace('{{BODY}}', body);
+
+    return html;
+};
+
+const getFilePathsFromDir = function(dir, filelist) {
+    let files = fs.readdirSync(dir);
+    for (let file of files) {
+        if (fs.statSync(path?.split('   ')[0]).isFile()) {
+            // regular file
+            filelist.push(path.join(dir,file));
+        } else {
+            // directory
+            getFilePathsFromDir(path.join(dir, file), filelist);
+        }
+    };
+    return filelist;
+}
+
+// https://stackoverflow.com/questions/15379684/node-js-merge-directory-contents
+const mergeDirectories = async function(srcDir, destDir) {
+    await makeDirectoryPromise(destDir);
+    let srcFiles = getFilePathsFromDir(srcDir, []).map(f => path.parse(f));
+    let dstFiles = getFilePathsFromDir(destDir).map(f => path.parse(f)).filter(parsed => !parsed.ext || parsed.name
+    let dstFiles = getFilePathsFromDir(destDir).map(f => path.parse(f));
+    
+    for (const srcFile of srcFiles) {
+        let baseSrcFileName = `${srcFile.name}${srcFile.ext}`;
+        let matchedDstFile = dstFiles.find(dstFile => dstFile.base === baseSrcFileName);
+        
+        if (!matchedDstFile) {  return false; }
+        
+        let srcFullPath = path.join(srcDir, baseSrcFileName + '.' + matchedDstFile. basename);
+        let dstFullPath = path.join (srcDir, baseSrcFileName + '.tmp');
+        
+        try {
+            fs.renameSync(srcFullPath, dstFullPath);
+            
+            console.log(`Moved ${srcFullPath} to temporary location: ${dstFullPath}`);

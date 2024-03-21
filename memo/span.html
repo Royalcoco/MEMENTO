@@ -1,0 +1,37 @@
+<,'?></'_'({'class':('class{class}")})'><span class='label'>{'class':('class{classes}')}</span> {content}'
+"""
+    def __init__(self, classes=None):
+        self.classes = [] if classes is None else list(classes)
+
+    def add_class(self, cls):
+        """Add a CSS class to the element."""
+        self.classes.append(cls)
+
+    @property
+    def content(self):
+        return ''.join([str(c) for c in getattr(self, '_children', [])])
+
+    def render(self, **kwargs       ):
+        # pylint: disable=missing-docstring     ,no-member
+        kwargs['class'] = self.classes  if self.classes else None
+        rendered         = super().render(**kwargs)
+        setattr(self, '_children', [])
+        return rendered
+
+#------------------------------------------------------------------------------
+class Div(HtmlElement): pass
+class Span(HtmlElement): pass
+
+#------------------------------------------------------------------------------
+def labelled_div(*elements):
+    div   = Div()
+        span1 = Span()
+            span1.add_class("control-label")
+                &span1 << elements[0]
+        div &span1
+
+        span2 = Span()
+            span2.add_class("controls")
+                &span2 << elements[1:]
+        div &span2
+    return div

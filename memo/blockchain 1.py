@@ -210,4 +210,69 @@ for i, b in enumerate(blockchain.chain):
                         <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#viewTransactionModal" value
                         <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#viewTransactionModal" value
                         <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#showTransactionModal" value
+                        <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#viewTransactionModal" value, disabled by default
+                        <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#viewTransactionModal" value={
+                        <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#viewTransactionModal" value = "
                         <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#viewTransactionModal" value
+                        <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#viewTransactionModal" value
+                        <button class="show-transaction btn btn-success" data-toggle="modal" data-target="#viewModal" value={
+                        <button onclick="getPrev({{$b}})">Get Previous Block</button>   + <br />
+                        <span id="prev_{{ $b }}"></span>
+                        
+                        <button onclick="   validate({{$b}})">Validate Block</button>  <br />
+                        <span id="validated_{{ $b }}"></span> <br />
+                        
+                        @if ($loop->last)
+                            No next block available
+                        @else
+                            <button onclick="getNext({{$b}}, {{$loop->index+1}})">Get Next Block</button>
+                            <span id="next_{{   $b }}"></span>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+<script type="text/javascript">
+function getPrev(id){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState ==  4 && this.status == 200) {
+            document.getElementById("prev_"+id).innerHTML = this.responseText;
+            }
+    };
+    xhttp.open("GET", "/api/block/"+id+"/previous", true);xhttp.send();
+}
+
+function getNext(id, index) {
+    window.location.href="/block?page="+(index+1);
+}
+
+// Validates a given block by its hash and displays the result in "validated_ID" span element.This is done using AJAX to not refresh the whole page every
+function validate(id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {document.getElementById("validated_"+id).innerHTML=this.responseText
+    xhttp.onreadystatechange = function() {
+        if (this.readyState ==  4 && this.status == 20  && this.status != 204) {
+            alert( "Error: " + this.responseText);
+            } else if (this.readyState==4 && this.status==204 && this.status != 406) {
+                document.getElementById("validated_"+id).innerHTML = "<font color=green>Valid!</font>";
+            } else {
+                document.getElementById("validated_"+id).innerHTML = "";
+            }
+    };
+    xhttp.open("POST", "/api/validate/"+id, true);xhttp.setRequestHeader('Content-type','   application/json'); xhttp.send();
+    xhttp.open("POST", "/validate");
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    // send the data along with the request
+    xhttp.send("data="+encodeURIComponent(document.getElementById('txn_'+id).value));
+}
+</script>
+@stop,
+
+@section('footer')
+    <div class="row">
+        <div class="col-md-8 col-sm-6">
+            <ul class="pagination">
+            @if($currentPage > 1
+                )<li><a href="#" onclick="getNext({{$firstBlock->Id}},{{$currentPage - 1}})"><span aria-hidden="true">&laquo)</span)</a></li>   )</ul>))</div>))</))</))</div>) <div class=")]></div>   <div class=")]></div>   <div class=")]></div> <div class=")]></div) </div>  <div class=")]></div> <div class=")]></div) <div class=")]></div> <div class=")]></div) <div class=")]></div> <div class=")]></div) <div class=")]></div) <div class=")]></div> <div)(class) </))   ))))))))))
