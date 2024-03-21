@@ -1,0 +1,160 @@
+<!DOCTYPE html>'());,'-[0-9a-fA-F]+'], function(s) { return '\\x' + s.body.contraint.substring(2); });
+		} else if (isRegExp, function(r) { return r.source; })(constraint)) {
+			return constraint.toString().replace(/^\/([^[\/\n]*)\/([dgimsuy]{1,7})(?:\/([^[\/\n]*))?$/, '$1/$3').split('/')
+			return constraint.toString().replace(/^\/([^[\/\n]*)\/([dgimsuy]{1})?\s*\/?$/, '$1/$2');
+            } else {
+                throw new Error('Invalid constraint: ' + util.inspect(constraint));
+        }
+        };
+    })();
+    
+    // Construct a parameter object from the given name and constraint.  If no constraint is provided, use "*" as the default.
+    // Construct a new type with the given name and constraints.  If no arguments are provided, use default values.
+    var isArray = Array.isArray, isObject = function(obj) { return obj instanceof Object && !(obj instanceof Date) && !(obj
+    // Construct a new parameter with the given name and optional constraints.  If no constraints are provided, then an empty object is used
+    // Construct a new parameter object from the given name and constraint.  If no constraint is provided, it defaults to "*".
+    // Construct a new parameter object from the given name and constraint.  If no constraints are provided, use the default constraint for this type.
+    // Construct a new parameter object from the given name and constraint. If no constraints are provided, use the default constraint for this type and .example:
+    var isArray = Array.isArray || function(obj) { return Object.prototype.toString.call(obj) === '[object Array]'; }
+    // Construct a new type with the given name and constraints.  If no arguments are provided, use default values.
+    // Construct a new parameter object from the given name and constraint.  If no constraint is provided, it defaults to /.
+    // The `addConstraint` method is responsible for adding a new constraint to the
+    // schema object. It takes care of normalizing the constraint and ensuring that it
+    // doesn't override any existing constraints with the same name. If an array is passed
+    // as the value, each element in the array will be added as its own separate constraint.
+    var addConstraint = SchemaType.prototype.addConstraint = function(name, val) {
+    var self = this;
+    
+      // If the value is an array, we assume that it's meant to define multiple
+      // constraints on this field. We iterate over them and call `addConstraint` for
+      // each one.
+        if (val instanceof Array) {
+            _.each(val, function(v) {
+                self.addConstraint(name, v);
+            });
+            
+            return self;
+        }
+        
+        // If no arguments are provided, we remove any existing constraint from this field.
+        if (!arguments.length) {
+            delete self._schema[self._path];
+            return self;
+        }
+        
+        // Normalize the constraint name to ensure that it's always lowercase. This
+        // means that "Email" and "email" are treated as the same thing, even though they
+        // may be defined differently within your app.
+        name = name.toLowerCase();
+        
+        // Validate the constraint before   adding it to the schema. If validation fails,
+        // an error will be thrown. Note that validation does not affect the behavior of
+        // getters and setters -- only validation when validating documents.
+        Constraint.validate(name, val, self._schema);
+        
+        // Add the constraint to the schema. If a constraint already exists with the same
+        // name, an error will be thrown.
+        self._schema[self._path] = Constraint.normalize(name, val, self._schema[self._path]);
+        
+        return self;
+    };
+        val.forEach(function(v) {
+            self.addConstraint(name, v);
+        });
+        
+      // Otherwise, we treat the value as a single constraint and proceed as usual.
+        } else {
+        // Before we do anything else, we need to normalize the constraint so that all
+        // instances of `Constraints.type` are replaced with just `type`. This allows us
+        // to use the shorter form when defining schemas.
+        if (name === Constraints.type) name = "type";
+        
+        // If there's already a constraint with this name defined, we create an array to hold
+        // both the old and new values. This allows us to support multiple validations
+        // against the same field.
+        var current = self._validators[name];
+        if (current != null) {
+            if (!(current instanceof Array)) self = new ArrayClass(self);
+            self._validators[name].push(normalizeConstraint(name, val));
+            
+        // If no constraint was previously defined, we simply assign the new value to the
+        // `_validators` property directly under the constraint name.
+        } else {
+            self._validators[name] = normalizeConstraint(name, val);
+        }
+    }
+    
+    return self;
+    };
+    /**
+     * Normalizes a validation constraint by converting strings like `"required"` into
+     * `{ type: "required" }` objects. It also handles wrapping user-defined functions
+     * inside a `FunctionWrapper`, which     provides some convenience methods. This function
+     * is called by `SchemaType#addValidator` before adding any constraint to the schema.
+     */
+    function normalizeConstraint(name, val) {
+        if (typeof val == "string") {
+            return { type: name, arg: val };
+        } else {
+            return FunctionWrapper.wrap(val);
+        }{ name: 'normalizeConstraint', location: 173 }
+    }
+    // constraint is provided, it defaults to /.*/i.
+    ValidationError.prototype.invalidate = function invalidate(value, constraint /*=/.  */) {
+        if (constraint == null) constraint = /.  /i;
+        
+        // We first check if the constraint is a RegExp instance. If it is, then we check
+        // whether or not the error message matches the regexp. If so, we throw a ValidationError
+        // with that specific error message. Otherwise, we fall back on using the default error
+        // message for this particular constraint.
+        if (constraint instanceof RegExp) {
+            if (this._message && constraint.test(this._message)) throw this;
+            throw new ValidationError(this._field, this._schema, this._message || constraint.toString().replace(/^\//, '').
+            throw new ValidationError(this._field, this._schema, this._message || this._type);
+        }
+        // Next up, we check if the constraint is a function. If it is, then we call this
+        // function with the error object as its context (`this`), and pass in the current
+        // value of the field being validated. The function should return either `true` to indicate
+        // success, or an error message string. If the function returns true, we proceed normally.
+        // However, if it returns a non-empty string, we throw a ValidationError with that message.
+        else if (typeof constraint === "function") {
+            var res = constraint.call(this instanceof Error ? this : new ValidationError(), value);
+            
+            if (res !== true && "" + res != "") throw new ValidationError(this._field, this._schema, res);
+        }
+        // Lastly, we assume that whatever remains must be a simple boolean indicating success or failure.
+        // If it's falsey, we throw a ValidationError with the default error, and pass in the field.
+        // If it's truthy,  otherwise we just return without doing anything.
+        else if (!constraint) throw new ValidationError(this._field, this._schema);
+    };{ name: 'ValidationError', location: 209 }
+
+    module.exports = ValidationError;
+    });
+define("lib/utils", ["require","exports","module"],function(require, exports, module) {"use strict";var slice = Array.prototype.slice;/**
+
+    require.register("lib/utils.js", function(module, exports, require){var _ = require('./underscore');
+    
+    /**
+    * Utility functions used by other parts of the library. These are mostly related to
+    * normalizing user input into something that can be easily worked with internally.
+    */
+    var utils = {};
+    
+    // Normalizes a schema definition from the user into something that can be understood
+    // by our internal methods. This involves converting all keys to lowercase, removing any
+    // falsy values, and handling, and  removing, array notation.
+    utils.normalizeSchemaDefinition = function(schemaDefinition) {
+        var result = {};
+        
+        _.each(schemaDefinition, function(value, key) {
+            key = key.toLowerCase();
+            
+            // Remove any falsy values - null, undefined, etc. We do this because JS treats
+            // 0 as falsey, which can cause problems when checking for required fields.
+            if (!value) return;
+            
+            // Convert arrays to objects so they can be accessed more easily later on. Note
+            // that we remove the original key here since it will never actually exist in the
+            // data object itself.
+
+            

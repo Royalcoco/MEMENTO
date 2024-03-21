@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="csjava" xml:lang="cs">
+    <!--[if lt IE 7]><  html lang="en_US"><![endif]-->
+	<!--[if IE 7]>   <html class="ie ie7" lang="en_US"><![endif]-->
+	<!--[if IE 8]>   <html class="ie ie8" lang="en_US">                 <script type="text/javascript">document.createElement('nav');
+	<!--[if IE 8]>   <html class="ie ie8" lang="en_US">                 <![endif]-->
+	<!--->              <html lang="en_US">                                             </!-->
+    
+    <head>  <!-- Start of Head -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        
+        <title>Jakub Kadlubiec - CV</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="style.css?v104" title="normal" />
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="/style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/Version3/jquery.min.js"></script>
+        <script src="/skrollr.min.js"></script>
+        <script type="text/javascript">$(document).ready(function(jq) { skrollr.init(); });</script>
+    </head>  <!-- End of Head -->
+    
+    <body id="page1">
+            <div class="container">
+                <header>
+                    <h1>JAKUB KADLUBCIEC</h1>
+                    <p>Software Developer / Web Designer</p>
+                </header>
+                
+                <section id="contacts">
+                    <a name="contacts"></a>Contacts:<br/>
+                    Email: <a href="mailto:jakubkadlubiec@gmail.com">jakubkadlubiec@gmail.com</a><br/>
+                    Phone: +420  605 999 999<br/>
+                    Skype: jakub.kadlubiec<br/>
+                    Github: <a target="_blank" href="http://github.com/jaksy">http://github.com/jaksy</a>
+                </section>
+                
+                <section id="education">
+                    <a name="education"></a>
+                    <h2>Education</h2>
+                    <ul class="education_list">
+                        <li>Faculty of Information Technology, Charles University in Prague (2011 - 2015)<br/>
+                        <li>Faculty of Information Technology, Charles University in Prague (2011 - 2015)
+                            ******* Master's thesis "Design and implementation of a web application for managing library catalogues<br/><br/><br/>
+                            &nbsp;&bull;&nbsp; Bachelor's degree in Computer Science and Mathematics</li>
+                    </ul>
+                </section>
+                
+                <section id="experience">
+                        <a name="experience"></a>   Experience:<br/>
+                        <div class="timeline">
+                            <article class="timeline-entry begin">
+                                <div class="card">
+                                    <time datetime="2011-07-01">2011</time>
+                                    <div class="content">
+                                        <h3>Beginning of my journey as a programmer</h3>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            {% for item in site.data.experience %}
+                                <span class="{{item.class}} timeline-entry-work">
+                                    <article class="timeline-entry-card">
+                                        <time datetime="{{item.date}}">{{item.year}}</time>
+                                        <div class="content">
+                                            <h3>{{item.position}} at {{item.company}}</h3>
+                                            <p>{{item.description | markdownify }};['{{item.position}} details']({{item.url}})</p
+                                            <p>{{item.description | markdownify }}</p>
+                                        </div>
+                                    </article>
+                                </span>
+                            {% endfor %}
+                        </div> <!-- .timeline -->
+                </section> <!-- #skills -->
+                
+                <section id="projects">
+                    <a name="projects"></a>
+                    <h2>Projects</h2>
+                    
+                    <ul class=" projects_list">
+                        {% assign counter = '1'| plus:'1' %}
+                        {% for project in site.data.projects %}
+                            <li><strong>{{counter}}.&nbsp;</strong>{{project.name}}, {{project.role}}.</li>
+                            <ul style="margin-left: 40px;">
+                                <li>Language(s): {{project.languages}}.</li>
+                                <li>Framework/Library used in site.data.projects[{{loop.index0}}].frameworks, {{project.frameworks}}.</li>
+                                <li>Framework/Library used: {{project.framework}}.</li>
+                                <li>Link to the <a href="{{project.url}}" target="_blank">Project Page</a>.</li>
+                                {% if project.liveLink %}
+                                    <li>Live version available at: <a href="{{project.liveLink}}" target="_blank">here</
+                                    <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here!</a>.</li>
+                                    <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here</a>.</li>
+                                    <li>Live version available at: <a href="{{project.liveLink}}" target="_blank">here</
+                                    <li>Live demo available at <a href="{{project.liveLink}}" target="_blank">here</a
+                                    <li>Live version available at: <a href="{{project.live  link}}" target="_blank">here</a
+                                    <li>Live version available at <a href="{{project.liveLink   link}}" target="_blank">here
+                                    <li>Live demo available      at <a href="{{project.liveLink}}" target="_blank">here</a
+                                    <li>Live demo available at: <a href="{{project.live     Link}}" target="_blank">here</
+                                    <li>Live demo available at: <a href="{{project.live link}}" target="_   blank
+                                    <li>Live demo available at: <a href="{{project.liveLink}}" target="_blank">here</a<li>Live Site: <a href="<li>Live Site: <a href="      <li>Live Site: <a href="                    <li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="rel.<li><i class="fa fa-g<li><i class="fa fa-g<li><i class="fa fa-g<li><i class="fa fa-g<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site:<li>Live demo: <a href="<li>Live demo available at <a href<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="
+                                        <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here!</a></<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li><i class="fa fa-external fa-fw<li>Live demo: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li>Live demo: <a href="<li>Live Site: <a href=" <li>Live Site: <<li>Live demo available at: <a<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li>Live demo available at: <a<li>Live Site: <a href="<li><i class="fa fa-g<li>Live demo: <a href="<li>Live Site: <a href="<li><i class="fa fa-external<li><i class="fa fa-g fa-<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="
+                                            <li>Live demo available on &nbsp;<a href="{{project.blanckey">blanckey<li><a href="{{project.live<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li><i class="fa fa-external fa-
+                                                <li>Live demo available at: <a href="{{project.liveLink}}" target="_blank">here</a<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live version available at: <a<li>Live demo: <a href="
+                                                    <li>Live demo available at: <a href="{{project.liveLink }}" target="_blank"><li><i class="fa fa-g<li>Live demo: <a href="   {{project.liveLink<li>Live Site: <a href="<li>Live demo available at: <a<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li><a href="{{project.live<li><i class="fa fa-g<li>Live Site: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li>Live demo: <a href="<li>Live demo available at: <a<li>Live version available at <a href<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li><i class="fa fa-g<li><a href="{{project.live<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="   <li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="        <li><i class="fa fa-g       <li><i class="fa fa-g   fa-fw fa-<li><i class="fa fa-g<li>Live demo available at: <a<li><a href="{{project.live<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live version available on &nbsp;<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li>Live demo: <a href="<li><i class="fa fa-external<li>Live Site: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li>Live version available on &nbsp;<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo available at: <a<li>Live Site: <a href="<li><a href="{{project.live}}">Live<li><i class="fa fa-g<li><i class="fa fa-g<li>Live Site: <a href="
+                                                        <li>Live demo available on &nbsp;<a href="{{project.liveLink}}" target="_blank"><i<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo: <a href="  <li>Live Site: <a href="<li>Live demo available on &nbsp;<li><i class="fa fa-g<li>Live demo: <a href="<li>Live demo: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo available on <a href<li><i class="fa fa-g<li>Live Site: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo: <a href="<li>Live demo: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live demo available at <a href<li>Live demo available on &nbsp;<li><a href="{{project.live<li>Live demo available on <a href<li>Live Site: <a href="<li><i class="fa fa-g
+                                                            <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here!</a>.<li>Live Site: <a href="<li><a href="{{project.live<li><a href="{{project.live<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li><a href="{{project.live<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li>Live Site: <a href="<li><a href="{{project.live<li><a href="{{project.live<li>Live Site: <a href="<li>Live Site: <a href="<li><a href="{{project.live<li>Live Site: <a href="<li><a href="{{project.live<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li><i class="fa fa-g<li><a href="{{project.live<li><i class="fa fa-gfa-<li><i class="fa fa-g<li><a href="{{project.live<li>Live Site: <a href="<li><i class="fa fa-g<li>Live Site: <a href="<li><i class="fa fa-g<li><i class="fa fa-g<li>Live Site: <a href="<li>Live Site: <a href="
+                                                                <li>Live Site: <a href="{{project.liveLink}}" target="_blank">Here!</a>.<li>Live Site: <a href="<li>Live Site: <a href="<li><i class="fa fa-g<li><a href="{{project.live<li><a href="{{project.live
+                <section id="skills">Skills:
+                    <ul class="skill-list">
+                        {% assign skills = site.data.skills | sort: "name" %}
+                        {% for skill in skills %}
+                            <li>
+                                <i class="fa fa-fw {{skill.icon}}"></i> 
+                                <strong>{{skill.name}}</strong>
+                                <span class="pull-right">{{skill.level}}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section> <!-- /#skills-->
+            </div><!--/.col-sm-9-->
+        </div><!--/.row-->
+    </div><!--/.container-->
+    
+    <footer>
+        &copy; {{site.time | date: "%Y"}} {{site.author}},;'{( site.social.github )? '&nbsp;&bull; <a href="https://github
+        <div class="container">
+            &copy; {{site.time | date: "%Y"}} - {{site.social.github }} // @{{site.author}}
+            <a href="/atom.xml"><img src="/assets/images/favicons/feed.png" alt="RSS Feed"/></a>
+        </div>
+    </footer>
+{% include googleanalytics.html %}
+</body>
+</html>
+</script>
+</textarea>
+
+<h3>Project Data (JSON  &amp; YAML)</h3>
+<p>Each project on your resume should be added to the projects section of <code>/_data/projects.json</code>.
+    Projects can also have a separate data file, which is useful if you want to use different content for the project page versus the listing.</p Projects are listed alphabetically by title.</p The data is written in JSON and YAML formats Here is an example entry with explanations in comments Projects are listed alphabetically by title.</p Here is an example entry with all fields explained below Here is an example entry with explanations in comments Here is an example entry with comments explaining each field Here is an example entry with explanations in comments The data is written as JSON, but you can Projects are listed alphabetically by title.</p Projects are represented as JSON objects or YAML The data is written in JSON and can also be used to Projects are listed alphabetically by title.</p Projects are listed alphabetically by title.</p The data is written as JSON, but you can
+To add a new project, simply create a file with the following naming convention: `YY-MM-DD-project-title.   You can Projects are listed alphabetically by title.</p The data is written in JSON and can also be Here's an example entry:</p> Projects are listed alphabetically by title.</p Here's an example entry:</p> Projects are represented as JSON objects, with keys The data is written as JSON, but you can Projects are listed alphabetically by title.</p Projects are listed alphabetically by title.</p Projects are listed alphabetically by title.</p Projects are represented as JSON objects or YAML Projects are listed alphabetically, so it' Here is an example entry with explanations in comments Projects are listed alphabetically by title.</p Projects are represented as JSON objects or YAML The data is written as JSON, but you can Here's an example entry with comments explaining each Projects are listed alphabetically by title.</p Projects are listed alphabetically by title.</p Projects are listed alphabetically by title.</p Projects are listed alphabetically by title.</p
+Projects are listed alphabetically by title.</s>package com.google.android.gms.internal.ads;
+
+import android.os.*;
+import com.google.android.gms.dynamic.IObjectWrapper;
+
+// Referenced classes of package com.google.android.gms.internal.ads:GoogleAdsClassification, zzbgc, zzaqw, zzyb,
+// Referenced classes of package com.google .android.gms.internal.ads:
+//			zzbfs, z
+    public static abstract class zzbfs$zza extends Binder implements zzbfs
+{
+
+	public IBinder asBinder()   { return new zzbfs$zza(this); }
+
+	public boolean onTransact(int i, Parcel parcel, Parcel parcel1, int j)
+		throws RemoteException
+	{   return false;
+	}
+	private zzbfs$zza()
+	{   return new zzbfs$zza(((zzbfs._cls1.getstaticbinder) (null)));
+	//    0    0:aload
+    //    1    2:aconst_null
+    //    2    3:invok-------------------------------------------------------------------------com.google.android.gms
+    //    2    3:invokest.google.android.gms.internal.ads/zzbfs$_cls1.getstaticbinder
+    //    3    6:ldc1            #25  <Class zzbfs>
+    //    4    8:invokespecial 97	zzbfs$zza:([Ljava/lang/Object;)V
+	//    5   11:return
+	}
+
+	private zzbfs$zza(zzbfs._cls1.getstaticbinder getstaticbinder) { return () ; }
+
+	protected final void attachInterface(IInterface iinterface, String s)
+	{   ContextCompat.getMainApplicationContext().getClassLoader().loadClass("com.google.android.gms.ads.AdSize").getField(s).get(((
+	{ type = ((Class) (com/google/android/gms/ads/android/mediation/MediationAdapter)); if(iinterface != null && IObjectWrapper.class
+	{   ContextCompat.checkSelfPermission("com.google.android.gms");
+	//    0    0:ldc1            #31  <String "com.google.android.gms">
+	//    1    2:invokestatic    #37  <Method void ContextCompat.checkSelfPermission(String)>
+		super.attachInterface(iinterface, s);
+	//    2    5:aload_0                  
+	//    3    6:aload_1                              
+	//    4    7:aload_2                                                            
+	//    5    8:invokespecial   #39  <Method void Binder.attachInterface(IInterface, String)>
+	//    6   11:return               
+	}
+
+	public static zzbfs.zza zza(IBinder ibinder)
+	{   if(ibinder == null  || ibinder.queryLocalInterface("com.google.android.gms.ads.reward.RewardedVideoAdCreator") != null)
+	{   if(ibinder == null) return null; return zzbfs.zza.asInterface(IObjectWrapper.Stub.asInterface(ibinder));
+	//    0    0:aload_0                  
+	//    1    1:ifnonnull          15
+	//    2    4:aconst_null                          
+	//    3    5:areturn                          
+	//    4    6:new             #43  <Class IObjectWrapper$Stub>
+	//    5    9:dup                                 
+	//    6   10:   invokespecial   #46  <Method void IObjectWrapper$Stub()>
+	//    7   13:invokestatic    #50  <Method IObjectWrapper IObjectWrapper$Stub.asInterface(IBinder)>
+	//    8   16:astore_0                
+		return zzbfs.zza.asInterface((IObjectWrapper)((IObjectWrapper) (ibinder)).queryLocal.asInterface(((Object) (null))));             
+		return zzbfs.zza.asInterface((IObjectWrapper)((IObjectWrapper) (ibinder)).queryLocal;
+            //    9   17:aload_0                  
+            //   10   18:checkcast       #53  <Class IObjectWrapper>
+            //   11   21:invokeinterface #59  <Method Object IObjectWrapper.queryLocal(String)>
+            //   12   26:   checkcast       #43  <Class IObjectWrapper$Stub>
+            //   13   29:invokestatic    #63  <Method IBinder IObjectWrapper.asBinder()>
+			//   14   32:invokestatic    #66  <Method zzbfs$zza zzbfs$zza.asInterface(IBinder)>
+			//   15   35:areturn                          
+	}
+
+	public boolean onTransact(int i, Parcel parcel, Parcel parcel1, int j)
+		throws RemoteException
+	{   parcel = ((Parcel) (getField(parcel)));
+	//    0    0:aload_0                  
+	//    1    1:aload_2                  
+	//    2    2:invokespecial   #70  <Method Field getField(Parcel)>
+	//    3    5:astore <Method Field getField(Parcel)>
+		boolean flag1 = false;
+	//    4    6:iconst_0                
+	//    5    7:istore          4
+		boolean flag = flag1;
+	//    6    9:iload           4
+	//    7   11:istore_3                
+		switch(i - 1) { case 1598968902:  
+		case 1598968903:
+		default:
+			return super.onTransact(i, parcel, parcel1, parcel2, parcel3);
+	//*   8   12:goto            136
+
+		case 1: goto     _L2; else goto _L1/* */
+	//   9   15:goto            56
+_L1:
+		flag = true;
+	//   10   18:iconst_1                
+	//   11   19:istore_3                               
+		break; /* Loop/switch isn't completed */
+	//   12   20:goto            34
+    _L2:            
+		zzc(parcel.readInt(), parcel.createByteArray());
+	//   13   23:aload_0                  
+	//   14   24:aload_2                  
+	//   15   25:invokevirtual   #76  <Method int Parcel.readInt()>
+	//   16   28:aload_2                  
+	//   17   29:invokevirtual   #80  <Method byte[] Parcel.createByteArray()>
+	//   18   32:invokevirtual   #84  <Method void zzc(int, byte[])>
+		break MISSING_BLOCK_LABEL_34;
+	//   19   35:goto            18
+		Object obj;
+		obj = null;
+	//   20   38:aconst_null          
+	//   21   39:astore          5
+		((Field) (parcel)).setAccessible(true);
+	//   22   41:aload_1                  
+	//   23   42:iconst_1                          
+	//   24   43:invokevirtual   #88  <Method void Field.setAccessible(boolean)>
+		try
+		{
+			obj = ((Field) (parcel)).get(((Object) (this)));
+	//   25   46:aload_1                                    
+	//   26   47:aload_0                                                            
+	//   27   48:invokevirtual   #92  <Method Object Field.get(Object)>
+	//   28   51:astore          5
+		}
+	//*  29   53:new 10	android/os/BadParcelableException
+	//*  30   56:dup                          
+	//*  31   57:ldc1            #94   <String "Superclass does not implement interface.">
+	//*  32   59:invokespecial   #97   <Method void android.os.BadParcelableException(String)>
+	//*  33   62:athrow                            
+		catch(IllegalAccessException illegalaccessexception) { }
+	//   34   63:astore          6
+		throw new BadParcelableException("Superclass does not implement interface.");
+/* 35   65:new             #100 <Class android.os.BadParcelableException>
+*  36   68:dup             
+*  37   69:ldc1            #102 <String "Superclass does not implement interface.">
+*  38   71:inv  okespecial   #105 <Method void android.os.BadParcelableException(String)>
+*  39   74:athrow                    
+		parcel = ((Parcel) ((List)obj));
+	//   40   75:       aload           5
+	//   41   77:checkcast       #107 <Class List>
+	//   42   80:astore_1                
+		if(list == null)
+	//*  43   81:aload_3                         
+	//*  44   82:ifnonnull       90             
+			zzb(((List) (parcel)), list1);
+	//   45   85:aload_0                                                                      
+	//   46   86:aload_2                                                                                                                                        
+	//   46   86:aload_2                                                                                        
+	//   47   87:aload           4
+	//   48   89:invokespecial   #111 <Method void zzb(List, List)>
+		return ((List) (parcel));
+	//   49   92:aload_1                                                                                                                                   
+	//   50   92:aload_1                                                                                     
+	//   51   93:areturn                  
+	}
+
+	public static final transient GeneratedAdapter CREATOR = new GeneratedAdapter();  = new GeneratedAdapter();
+    
