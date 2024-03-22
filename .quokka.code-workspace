@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../.wallaby"
+		},
+		{
+			"path": "../All for one"
+		},
+		{
+			"path": "../USB.01"
+		},
+		{
+			"path": "../USB.02"
+		},
+		{
+			"path": "../USB.03"
+		},
+		{
+			"path": "../wallaby"
+		}
+	]
+}
