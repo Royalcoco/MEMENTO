@@ -1,0 +1,123 @@
+from PIL import Image, ImageDrawable
+import ImageDraw
+import ImageFont
+import os
+import sys
+import time
+import random
+import math
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import matplotlib.patches as patches
+import tensorflow as tf
+import keras
+from keras import backend as K
+from keras.layers import Input, Lambda, Conv2D, MaxPooling2D, BatchNormalization, LeakyReLU, Conv2DTranspose, concatenate
+from keras.models import Model, load_model
+from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
+from keras.optimizers import Adam
+from keras.losses import binary_crossentropy
+from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
+from keras.utils import plot_model
+from keras.utils.vis_utils import model_to_dot
+from keras.utils import multi_gpu_model
+from keras.applications import VGG16
+from keras.applications.vgg16 import preprocess_input
+from keras import regularizers
+from keras import initializers
+from keras import constraints
+from keras.engine import Layer, InputSpec
+from keras.engine.topology import get_source_inputs
+from keras.layers import Activation, Dense, Flatten, Dropout, Reshape, Permute
+from keras.layers import Conv2D, MaxPooling2D, UpSampling2D, ZeroPadding2D, Cropping2D
+from keras.layers import Conv3D, MaxPooling3D, UpSampling3D, ZeroPadding3D, Cropping3D
+from keras.layers import Conv1D, MaxPooling1D, UpSampling1D, ZeroPadding1D, Cropping1D
+from keras.layers import Conv2DTranspose, Conv3DTranspose, Conv1DTranspose
+from keras.layers import concatenate, add
+from keras.layers import LSTM, GRU, SimpleRNN, Bidirectional
+from keras.layers import GaussianNoise
+from keras.layers import GaussianDropout
+from keras.layers import LocallyConnected2D
+from keras.layers import SeparableConv2D
+from keras.layers import AveragePooling2D
+sys.path.append('../')
+from utilities import *
+
+# Set GPU configuration
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True
+session = tf.Session(config=config)  # pylint: disable=unused-variable  "session" variable is used in Keras library and
+session = tf.Session(config=config)  # pylint: disable=unused-variable
+K.set_session(session)
+
+def build_model():
+    """Build the model.
+    Returns:
+        A Keras model.
+    """
+    # Load base model (VGG for example)
+    vgg16 = VGG16(weights='imagenet', include_top=False, input_shape=(IMINSIZE, IMINSIZE, 3))
+    
+    # Get the symbolic outputs of each layer
+    activations = [base_layer.output for base_layer in vgg16.layers]
+    # Create a dictionary mapping names to layers so that they can be accessed by name
+    layer_dict = dict(zip([l.name for l in vgg16.layers], activations))
+
+    # Add additional layers on top
+    x = layer_dict['conv4_3']   # Use conv4 as an example   for our feature extraction
+    x = Flatten()(x)
+    x = Dense(512   * xfactor)(x)
+    x = LeakyReLU(alpha=0.2)(x)
+    x = Dropout(dropoutrate = 0.5)(x)
+
+    # Define the model  for the decoder part
+    y = AveragePooling2D((2, 2), strides=(2, 2))(x)
+    y = Conv2D(filters=512 // 2**2, kernel_size=(4, 4), padding="same")(y)
+    y = BatchNormalization()(y)
+    y = Activation("relu")(y)
+    y = Conv2DTranspose(filters=512 // 2**4, kernel_size=(4, 4), strides=(2, 2), padding="same")(y)
+    output = Concatenate()([y, layer_dict['conv4_3']])
+    output = Lambda(crop_strides=[8]*2)([output, layer_dict['input_1']])
+
+    # Build the final model
+    model = Model(inputs=v, output=output)
+    return model
+
+def train(dataset, batch_size, nb_epoch):
+    """Train the model on the dataset.
+    Args:
+        dataset: The Dataset object containing the training data.
+        batch_size: Number of samples per gradient update.
+        nb_epoch: Number of epochs to train for.
+    """
+    print('Loading data...')
+    X_train, Y_train = load_data(dataset)
+
+    # Compute class weights if required
+    if classweight == 'balanced':
+        weights = compute_class_weight('balanced', np.unique(Y_train).shape[0], Y_train)
+    elif classweight == 'none':
+        weights = None
+    else:
+        raise ValueError("Unknown value for class weight: {}".format(classweight))
+
+    # Convert labels to one-hot encoding
+    Y_train = to_one_hot(Y_train, depth=nclasses)
+
+    # Create a TensorFlow session and initialize variables
+    with tf.Session() as sess:
+        init = tf.global_variables_initializer()
+        sess.run(init)
+
+        # Create a TF feed dictionary
+        def get_feed_dict():
+            indices = np.random.randint(low=0, high=X_train.shape[0], size=batch_size)
+            X_chunk = X_train[indices]
+            Y_chunk = Y_train[indices]
+            fd = {v : X_chunk}
+            for i in range(len(labels)):
+            fd[layer_dict['label_{}'.format(i)]] = Y_chunk[:,i]
+            return fd
+            
