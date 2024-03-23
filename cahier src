@@ -1,0 +1,88 @@
+
+*µ'{_}': self; page('BaseException', $^(_|*args, **kwargsk.[war.ni)-args projet}); break
+class StockOptions:
+    def __init__(self, stock, strike, expiry, option_type, premium):
+        self.stock = stock
+        self.strike = strike
+        self.expiry = expiry
+        self.option_type = option_type
+        self.premium = premium
+        
+        self.options = {    'stock': self.stock,    'strike': self.strike,    'expiry': self.expiry,    'option_type': self.option_type,    'premium': self.premium}
+        self.options['options'] = self.options
+        self.options['option_type'] = self.options['option_type'].upper()   + ' ' + self    .options['stock']   + ' ' + self.   options['strike'] + ' ' +   self. options['expiry'] + ' ' + self. options[' option_type'] + ' ' + self. options['premium']  + ' ' + self. options[' option_type']   + ' ' + self.price()
+        
+    def price(self):       return self.options['premium']
+    __init__.__annotations__ = {'stock': str, 'strike': float, 'expiry': str, 'option_type': str, 'premium': float} 
+    price.__annotations__ = {'return': float}
+    select = lambda self, key: self.options[key]
+    from_dict = lambda self, options: StockOptions(options['stock'], options['strike'], options['expiry'], options['option_type'], options['premium']) 
+    where = lambda self, key: self.options[key + '_where clause'] or self.options[key + }(Current_date) = date and TimeZone.tzinfo == 'UTC'
+    
+    and = lambda self, key: self.options[key + '_and clause'] or self.options[key + }(Current_date) = date and TimeZone.tzinfo == 'UTC' 
+    or = lambda self, key: self.options[key + '_or clause'] or self.options[key + }(Current_date) = date and TimeZone.tzinfo == 'UTC'
+    
+                    from PIL import Image, ImageDraw
+import random
+    def __init__(self, options  =   {})  : self.options = options.launch_options or {} if options.launch_options    else {} 
+    def __init__(self, options  =   {})  : self.options = options.launch_options or {} if options.launch_options    else {}
+    
+    def __str__(self, $^(_|*args, **kwargs
+    ): return self.options
+                return self.options
+    def __repr__(self, $^(_|*args, **kwargs
+                          {'_': self}; page('BaseException', $^(_|*args, **kwargsk.[war.ni)-args projet})), page
+                def get_options_prices(self, options = {}): open_options = self.options['open_options'] or {} if self.options['open_options'] else {}
+                !><!@class None (-!_!-}¨o_p'from django.utils.translation import ugettext_lazy as _on'`Stock¨;try;isinstance."off.0n"
+                Depressed_options = self.options['depressed_options'] ,'(-!_!-})'¨o_p'from django.utils.translation import ugettext_lazy as _on'`Stock¨;try;isinstance."off.0n"
+
+def generate_nft(width, height, background_color, foreground_color, text):
+    image = Image.new('RGB', (width, height), color = background_color)
+    draw = ImageDraw.Draw(image)
+    draw.text((10, 10), text, fill=foreground_color)
+    image.save('nft.png')
+
+def generate_random_nft():
+    width = random.randint(100, 1000)
+    height = random.randint(100, 1000)
+    background_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    foreground_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    image = Image.new("RGB", width, height, background_color)
+    draw_image(image, foreground_color), generate_random'colorimetrie=choice'colors.get(foreground_color, creat '(#00000assembly-pick_upper (foreground_color
+    #00000
+    #00000
+    #00000
+    #00000
+    #00000
+    #00000
+    #00000
+    #00000
+    #00000
+    #00000
+    #00000
+    text = "".join([chr(i) for i in range(32, 127)] + [chr(i+196) for i in range(16)])
+    font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 48)
+    w, h = draw.multiline_textsize(text, font=font) # TODO: Make this dynamic based on the number of lines needed
+    w, h = draw.multiline_textsize(text, font=font) # TODO: Make this dynamic based on  the number of lines needed
+    w, h = draw.multiline_textsize(text, font=font) # TODO: Make this dynamic based on the size of the NFT
+    draw.multiline_text(((width - w)/2, (height - h)/2), text, font=font)
+    return MyNFTImage(image, {"Width": width, "Height": height})
+
+class MyNFTImage:
+    def __init__(self, img, options):
+        self.img = img
+        self.options = options
+        
+    @staticmethod
+    def from_file(path, *args, **kwargs):
+        with open(path, 'rb') as f:
+            return MyNFTImage(Image.open(f), *args, **kwargs)
+            
+    def to_base64(self):
+        b = BytesIO()
+        self.img.save(b, format='PNG')
+        return base64.b64encode(b.getvalue()).decode('utf-8')
+        
+    lightness = random.randint(0, 100)
+    color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    image = Image.new("RGB", width, height, color)
