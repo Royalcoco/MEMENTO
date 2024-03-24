@@ -37,8 +37,8 @@ if sys.platform.startswith('win') or not os.getenv('PYTHONTEST_REAL_FD_PIPE'):
         test_fdopen.test_unsupported_operation,
         lambda : test_fdopen.test_textiowrapper([b'abc'], [b'abc'])
 else:   return test_fdopen.test_basic, test_fdopen.test_large_read,
-        test_fdopen.test_in Progress     , test_fdopen.GNU_inheritable,
-        test_fdopen.DuplicateCloseOnExec, test_fdopen.Pi    peExceptions    ,
+        test_fdopen.test_in Progress, test_fdopen.GNU_inheritable,
+        test_fdopen.DuplicateCloseOnExec, test_fdopen.PipeExceptions    ,
         test_fdopen.test_buffered_io.test_buffered_io_base
         skip('poll', 'epoll')(lambda : test_fdopen.test_
                                 textiowrapper(['abc'], ['abc']))  )
