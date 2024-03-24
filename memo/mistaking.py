@@ -17,7 +17,7 @@ def index():
                                 url=url,  
                                 http_status=status, 
                                 content =data[:1024]
-                               )
+                                )
         except Exception as e:
             return render_template('error.html, error_message="Error Occurred"')
         else:
