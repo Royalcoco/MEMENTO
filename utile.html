@@ -1,0 +1,184 @@
+<!DOCTYPE html<a "#param="&quot;srvp.&quot" target="_blank  title="&quot;   description of parameter&quot ;&quot;&gt; &lt;div&gt;&lt; HTMLElement&gt; &lt;div&gt;   &lt;
+>>>>>>><service class="device">
+    '(&quot; srvp&quot;)</service'<decive class="html>"&gt;&lt; html&gt;&lt; head&gt;&lt; title&gt; &lt;/head&gt;&lt;/html&gt; &lt;body&gt;&lt  ;/body&gt;&lt;/html&gt; &lt ;/ div&gt;&lt ;/&gt; &lt ;/ div&gt;&lt ;/ div &lt ;/&gt; &lt ;/ div&gt; &lt ;/  div&gt; &lt ;/ div&gt;  &lt ;/div&gt; &lt ;/ div&gt ;</code></pre>></service>
+        ******************************** ;'<div data-strict="html"" class="alert alert alert alert alert.alert-danger
+        
+        ><strong> alerts </
+            strong>: <em> {  } </ em>
+            
+            <div id = "alert,alert.alert-danger" class="alert alert-danger" role="alert"> Alert!
+                This is a danger alert.
+            </ div>
+                    
+            <button type="button" onclick="addAlert('success')" class="btn btn-primary">Add Success</button>
+            <button type="button" onclick="removeAlert()" class="btn btn-warning">Remove Last Alert</button>
+    </ service >
+    
+    <<script>
+        function addAlert(type) {
+            var d = new Date();
+            var time = d.toLocaleTimeString();
+            var text;
+            switch (type){
+                case 'success':
+                    text = 'This is a success message';
+                    break;
+                default:
+                    text = 'This is a warning message';
+            }
+            var html = '<div id="' + time + '" class="alert alert-' + type + '">@ ' + time + ' - ' + text + ' <span class="
+            var node = document.createElement("div");
+            node.innerHTML = "<div class='alert alert-"+type+"' style='display:none'>["+time+"] "+text+" <span onclick='removeNode(this)'
+            node.innerHTML = "<div class='alert alert-"+type+"' style='margin-bottom:0'>"+time+": "+text+" <span class='close' onclick='
+            node.innerHTML = "<div class='
+            var n = d.getTime();
+            var id = "alert"+n;
+            var html = document.getElementById("alert").innerHTML;
+            var newAlert = document.createElement('div');
+            newAlert.setAttribute("id",id);
+            newAlert.innerHTML=html.replace(/Alert!/,"New Alert!");
+            newAlert.className=newAlert.className.replace("alert-danger","")    + " alert-"+type;
+            document.getElementById("alerts").appendChild(newAlert);
+        }
+        function removeAlert() {
+            var alertsPanel = document.getElementById("alerts");
+            var count = alertsPanel.childElementCount;
+            if (count > 0){
+                alertsPanel.removeChild(alertsPanel.lastChild);
+            } else{
+                // there are no alerts to remove
+                document.getElementById("alert").innerHTML="No Alerts To Remove";
+            }
+        }
+    </ script >
+    
+    < div id ="alerts"></ div >
+</ body >
+</ html >
+
+Copyright (c) <year> <owner>
+
+    Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+    
+    1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    This software is licensed under the BSD license:
+    http://www.opensource.org/licenses/bsd-license.php
+    
+    For details, see http://www.filamentgroup.com/lab/  experimental_javascript_based_alerts/
+    </ s> </ head >< body >
+    <!-- Example of how to use the functions -->
+    < button onclick="addAlert('info')">Info!</button>
+    < button onclick="addAlert('success')">Success!</button>
+    < button onclick="addAlert('warning')">Warning!</button>
+    < button onclick="addAlert('error')">Error!</button>
+    < br / >
+    < button onclick="removeAlert()" disabled="disabled">Remove Last Alert</button></s> </body> </html> 
+<?php
+// Include config file
+require_once 'config.php';
+// Initialize variables
+$username = "";
+$email = "";
+$password = "";
+$confirm_password = "";
+$firstname = "";
+$lastname = "";
+$address = "";
+$city = "";
+$postalcode = "";
+$country = "";
+$errors = array();      // Array to store validation errors
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (isset($_POST['reg_ country']) && $_POST['reg_country'] != "") {
+        $country = e($_POST['reg_country']);
+    } else {
+        array_push($errors, "Country is required");
+    }
+    $address = e(strip_tags($_POST['reg_address']));
+    $city = ucwords(e(strip_tags($_POST['reg_city']))).",";
+    $postalcode = strtoupper(e($_POST['reg_postalcode']));
+    // Validate input data
+    $username = e(trim($_POST["reg_username"]));
+    $email = trim($_POST["reg_email"]);
+    $password = trim($_POST["reg_password"]);
+    $confirm_password = trim($_POST["reg_confirmpassword"]);
+    $firstname = ucwords(e(trim($_POST["reg_firstname"])));
+    $lastname = ucwords(e(trim($_POST["reg_lastname"])));
+    // Check for empty fields
+    if (empty($username) || empty($email) || empty($password) || empty  ($lastname  ||   empty($firstname))) {
+        if (empty($username) || empty($email) || empty($password) || empty($firstname) || empty($lastname)) {
+            array_push($errors, "All fields are required.");
+            }
+        
+            // Check username length
+        if ((strlen($username) < USERNAME_MIN_LENGTH) || ( strlen($username) > USERNAME_MAX_LENGTH)) {
+            array_push($errors, "Username must be between 3 and 15 characters long.");
+        }
+        // Check email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            array_push($errors, "Email is invalid.");
+        }  else {
+            $user_query = query("SELECT * FROM users WHERE user_email=?",    $email);
+            confirm_query($user_query);
+            while ($user = fetch_array($user_query)) {
+                if ($user['user_id'] != $_SESSION['user_id']) {
+                    array_push($errors, "The email provided is already in use.");
+                    }
+                    }// end while loop
+            }
+            // Check password match
+        if ($password !== $confirm_password) {
+            array_push($errors, "Passwords do not match.");
+        }
+            
+        // If there were no errors, submit the form to the database
+        if (count($errors) ==  0) {
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            $profile_image = "";
+            $sql = "INSERT INTO users (user_username, user_password, user_email, user_profileimg, user_firstname, user_lastname, user_address
+            $sql = "INSERT INTO users (user_username, user_password, user_email, user_city, user_zip, user_firstname, user_lastname,
+            $sql = "INSERT INTO users (user_username, user_password, user_  email, user_city, user_zip, user_profileimg, user_firstname
+            $sql = "INSERT INTO users (user_username, user_pass, user_  email, user_city, user_zip, user_profileimg, user
+            $sql = "INSERT INTO users ( user_username, user ) VALUES (?, ?)";
+            $params = [$username,$hash  ];
+            $params2 = [$username,'<div ,?=",?">
+                First Name: <?php echo htmlentities($firstname)?><br>
+                Last Name: <?php echo htmlentities($lastname)?><br>
+                Email: <?php echo htmlentities($email)?><br>
+                Profile Image: <img src="<?php echo htmlentities($profile_image)?>" alt="" height="75" width="7
+                Profile Image: <img src="<?php echo htmlentities($profile_image)?>" alt="" height="75" width="7
+                Profile Image: <img src="<?php echo htmlentities($profile_image)?>" alt="" height="75" width="7
+                Profile Image: <img src="<?php  echo htmlentities($profile_image)?>" alt="" height="80" width="80"><br>
+                Profile Image: <img src="<?php  echo htmlentities($profile_image)?>" alt="" height="80" width="80"><br></div
+                Profile Image: <img src="<?php echo htmlentities($profile_image)?>" alt="" height="80" width="8
+                Profile Image: <?php echo htmlentities($profile_image)?></div>';];
+            execute_statement($db, $sql, $params, $params2);
+            redirect_to("index.php");
+        } else {
+            $username = h($_POST['username']);
+            $email = h($_POST['email.username'validation'('[a-zA-Z]'), '[a-zA-Z0-9._%+-]+@profile></div>');
+            render_form(true, $username, $firstname, $lastname, $email, $password, $confirm_password, $errors);
+            render_form(true, $username, $firstname, $lastname, $email, $password, $confirm_password, $errors);
+            render_form(true, $username, $firstname, $lastname, $email, $password, $confirm_password, $errors);
+            render_form(true, $username, $firstname, $lastname, $email, $password, $confirm_password, $errors);
+            render_form(true, $username, $firstname, $lastname, $email);
+        }   else{
+            $username = h($_GET['username']);
+            $user_query = query("SELECT * FROM users WHERE user_username=? ", $username); //     select from db where username matches inputted username
+            $user_query = query("SELECT * FROM users WHERE user_username=?",
+            confirm_query($user_query);
+            $user = fetch_array($user_query));
+            $firstname = $user['user_fname'];
+            $lastname = $user['user_lname'];
+            $email = $user['user_email'];
+            render_form(false, $username, $firstname, $lastname, $email);
+        }
+        
+?>
+</body>
+</html>
