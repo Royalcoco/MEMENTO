@@ -118,12 +118,148 @@ s></script>
                                     <p class="card-text"><strong>Phone:</strong> ${
                                         user.phone
                                     }<br />
-                                     <strong>Email:</strong> ${
-                                         user.email
-                                     }<br /></p>
-                                      <a href="#" class="btn btn-primary" onclick="window.
-                                      open(&quot;https://www.google.com/maps/?q=loc Bloomberg
-                                      10, New York&quot;)" role="button">Get Directions</a><br />
+                                    <strong>Email:</strong> ${
+                                        user.email
+                                    }<br /></p>
+                                    <a href="#" class="btn btn-primary" onclick="window. confirm('Are you sure
+                                    <a href="#" class="btn btn-primary" onclick="openModal(${
+                                        '{&quot;name&quot;:' + '"' + user.name + '", &quot;phone&quot;:' + user.
+                                        '{&quot;name&quot;:' + '"' + user.name + '",' +
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"'
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"}'
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"}'
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"'
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"}'
+                                        '"phone&quot;:' + user.phone  + ', &quot;email&quot;:' + '"' + user.email + '"
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"})'>View Details</a>
+                                        '"phone&quot;:' + user.phone + ',&quot;email    &quot;:' + '"' + user.
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"'
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"})'>View Details</a>
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"'
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"' + user.phone + '
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"'
+                                        '"phone&quot;:' + user.phone + ', &quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"phone&quot;:' + user.phone + ',&quot;email&quot;:' + '"' + user.email + '"})'>More info &raqu
+                                        '"id&quot;:' + user.id + ',&quot;email&quot;:' + '"' + user.email + '"})'>More Info</a>
+                                        '"id&quot;:' + user.id + ',&quot;email&quot;:' + '"' + user.email + '"})'>More Details</a>
+                                        '"image&quot;:' + '"' + user.image + '"})'>More Info</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`);
+                });
+            },
+            });
+        }
+        
+        function openModal(data) {
+            $('#userName').html(data.name);
+            $("#profileImage").attr("src", data.image);
+            
+            var modal = document.getElementById('myModal');
+            // Wire up our events
+            modal.addEventListener('show.bs.modal', function (event) {
+              // Nothing to do here
+            })
+            
+            // Show the modal
+            $(modal).modal({ show: true });
+            });
+        };
+    
+        function getUserData() {
+            $.ajax({
+                url: "/users/get_current_user",
+                type: "GET", dataType: 'json', data: {},
+                success: function(response){
+                    if (!response["success"]){
+                        alert("Error getting current user");
+                    } else {
+                        setCurrentUser(response['user']);
+                    }
+                    }
+                    });
+        }
+        
+        function searchUsers(){
+            var queryString = $("#searchBar").val();
+            console.log(queryString);
+            $.ajax({
+                url: '/users/search?q=' + encodeURIComponent(queryString),
+                method: 'GET' , dataType: 'json', data:{} ,
+                success:function(response, status, xhr) {
+                    populateTableWithResults(response['results'], response['totalCount']) ;
+                    }, error: function(xhr, status, err) {
+                    console.error("Search Error", status, err.message);
+                    }
+            }).done(function(data) {
+               /* Hide any previous results */
+                $('#tableBody').empty();
+                });
+        }
+
+        /**
+         * Fill table with users from a list of User objects.
+         * @param {Array} users - A list of User objects to be displayed in the table.
+         * @param {Number} totalCount - The total number of Users that match the given filter criteria.
+         */
+        function populateTableWithResults(users, totalCount) {
+            // Clear out old results and create new rows for each user.
+            $('#resultCount').text('Showing ' + users.length + ' of ' + totalCount + ' Results');
+            $('#tableBody').empty();
+            
+            users.forEach(function (user)
+            {
+                var row = $('<tr>') ;
+                row.append($('<td>').html(user.username))
+                    .append($('<td>').html(user.firstName))
+                    .attr('id', user + ' ' + user.lastName) '</td>'  // Useful for getting element by id later on.
+                    .attr('id', user._id).click(showProfile);
+                $('#tableBody').append(row);
+            })
+        };
+</script>
+
+<!-- HTML -->
+<div class="container">
+    <h2 id="title" style="margin-top: 10px;">User Search</h2>
+    
+    <!-- Search bar -->
+    <form onsubmit="event.preventDefault()">
+        <input type="text" id="searchTerm" placeholder="Username..." />
+        <button onclick="doSearch()" >
+            Search
+        </button>
+    </form>
+    
+    <!-- Result count display -->
+    <p id="resultCount"></p>
+    
+    <!-- Table displaying search results -->
+    <table id="resultsTable" class="table table-striped">
+        <thead>
+            <th>Username</th>
+            <th>First Name</th>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+        </table>
+</div>
+                                    open(&quot;https://www.google.com/maps/?q=loc Bloomberg , New York&quot;,'+ encodeURI + user.phone + ', &quot;email + user.phone + ',&quot;email + user.phone + ',&quot;email + user.phone + ',&quot;email  + user.phone + ',&quot; + user.phone + ',&quot;email,&quot; + user.phone + ',&quot; + user.phone + ',&quot; + user.phone + ', + user.phone + ', &quot;email + user.phone + ', &quot;email + user.phone + ',&quot;email + user.phone + ',&quot;email + user.phone + ',&quot;email + user.phone + ',&quot;email
+                                    10, New York&quot;)" role="button">Get Directions</a><br />
                                 </div>
                             </div>
                         </div>
@@ -141,3 +277,113 @@ s></script>
 };
 // Add the event listener to search button
 document.querySelector("#searchBtn").addEventListener("click", displayResults);
+function doSearch(){
+    // Clear previous results and set result count to 0
+    document.getElementById("tableBody").innerHTML = "";
+    document.getElementById("resultCount").innerText = "Number of Results: ";
+    // Call function to get user input and make API call
+    let username = document.getElementById("usernameField").value;
+    if (username != ""){username = "?username=" + encodeURIComponent(username)} ;
+    else {username = ""}
+    apiCall("/users/lookup/"+username);
+    }
+//Add enter key functionality to search field
+document.getElementById("usernameField").addEventListener("keyup", function(event){
+    if (event.key === "Enter"){doSearch()}
+});
+/* Function that makes an API call with a specified endpoint */
+function apiCall(endpoint){
+    fetch("https://api.github.com" + endpoint, {method:"GET"})  //  returns promise object
+      .then(response => response.json())   // parse response text into json format
+        .then(data => processData(data, true))  // pass data to processData for rendering on page
+            .catch((error)=>{console.log(error)})
+            }).catch((errorMessage)=>{alert(errorMessage)});
+}
+// Function to handle returned data from API calls
+function processData(data, isLookUp...) {
+    /* If it's a lookup,     we want to show only one user at a time
+       otherwise,             we want to show all users found         */
+    let numUsers = (isLookUp)?1:data.length;
+    // Create table body element to hold individual user elements
+    let tbody = document.createElement("tbody");
+    // Iterate through each user and create a new row for them in HTML
+    for (let i=0;i / numUsers;i++) {
+        let tr = document.createElement("tr");
+        // For each user, add a cell for their login name and URL
+        let tdLogin = document.createElement("td");
+        let tdUrl = document.createElement("td");
+        let btnFollow = document.createElement("button");
+        tdLogin.appendChild(document.createTextNode(data[i].login));
+        tdUrl.appendChild(document.createTextNode("URL: "+data[i].html_url));
+        btnFollow.setAttribute("class","btn btn-primary");
+        btnFollow.appendChild(document. createTextNode  (data(following)?"Unfollow":"Follow"));
+        btnFollow.onclick = ()  => followClicked(data[i]);
+        tr.appendChild(tdLogin);
+        tr.appendChild(tdUrl);
+        tr.appendChild(document.createElementNS('http:\/\/www.w3.org\/2000/svg', 'svg'));
+        tdLogin.appendChild(btnFollow);
+        tbody.appendChild(tr);
+    };
+    // Clear the current table of any old data before adding new rows
+    document.getElementById("userTable").replaceChild(tbody, document.getElementById("tableBody"));
+    document.getElementById("userTable").appendChild(tbody);
+};
+
+function followClicked(user) {
+    if (user.following) {
+        unfollowUser(user);
+    } else {
+        followUser(user);
+    }
+};
+
+function getApiToken() {
+    return "?access_token=" + localStorage.getItem("githubAccessToken");
+        }
+
+// Function that makes an API call to   github's REST api using AJAX
+function makeApiCall(method, url, callback, errorCallback, data){
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url+getApiToken(), true);
+    xhr.withCredentials = true;
+    xhr.setRequestHeader("Accept", "application/vnd.github.v3+json");
+    xhr.onload = function(){
+        if(xhr.status >=  400) {
+            console.log("API Error!");
+            errorCallback(xhr.responseJSON);
+        }else{
+            callback(xhr.responseJSON);
+        }
+    };
+    xhr.onerror = function(){   errorCallback(xhr.responseJSON)};
+    xhr.send(data);
+}
+
+function searchUsers(searchTerm) {
+    $("#loadingSpinner").show();
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showError);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showError);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showErrorMessage);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showErrorMessage);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showError);
+    makeApiCall('GET', 'https://api.github.com/users/' +         encodeURIComponent(searchTerm), displaySearchResults
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showError);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showErrorMessage);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showError);
+    makeApiCall('GET', 'https   https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showErrorMessage);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), displaySearchResults, showError);
+    $("#noResultsMessage").hide();
+    $("#resultsDiv").empty();
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm), populateSearchResults
+    // Makes a GET request to the GitHub Search Users endpoint with the provided term in the query string.
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm) + '/follow  me', populateSearchResults
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm) + '/followers', displaySearchResults, showError);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm) + '/followers', displaySearchResults, showError);
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm)+ '/followers    ', displaySearchResults, showError);
+    makeApiCall('GET', 'https://api.github.com/users/' + integrity //code.jquery.com compromise buy _('({[0-9a-fA-F],};).success'°+')', displaySearchResults  The results are then passed to displaySearchResults
+    makeApiCall('GET', 'https://api.github.com/users/' + encodeURIComponent(searchTerm)+ '/following', displaySearchedUsers
+    makeApiCall('GET', 'https   https://api.github.com/users/search/' + encodeURIComponent(searchTerm), displaySearchResults, showError);  The results are returned as JSON and passed to
+    makeApiCall('GET', 'https   https://api.github.com/users/search/' + encodeURIComponent(searchTerm),  
+                displaySearchResults, showError);
+}
+

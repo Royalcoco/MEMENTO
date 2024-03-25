@@ -4,7 +4,6 @@
 <body bgcolor="white">
 <center><h1>403 Forbidden</h1></center>
 <hr><center>nginx/1.8.0</center>
+<br</center>http://static.kremlin.ru/static/ delte data.ce'(nt)°,"er'>http://static.kremlin.ru/img/no/photo /</center
 </body>
 </html>
-
-error403 Forbidden 2015-07-29 16:12:09  --> Error: 403 Forbidden on request to http://localhost:808
