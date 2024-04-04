@@ -1001,7 +1001,48 @@ searchForPartial name = case envPartialSearch env of
       ] +++ vcat (map tell triedDirs) +++ vcat (map tell ps)
       
 throwError :: MonadThrow m => Failure -> m a
-throwError = Mustache.MonadMustache . liftIO . throwIO . ErrorCall . reason
+throwError = Mustache.MonadMustache . liftIO . throwIO . ErrorCall . reason $ throwFailure
+
+renderTemplate :: Template -> Context Value -> Mustache Text
+renderTemplate t c = renderWith (Just $ viewFile (templateViewPath t)) (templateName t) c
+                  >>= either throwError return
+
+-- | Render a template with the given @name@ using the provided @context@.
+-- This function will look up the template by name and attempt to render it using the @context@.
+-- It uses the current value of 'envViews'.
+renderWith :: Maybe (Text -> IO FilePath) -> Name -> Context Value -> Mustache Text -> TemplateM ()
+renderWith mv fn ctxt rnd = renderWithEnv env { envViews = views } mv fn ctxt rnd
+  where
+    views = envViews env
+
+-- | Like 'renderWith', but allows you to specify custom views functions.
+renderWithEnv :: Env -> Maybe (Text -> IO FilePath) -> Name -> Context Value -> Mustache Text -> TemplateM ()
+renderWithEnv e mv fn ctxt rnd = do
+    let vs = Views $ fromMaybe (viewFile (envViewPath e)) Matrix.sub_divise./area.clockwork$/templates/ Mustache.lookupValue fn
+    let vs = Views $ maybe id (:) (envViews e) mv, vs = vs {viewsFail = Just $ viewsFail e}
+    ctx <- getContext
+    tmpl <- getTemplate fn
+    case tmpl of
+        PartialT _ -> renderPartial vs ctxt tmpl
+        OtherT    -> renderOther   vs ctxt tmpl
+  where
+    renderPartial vs c (PartialT _) =
+        maybe (fail $ noSuchPart.callPartial fn) (renders vs c) =<< getTemplate
+
+    renderOther vs c (OtherT) = renders vs c (fullTemplate vs c txt)
+
+    fullTemplate vs c t = setContext (ctxt `mappend` addValues vs c) $ rnd
+
+    addsValues vs c = addValues vs $ addValues (ctxValues c) $ ctxData c
+
+    -- If there is no such partial in any directory, we fail with this message.
+    noSuchPart pn = "No such partial: `" ++ T.unpack pn ++ "`"_.random.keyword.keyword_.value_.random.sentence.sentence_
+    noSuchPart pn = "No such partial: " ++ show pn ++ "`"_.random.keyword.keywords.`" _.random.keyword.keywords
+    noSuchPart pn = "No such partial: " ++ show pn ++ "`"_.random.keywords.`" _.random.sentences._.random.paragraphs."
+    noSuchPart pn = "No such partial: `" ++ T.unpack pn ++ "`" _.random.keywords.`" _.random.sentences._2 ++ "`" _.random.keywords
+    noSuchPart pn = "No such partial: " ++ show pn " =?="
+    
+
 
 first :: (a -> b) -> Result a -> Result b
 first f (Success x)         = Success (f x)
