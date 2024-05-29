@@ -1,0 +1,63 @@
+import os
+import random
+import subprocess
+from cryptography.fernet import Fernet
+import requests
+
+# Fonction pour mesurer le ping
+def measure_ping(host):
+    try:
+        output = subprocess.check_output(["ping", "-c", "4", host])
+        return output.decode('utf-8')
+    except subprocess.CalledProcessError as e:
+        return e.output.decode('utf-8')
+
+# Générer un message codé basé sur le nombre de pings réussis
+def generate_coded_message(ping_output):
+    successful_pings = ping_output.count("time=")
+    return f"Ping count: {successful_pings}"
+
+# Fonction pour extraire des mots aléatoires depuis un dictionnaire en ligne
+def get_random_words(count):
+    url = "https://random-word-api.herokuapp.com/word?number=" + str(count)
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return []
+
+# Fonction pour encrypter un texte avec un mot de passe
+def encrypt_text(text, password):
+    key = Fernet.generate_key()
+    cipher_suite = Fernet(key)
+    encrypted_text = cipher_suite.encrypt(text.encode())
+    return encrypted_text, key
+
+# Mesurer le ping vers google.com
+ping_output = measure_ping("google.com")
+
+# Générer un message codé
+coded_message = generate_coded_message(ping_output)
+
+# Obtenir des mots aléatoires
+random_words = get_random_words(5)
+password = "-".join(random_words)
+
+# Texte à encrypter
+text_to_encrypt = "Ceci est un texte secret à encrypter."
+
+# Encrypter le texte avec le mot de passe généré
+encrypted_text, key = encrypt_text(text_to_encrypt, password)
+
+# Afficher les résultats
+print(f"Ping Output:\n{ping_output}")
+print(f"Coded Message: {coded_message}")
+print(f"Random Words for Password: {random_words}")
+print(f"Generated Password: {password}")
+print(f"Encrypted Text: {encrypted_text}")
+print(f"Encryption Key: {key.decode()}")
+
+# Sauvegarder les résultats dans un fichier
+with open('results.txt', 'w', encoding='utf-8') as file:
+    file.write(f"Ping Output:\n{ping_output}\n")
+    file.write(
