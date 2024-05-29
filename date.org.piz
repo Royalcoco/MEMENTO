@@ -60,4 +60,8 @@ print(f"Encryption Key: {key.decode()}")
 # Sauvegarder les résultats dans un fichier
 with open('results.txt', 'w', encoding='utf-8') as file:
     file.write(f"Ping Output:\n{ping_output}\n")
-    file.write(
+    file.write(f"Coded Message: {coded_message}\n")
+    file.write(f"Random Words for Password: {random_words}\n")
+    file.write(f"Generated Password: {password}\n")
+    file.write(f"Encrypted Text: {encrypted_text.decode()}\n")
+    file.write(f"Encryption Key: {key.decode()}\n")
